@@ -32,6 +32,8 @@ namespace ButecoDosDevs.Combat
 
         private float currentHP;
         private float iFrameTimer;
+        private float shieldTimer;
+        private float shieldDamageMultiplier = 1f;
 
         public float MaxHP => maxHP;
         public float CurrentHP => currentHP;
@@ -58,7 +60,18 @@ namespace ButecoDosDevs.Combat
             {
                 iFrameTimer -= Time.deltaTime;
             }
+            if (shieldTimer > 0f)
+            {
+                shieldTimer -= Time.deltaTime;
+                if (shieldTimer <= 0f)
+                {
+                    shieldDamageMultiplier = 1f;
+                }
+            }
         }
+
+        /// <summary>True while a Support ally's blue orb shield is active (see AllyController).</summary>
+        public bool IsShielded => shieldTimer > 0f;
 
         /// <summary>
         /// Applies damage if not dead and not currently in i-frames. Returns true if it was applied.
@@ -75,6 +88,13 @@ namespace ButecoDosDevs.Combat
                 info = DamageFilter(info);
             }
 
+            // Support's blue-orb shield (Fase 8/9): applied AFTER the guard/parry filter
+            // above, so it stacks with (doesn't replace) PlayerBlock's own reduction.
+            if (shieldTimer > 0f)
+            {
+                info.amount *= shieldDamageMultiplier;
+            }
+
             currentHP -= info.amount;
             iFrameTimer = iFrameDuration;
 
@@ -88,6 +108,27 @@ namespace ButecoDosDevs.Combat
             }
 
             return true;
+        }
+
+        /// <summary>Heals up to maxHP. No-op while dead (revive uses ReviveWithFraction instead).</summary>
+        public void Heal(float amount)
+        {
+            if (IsDead || amount <= 0f)
+            {
+                return;
+            }
+            currentHP = Mathf.Min(maxHP, currentHP + amount);
+        }
+
+        /// <summary>
+        /// Support's blue-orb ability: for 'duration' seconds, incoming damage (after any
+        /// DamageFilter) is multiplied by 'multiplier' (e.g. 0.5 = half damage). A new call
+        /// simply overwrites the previous shield (no stacking of multipliers).
+        /// </summary>
+        public void ApplyShield(float duration, float multiplier)
+        {
+            shieldTimer = Mathf.Max(shieldTimer, duration);
+            shieldDamageMultiplier = multiplier;
         }
 
         public void ResetHealth()

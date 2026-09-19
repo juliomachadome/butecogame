@@ -91,7 +91,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -105,7 +105,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -130,8 +130,8 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureFormat: 4
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -169,419 +169,441 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_0
+      name: Rival_Idle_S
       rect:
         serializedVersion: 2
-        x: 27
-        y: 240
-        width: 22
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 228
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 90ce9177c5a482910800000000000000
-      internalID: 1812780611012258825
+      spriteID: d2a4e7d42f90341c482dbea7ad8c6ca3
+      internalID: 336602341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_1
+      name: Rival_Idle_W
       rect:
         serializedVersion: 2
-        x: 104
-        y: 238
-        width: 19
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 76
+        y: 228
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fd89a8a5293190d10800000000000000
-      internalID: 2092225021195491551
+      spriteID: 1bd7a1d1a027e448ba9a60e516412147
+      internalID: 1681220033
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_2
+      name: Rival_Idle_E
       rect:
         serializedVersion: 2
-        x: 181
-        y: 238
-        width: 19
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 152
+        y: 228
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c2915095051f9bdd0800000000000000
-      internalID: -2469677593242822356
+      spriteID: a06524e65bcad4bf1a9b3fc935582a66
+      internalID: 1056689329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_3
+      name: Rival_Idle_N
       rect:
         serializedVersion: 2
-        x: 255
-        y: 240
-        width: 22
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 228
+        y: 228
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 598a2553e1b6fe080800000000000000
-      internalID: -9155981739933128555
+      spriteID: c270f4c636ce844b4a27aa5222d1fdd3
+      internalID: 1227926057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_4
+      name: Rival_Idle_Unused
       rect:
         serializedVersion: 2
-        x: 27
-        y: 164
-        width: 22
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 304
+        y: 228
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e3470aa00c45303a0800000000000000
-      internalID: -6700418636808424386
+      spriteID: a40479e0d83534be5ae4ab68adb69686
+      internalID: -2023578572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_5
+      name: Rival_Walk_S_0
       rect:
         serializedVersion: 2
-        x: 101
-        y: 164
-        width: 26
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 152
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 18a5ea41aa0938ae0800000000000000
-      internalID: -1548234786719507839
+      spriteID: 894ce59593160418fb3342777991403b
+      internalID: -396733283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_6
+      name: Rival_Walk_S_1
       rect:
         serializedVersion: 2
-        x: 176
-        y: 165
-        width: 24
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 76
+        y: 152
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 018b106fba005ec60800000000000000
-      internalID: 7846678664329672720
+      spriteID: b448ec3d993ef4dbab51f42368a9bc4d
+      internalID: 1904821394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_7
+      name: Rival_Walk_S_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 165
-        width: 21
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 152
+        y: 152
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2db8a1065c6228980800000000000000
-      internalID: -8538219314378273838
+      spriteID: c5b1751f47da841c9a8eda05e7bb3d81
+      internalID: -875982621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_8
+      name: Rival_Walk_S_3
       rect:
         serializedVersion: 2
-        x: 337
-        y: 164
-        width: 19
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 228
+        y: 152
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 55b57c283e9e22ef0800000000000000
-      internalID: -134287875506742443
+      spriteID: 1d7c98bcbb1784588bfd4a966a808995
+      internalID: 1020377976
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_9
+      name: Rival_Walk_S_4
       rect:
         serializedVersion: 2
-        x: 29
-        y: 86
-        width: 19
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 304
+        y: 152
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7d2e3e1556d666770800000000000000
-      internalID: 8603684420070925015
+      spriteID: 63ba8c3bd9b134dfe97182e79b868d19
+      internalID: -1528585156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_10
+      name: Rival_Walk_E_0
       rect:
         serializedVersion: 2
-        x: 103
-        y: 86
-        width: 22
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 76
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7c069e74394628c40800000000000000
-      internalID: 5513079477584355527
+      spriteID: 98c350199529949028c9b3ef31e17f1f
+      internalID: 757698229
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_11
+      name: Rival_Walk_E_1
       rect:
         serializedVersion: 2
-        x: 177
-        y: 86
-        width: 26
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 76
+        y: 76
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8925478629c219480800000000000000
-      internalID: -8894278781750717800
+      spriteID: fb42ede7578af4f8d9782da6ce90be40
+      internalID: 1467310491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_12
+      name: Rival_Walk_E_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 86
-        width: 20
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 152
+        y: 76
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 20da472c239a7e450800000000000000
-      internalID: 6118044654281993474
+      spriteID: 9c82b8c992eeb412a8423800ecbbd5da
+      internalID: -1872790560
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_13
+      name: Rival_Walk_E_3
       rect:
         serializedVersion: 2
-        x: 332
-        y: 86
-        width: 21
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 228
+        y: 76
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c39e5a647ddfa4cf0800000000000000
-      internalID: -267122126830048964
+      spriteID: 2a024d7a695b8493aa093b411f58479b
+      internalID: -723920913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_14
+      name: Rival_Walk_E_4
       rect:
         serializedVersion: 2
-        x: 27
-        y: 12
-        width: 22
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 304
+        y: 76
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8e08790edb4265d00800000000000000
-      internalID: 960995968425623784
+      spriteID: b0e0a416a0e3e40ea975aedc13d35459
+      internalID: 1473081646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_15
+      name: Rival_Walk_N_0
       rect:
         serializedVersion: 2
-        x: 104
-        y: 12
-        width: 20
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a73931d2ecd818c10800000000000000
-      internalID: 2054078821716693882
+      spriteID: 970f094ccff5241fb8d4617a5fc17da5
+      internalID: 1122041795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_16
+      name: Rival_Walk_N_1
       rect:
         serializedVersion: 2
-        x: 179
-        y: 12
-        width: 22
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 76
+        y: 0
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d5f4b0bd303cde430800000000000000
-      internalID: 3813918880779947869
+      spriteID: 6a416c526bd91479b8aadeea24a3738e
+      internalID: -749513707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_17
+      name: Rival_Walk_N_2
       rect:
         serializedVersion: 2
-        x: 257
-        y: 13
-        width: 18
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 152
+        y: 0
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f711be378231b24d0800000000000000
-      internalID: -3158409649205866113
+      spriteID: 5b92f5f01cd9d4bd588173050a8dbe97
+      internalID: 1738394513
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Rival_Sheet_18
+      name: Rival_Walk_N_3
       rect:
         serializedVersion: 2
-        x: 333
-        y: 13
-        width: 19
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 228
+        y: 0
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f6527a4cc30028940800000000000000
-      internalID: 5296796372738450799
+      spriteID: 0a6a3ff02dfb542dea674ebdecaeff52
+      internalID: 1587775834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rival_Walk_N_4
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 0
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 550b8067a6c7f45739ea5170d15fa817
+      internalID: -1540744095
       vertices: []
       indices: 
       edges: []
@@ -590,7 +612,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 866e34637e3924c658320a648f679e26
     internalID: 0
     vertices: []
     indices: 
@@ -619,6 +641,26 @@ TextureImporter:
       Generic_Rival_Sheet_7: -8538219314378273838
       Generic_Rival_Sheet_8: -134287875506742443
       Generic_Rival_Sheet_9: 8603684420070925015
+      Rival_Idle_E: 1056689329
+      Rival_Idle_N: 1227926057
+      Rival_Idle_S: 336602341
+      Rival_Idle_Unused: -2023578572
+      Rival_Idle_W: 1681220033
+      Rival_Walk_E_0: 757698229
+      Rival_Walk_E_1: 1467310491
+      Rival_Walk_E_2: -1872790560
+      Rival_Walk_E_3: -723920913
+      Rival_Walk_E_4: 1473081646
+      Rival_Walk_N_0: 1122041795
+      Rival_Walk_N_1: -749513707
+      Rival_Walk_N_2: 1738394513
+      Rival_Walk_N_3: 1587775834
+      Rival_Walk_N_4: -1540744095
+      Rival_Walk_S_0: -396733283
+      Rival_Walk_S_1: 1904821394
+      Rival_Walk_S_2: -875982621
+      Rival_Walk_S_3: 1020377976
+      Rival_Walk_S_4: -1528585156
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

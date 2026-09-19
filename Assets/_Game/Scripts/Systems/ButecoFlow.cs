@@ -161,6 +161,13 @@ namespace ButecoDosDevs.Systems
 
         private IEnumerator RunFlow()
         {
+            if (GameState.WarFinished)
+            {
+                yield return RunEpilogue();
+                state = State.Done;
+                yield break;
+            }
+
             yield return RunArrival();
             yield return RunExplore();
             yield return RunPedroLeaves();
@@ -168,6 +175,26 @@ namespace ButecoDosDevs.Systems
             yield return RunArsenal();
             yield return RunBora();
             state = State.Done;
+        }
+
+        // ---------------- Epilogue (after the war, Fase 9) ----------------
+
+        private IEnumerator RunEpilogue()
+        {
+            state = State.Explore; // reuse Explore's free-roam behaviour (soundboard, stranger event, etc.)
+            objectiveUI?.SetObjective("Aproveite o Buteco (modo livre)");
+
+            yield return new WaitForSeconds(1f);
+            Say(moe, "Rodada por conta da casa. Só hoje.", 2.6f);
+            yield return new WaitForSeconds(1.4f);
+            Say(reiLuiz, "Essa foi a melhor jam.", 2.4f);
+            yield return new WaitForSeconds(1.4f);
+            Say(julio, "Criador aprova.", 2f);
+            yield return new WaitForSeconds(1.2f);
+            Say(pedro, "*tsc tsc*... agora sim acendeu.", 2.6f);
+            yield return new WaitForSeconds(1f);
+
+            strangerRoutine = StartCoroutine(StrangerLoop());
         }
 
         // ---------------- Arrival ----------------
@@ -422,21 +449,13 @@ namespace ButecoDosDevs.Systems
 
         private void ApplyWeapon(GameState.Weapon weapon)
         {
-            switch (weapon)
+            if (weapon == GameState.Weapon.None)
             {
-                case GameState.Weapon.BigSlow:
-                    ApplyWeapon(weapon, 45f, 1.5f, 1f, swordSprite, 1.4f, GameState.WeaponDisplayName(weapon));
-                    break;
-                case GameState.Weapon.ShortFast:
-                    ApplyWeapon(weapon, 22f, 0.65f, 1f, swordSprite, 0.7f, GameState.WeaponDisplayName(weapon));
-                    break;
-                case GameState.Weapon.Bottle:
-                    ApplyWeapon(weapon, 26f, 1f, 2f, bottleSprite, 0.8f, GameState.WeaponDisplayName(weapon));
-                    break;
-                default:
-                    ApplyWeapon(GameState.Weapon.Balanced, 30f, 1f, 1f, swordSprite, 1f, GameState.WeaponDisplayName(GameState.Weapon.Balanced));
-                    break;
+                weapon = GameState.Weapon.Balanced;
             }
+            GameState.WeaponStats stats = GameState.GetWeaponStats(weapon);
+            Sprite sprite = weapon == GameState.Weapon.Bottle && bottleSprite != null ? bottleSprite : swordSprite;
+            ApplyWeapon(weapon, stats.damage, stats.timeMultiplier, stats.knockbackMultiplier, sprite, stats.visualScale, GameState.WeaponDisplayName(weapon));
         }
 
         private void ApplyWeapon(GameState.Weapon weapon, float damage, float timeMult, float kbMult, Sprite sprite, float visualScale, string label)

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using ButecoDosDevs.Combat;
 using ButecoDosDevs.Player;
@@ -14,7 +15,7 @@ namespace ButecoDosDevs.NPC
     /// </summary>
     public class AllyController : MonoBehaviour
     {
-        public enum Role { Frontline, Support } // Support behaviour (heal/shield) arrives in 4c-2.
+        public enum Role { Frontline, Support }
 
         private enum State { Follow, Combat, Knocked }
 
@@ -30,11 +31,28 @@ namespace ButecoDosDevs.NPC
         [SerializeField] private CharacterSpriteAnimator spriteAnimator;
         [SerializeField] private AttackFX attackFX;
 
-        [Header("Role (cosmetic this phase; support logic arrives in 4c-2)")]
+        [Header("Role")]
         [SerializeField] private Role role = Role.Frontline;
 
-        /// <summary>Reserved for 4c-2 (Support allies won't melee / will heal+shield instead).</summary>
         public Role CurrentRole => role;
+
+        [Header("Support (Role = Support only: Julio/Funnie, retaguarda)")]
+        [SerializeField] private float supportBackDistance = 2.5f;
+        [SerializeField] private float healInterval = 6f;
+        [SerializeField] private float healAmount = 15f;
+        [SerializeField] private float healRange = 7f;
+        [SerializeField] private float shieldInterval = 9f;
+        [SerializeField] private float shieldDuration = 4f;
+        [SerializeField] private float shieldDamageMultiplier = 0.5f;
+        [SerializeField] private float shieldRange = 7f;
+        [SerializeField] private Sprite orbSprite; // reuse FX_SmokePuff or PH_Square, tinted below
+        [SerializeField] private float orbTravelTime = 0.4f;
+        [SerializeField] private Color healOrbColor = new Color(0.3f, 1f, 0.4f, 1f);
+        [SerializeField] private Color shieldOrbColor = new Color(0.3f, 0.6f, 1f, 1f);
+        [SerializeField] private float supportFlashDuration = 0.25f;
+
+        private float healTimer;
+        private float shieldTimer;
 
         [Header("Formation (Follow)")]
         [SerializeField] private float formationBackDistance = 1.4f;
@@ -215,6 +233,13 @@ namespace ButecoDosDevs.NPC
 
         private void Update()
         {
+            if (role == Role.Support && state != State.Knocked)
+            {
+                TickSupportFollow();
+                TickSupportAbilities();
+                return;
+            }
+
             switch (state)
             {
                 case State.Follow:
@@ -226,6 +251,172 @@ namespace ButecoDosDevs.NPC
                 case State.Knocked:
                     TickKnocked();
                     break;
+            }
+        }
+
+        // ---------------- Support (Role.Support: stays back, never melees) ----------------
+
+        private void TickSupportFollow()
+        {
+            if (target == null)
+            {
+                moveDir = Vector2.zero;
+                return;
+            }
+
+            if (spriteAnimator != null)
+            {
+                spriteAnimator.ClearFacingOverride();
+            }
+
+            Vector2 facing = playerMovement != null ? playerMovement.LastMoveDirection : Vector2.down;
+            if (facing.sqrMagnitude < 0.0001f) facing = Vector2.down;
+            facing.Normalize();
+            Vector2 behind = -facing;
+            Vector2 side = new Vector2(-behind.y, behind.x);
+            Vector2 formationPoint = (Vector2)target.position + behind * supportBackDistance + side * formationSideOffset;
+
+            Vector2 toFormation = formationPoint - (Vector2)transform.position;
+            float dist = toFormation.magnitude;
+            moveDir = dist <= followStopDistance ? Vector2.zero : (toFormation / Mathf.Max(dist, 0.0001f)) * followSpeed;
+
+            // Same anti-soft-lock rescue as Frontline's Follow.
+            float distanceToPlayer = Vector2.Distance(transform.position, target.position);
+            stuckCheckTimer -= Time.deltaTime;
+            bool timedOut = false;
+            if (stuckCheckTimer <= 0f)
+            {
+                float moved = Vector2.Distance(transform.position, lastStuckPosition);
+                timedOut = moved < stuckMinDistance && dist > followStopDistance;
+                lastStuckPosition = transform.position;
+                stuckCheckTimer = stuckTimeout;
+            }
+            if (distanceToPlayer > rescueDistance || timedOut)
+            {
+                RescueTeleport();
+            }
+        }
+
+        private void TickSupportAbilities()
+        {
+            healTimer -= Time.deltaTime;
+            shieldTimer -= Time.deltaTime;
+
+            if (healTimer <= 0f)
+            {
+                healTimer = healInterval;
+                Health worst = FindLowestFractionInRange(healRange, requireDamaged: true);
+                if (worst != null)
+                {
+                    StartCoroutine(FireOrb(worst.transform, healOrbColor, () =>
+                    {
+                        if (worst != null) worst.Heal(healAmount);
+                        FlashTarget(worst, healOrbColor);
+                    }));
+                }
+            }
+
+            if (shieldTimer <= 0f)
+            {
+                shieldTimer = shieldInterval;
+                Health frontline = FindLowestFractionInRange(shieldRange, requireDamaged: false);
+                if (frontline != null)
+                {
+                    StartCoroutine(FireOrb(frontline.transform, shieldOrbColor, () =>
+                    {
+                        if (frontline != null) frontline.ApplyShield(shieldDuration, shieldDamageMultiplier);
+                        FlashTarget(frontline, shieldOrbColor);
+                    }));
+                }
+            }
+        }
+
+        /// <summary>Lowest-HP-fraction live ally/player within range. requireDamaged skips full-HP targets (heal only).</summary>
+        private Health FindLowestFractionInRange(float range, bool requireDamaged)
+        {
+            Health best = null;
+            float bestFraction = float.MaxValue;
+            ConsiderList(CombatantRegistry.Players, range, requireDamaged, ref best, ref bestFraction);
+            ConsiderList(CombatantRegistry.Allies, range, requireDamaged, ref best, ref bestFraction);
+            return best;
+        }
+
+        private void ConsiderList(System.Collections.Generic.IReadOnlyList<Health> list, float range, bool requireDamaged, ref Health best, ref float bestFraction)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                Health candidate = list[i];
+                if (candidate == null || candidate.IsDead || candidate == health)
+                {
+                    continue;
+                }
+                float dist = Vector2.Distance(transform.position, candidate.transform.position);
+                if (dist > range)
+                {
+                    continue;
+                }
+                float fraction = candidate.MaxHP > 0f ? candidate.CurrentHP / candidate.MaxHP : 1f;
+                if (requireDamaged && fraction >= 0.999f)
+                {
+                    continue;
+                }
+                if (fraction < bestFraction)
+                {
+                    bestFraction = fraction;
+                    best = candidate;
+                }
+            }
+        }
+
+        private IEnumerator FireOrb(Transform destination, Color color, System.Action onArrive)
+        {
+            GameObject go = new GameObject("SupportOrb");
+            go.transform.position = transform.position;
+            SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+            sr.sprite = orbSprite;
+            sr.color = color;
+            sr.sortingOrder = 55;
+
+            float t = 0f;
+            Vector3 start = transform.position;
+            while (t < orbTravelTime)
+            {
+                if (destination == null)
+                {
+                    Destroy(go);
+                    yield break;
+                }
+                t += Time.deltaTime;
+                float t01 = Mathf.Clamp01(t / orbTravelTime);
+                go.transform.position = Vector3.Lerp(start, destination.position, t01) + Vector3.up * (Mathf.Sin(t01 * Mathf.PI) * 0.4f);
+                yield return null;
+            }
+
+            Destroy(go);
+            onArrive?.Invoke();
+        }
+
+        private void FlashTarget(Health targetHealth, Color color)
+        {
+            if (targetHealth == null)
+            {
+                return;
+            }
+            SpriteRenderer sr = targetHealth.GetComponentInChildren<SpriteRenderer>();
+            if (sr != null)
+            {
+                StartCoroutine(FlashRoutine(sr, color, supportFlashDuration));
+            }
+        }
+
+        private static IEnumerator FlashRoutine(SpriteRenderer sr, Color flashColor, float duration)
+        {
+            Color original = sr.color;
+            sr.color = flashColor;
+            yield return new WaitForSeconds(duration);
+            if (sr != null)
+            {
+                sr.color = original;
             }
         }
 

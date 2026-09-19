@@ -91,7 +91,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -105,7 +105,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -130,8 +130,8 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureFormat: 4
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -169,419 +169,441 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_0
+      name: Buteco_Idle_S
       rect:
         serializedVersion: 2
-        x: 27
-        y: 240
-        width: 22
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 228
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aeccaafcf60532530800000000000000
-      internalID: 3828992549350722794
+      spriteID: f7043ec7862554636b4c24025fd2eadf
+      internalID: -1485617504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_1
+      name: Buteco_Idle_W
       rect:
         serializedVersion: 2
-        x: 104
-        y: 238
-        width: 19
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 76
+        y: 228
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fe5873d880c465170800000000000000
-      internalID: 8166798573895648751
+      spriteID: 1ec5d01954fab4b5ab7c1c6722250d0f
+      internalID: -1516013656
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_2
+      name: Buteco_Idle_E
       rect:
         serializedVersion: 2
-        x: 181
-        y: 238
-        width: 19
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 152
+        y: 228
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: eeff35cc88f6e1540800000000000000
-      internalID: 4980540871252639726
+      spriteID: b5b2aa929286545c88cab0d3d479e22a
+      internalID: 1683899891
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_3
+      name: Buteco_Idle_N
       rect:
         serializedVersion: 2
-        x: 255
-        y: 240
-        width: 22
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 228
+        y: 228
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 898d56dc18c53d280800000000000000
-      internalID: -9019763916126431080
+      spriteID: 02402b597074340979eb02e49754c16f
+      internalID: -649886715
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_4
+      name: Buteco_Idle_Unused
       rect:
         serializedVersion: 2
-        x: 27
-        y: 164
-        width: 22
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 304
+        y: 228
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dc170b9526dac5f00800000000000000
-      internalID: 1106950246349435341
+      spriteID: 4cf65f87d241342268518b767f303b5a
+      internalID: -437006256
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_5
+      name: Buteco_Walk_S_0
       rect:
         serializedVersion: 2
-        x: 101
-        y: 164
-        width: 26
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 152
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e19c174b91791d8b0800000000000000
-      internalID: -5129152363940951778
+      spriteID: 33957cd974b1e417186ab911800d9b73
+      internalID: -2006108715
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_6
+      name: Buteco_Walk_S_1
       rect:
         serializedVersion: 2
-        x: 176
-        y: 165
-        width: 24
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 76
+        y: 152
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7de61ad3329fc9ea0800000000000000
-      internalID: -5864538684990066985
+      spriteID: 7bdad79ac951042e1833f503b65b250d
+      internalID: -560176887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_7
+      name: Buteco_Walk_S_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 165
-        width: 21
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 152
+        y: 152
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8fc29a329f8242160800000000000000
-      internalID: 6999764771350850808
+      spriteID: 108aa5d3343e441d6bf4477a8348f196
+      internalID: -319898632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_8
+      name: Buteco_Walk_S_3
       rect:
         serializedVersion: 2
-        x: 337
-        y: 164
-        width: 19
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 228
+        y: 152
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ced489e637c361fc0800000000000000
-      internalID: -3524563191896453652
+      spriteID: 8c9e6df4ab4e44366ab3f5baaf2e6bc0
+      internalID: -1547075418
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_9
+      name: Buteco_Walk_S_4
       rect:
         serializedVersion: 2
-        x: 29
-        y: 86
-        width: 19
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 304
+        y: 152
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 95c85a9d250acf670800000000000000
-      internalID: 8573904068305849433
+      spriteID: 71561d6fca6104375968015cc1dcec74
+      internalID: 2035208170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_10
+      name: Buteco_Walk_E_0
       rect:
         serializedVersion: 2
-        x: 103
-        y: 86
-        width: 22
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 76
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4898b030b5aee3cf0800000000000000
-      internalID: -270521250981639804
+      spriteID: fbd35a7d8cb6a4a93a4ca895b87c406b
+      internalID: 820592487
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_11
+      name: Buteco_Walk_E_1
       rect:
         serializedVersion: 2
-        x: 177
-        y: 86
-        width: 26
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 76
+        y: 76
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3848c448091e4e3e0800000000000000
-      internalID: -2025245921598733181
+      spriteID: c7e732d911e5346f8acc05c1099ab5ee
+      internalID: 645815629
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_12
+      name: Buteco_Walk_E_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 86
-        width: 20
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 152
+        y: 76
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 933c9bb16b76a3b80800000000000000
-      internalID: -8414298921941482695
+      spriteID: 6620c3575568f48c2b35157e4d35dc99
+      internalID: 1293257981
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_13
+      name: Buteco_Walk_E_3
       rect:
         serializedVersion: 2
-        x: 332
-        y: 86
-        width: 21
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 228
+        y: 76
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7e128beab01415960800000000000000
-      internalID: 7588918365527744999
+      spriteID: ebd04246de7fb4172912da0974091ef8
+      internalID: 1690521598
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_14
+      name: Buteco_Walk_E_4
       rect:
         serializedVersion: 2
-        x: 27
-        y: 12
-        width: 22
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 304
+        y: 76
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 433d19f5b6db779a0800000000000000
-      internalID: -6235306890208619724
+      spriteID: 0699c4ab317664c389e63903aea7ae5f
+      internalID: -785624983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_15
+      name: Buteco_Walk_N_0
       rect:
         serializedVersion: 2
-        x: 104
-        y: 12
-        width: 20
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fabde398828a008c0800000000000000
-      internalID: -4035040374069208145
+      spriteID: 1b12dc5ce4c6745f0a9e2ebc41e3efde
+      internalID: 1439596767
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_16
+      name: Buteco_Walk_N_1
       rect:
         serializedVersion: 2
-        x: 179
-        y: 12
-        width: 22
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 76
+        y: 0
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3c018f5826561ea00800000000000000
-      internalID: 784019283968004291
+      spriteID: d0e5fcac73df04b188d46e5a1f5330e9
+      internalID: 604806215
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_17
+      name: Buteco_Walk_N_2
       rect:
         serializedVersion: 2
-        x: 257
-        y: 13
-        width: 18
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 152
+        y: 0
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 383d6ecb184c54ae0800000000000000
-      internalID: -1565629233942310013
+      spriteID: f45041fdf735e4138bb03c6b2b02f32e
+      internalID: -1009118122
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Generic_Buteco_Sheet_18
+      name: Buteco_Walk_N_3
       rect:
         serializedVersion: 2
-        x: 333
-        y: 13
-        width: 19
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 228
+        y: 0
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: bff52158f87c1be50800000000000000
-      internalID: 6823454329669836795
+      spriteID: 1b6ca5f6b2b4e4277a7ba7cb70492f20
+      internalID: -379486942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buteco_Walk_N_4
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 0
+        width: 76
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1710526}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a90d9afbc86574e65a815b4c342d7e3a
+      internalID: -239373116
       vertices: []
       indices: 
       edges: []
@@ -590,7 +612,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 64575d27bfa214a49ab619d093785be0
     internalID: 0
     vertices: []
     indices: 
@@ -600,6 +622,26 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      Buteco_Idle_E: 1683899891
+      Buteco_Idle_N: -649886715
+      Buteco_Idle_S: -1485617504
+      Buteco_Idle_Unused: -437006256
+      Buteco_Idle_W: -1516013656
+      Buteco_Walk_E_0: 820592487
+      Buteco_Walk_E_1: 645815629
+      Buteco_Walk_E_2: 1293257981
+      Buteco_Walk_E_3: 1690521598
+      Buteco_Walk_E_4: -785624983
+      Buteco_Walk_N_0: 1439596767
+      Buteco_Walk_N_1: 604806215
+      Buteco_Walk_N_2: -1009118122
+      Buteco_Walk_N_3: -379486942
+      Buteco_Walk_N_4: -239373116
+      Buteco_Walk_S_0: -2006108715
+      Buteco_Walk_S_1: -560176887
+      Buteco_Walk_S_2: -319898632
+      Buteco_Walk_S_3: -1547075418
+      Buteco_Walk_S_4: 2035208170
       Generic_Buteco_Sheet_0: 3828992549350722794
       Generic_Buteco_Sheet_1: 8166798573895648751
       Generic_Buteco_Sheet_10: -270521250981639804

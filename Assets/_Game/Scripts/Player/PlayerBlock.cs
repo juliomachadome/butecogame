@@ -226,6 +226,7 @@ namespace ButecoDosDevs.Player
             }
 
             HitStop.Trigger(parryHitStop);
+            Sfx.Play(SoundId.Parry, transform.position);
             DamageNumbers.SpawnParry(transform.position + Vector3.up * 0.6f);
 
             if (attackFX != null)

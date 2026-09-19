@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using ButecoDosDevs.Systems;
 
 namespace ButecoDosDevs.Player
 {
@@ -189,6 +190,7 @@ namespace ButecoDosDevs.Player
             dashTimer = dashDuration;
             dashCooldownTimer = dashCooldown;
             dashVelocity = dir * (distance / Mathf.Max(dashDuration, 0.0001f));
+            Sfx.Play(SoundId.Dash, transform.position);
 
             return true;
         }

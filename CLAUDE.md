@@ -358,8 +358,8 @@ Uma feature só está pronta quando: compila · a cena abre · Play Mode funcion
 | 5 | Buteco + interação + soundboard | ✅ lean: `ButecoFlow` (chegada/"Tem 18?"/explorar/desconhecidos), `NerfChaos`, `SpeechBubble`, `SoundboardProp`, `Sfx`+`SoundLibrary` (sem áudio) |
 | 6 | Pedro + TIMEOUT (60 s + retorno por waypoint) — **efeito: Pedro carimba "TIMEOUT" no alvo → Moe grita "RUA!!!" → alvo sai voando cartunizado pela porta/tela (girando) → silhueta pontilhada com contador 60s no lugar → volta andando pela porta/waypoint seguro**. Fora do Buteco o "RUA!!!" do Moe toca como eco da soundboard. | |
 | 7 | Preparação + escolha de arma + equipar aliados | ✅ lean: Pedro sai/volta, arsenal na sinuca (4 armas, `PlayerAttack.SetWeapon`, `GameState.ChosenWeapon`), "Bora." → cena `Rua` |
-| 8 | Transição + Guerra Púnica + batalha de rua | |
-| 9 | Bar rival + inimigos finais + boss + epílogo | |
+| 8 | Transição + Guerra Púnica + batalha de rua | ✅ lean: cena `Rua` (`RuaFlow`, `TitleCard`, `WaveSpawner` 3/4/5, `SceneTransition`) — cenário ainda placeholder |
+| 9 | Bar rival + inimigos finais + boss + epílogo | ✅ lean: cena `BarRival` (`BarRivalFlow`, `BossController` Admin 400 HP), epílogo no `ButecoFlow` — cenário ainda placeholder |
 | 10 | Arte final + áudio + polimento + builds | |
 
 ---

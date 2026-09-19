@@ -133,6 +133,7 @@ namespace ButecoDosDevs.Player
         private void OnHitboxHit(Health target, DamageInfo info)
         {
             HitStop.Trigger(hitStopDuration);
+            Sfx.Play(SoundId.GolpeAcerto, target != null ? target.transform.position : transform.position);
             if (courage != null)
             {
                 courage.OnHitLanded();
@@ -240,6 +241,7 @@ namespace ButecoDosDevs.Player
             {
                 attackFX.PlaySwing(dir, activeTime);
             }
+            Sfx.Play(SoundId.GolpeSwing, transform.position);
 
             float t = 0f;
             while (t < activeTime)

@@ -123,3 +123,6 @@ refs/
 /[Aa]ssets/_Recovery.meta
 /[Aa]ssets/Screenshots/
 /[Aa]ssets/Screenshots.meta
+
+# macOS
+.DS_Store

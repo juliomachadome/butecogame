@@ -6,10 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
     path: Assets/_Game/Scenes/Buteco.unity
     guid: c2cea3bbec62841ddbb4daccdf70febe
+  - enabled: 1
+    path: Assets/_Game/Scenes/Rua.unity
+    guid: 63a2a49a7fb2b4f378e1210414da747d
+  - enabled: 1
+    path: Assets/_Game/Scenes/BarRival.unity
+    guid: 0139960406db447399e078e18f592db2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
