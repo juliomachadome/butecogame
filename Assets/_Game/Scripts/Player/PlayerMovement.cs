@@ -18,6 +18,9 @@ namespace ButecoDosDevs.Player
         [SerializeField] private float dashDuration = 0.12f;
         [SerializeField] private float dashCooldown = 0.8f;
 
+        [Header("Knockback")]
+        [SerializeField] private float knockbackSkin = 0.05f;
+
         private const float DashSkin = 0.05f;
 
         private Rigidbody2D rb;
@@ -32,11 +35,17 @@ namespace ButecoDosDevs.Player
         private float dashCooldownTimer;
         private Vector2 dashVelocity;
 
+        private bool isKnockedBack;
+        private float knockbackTimer;
+        private float knockbackDuration;
+        private Vector2 knockbackVelocity;
+
         private readonly RaycastHit2D[] dashCastResults = new RaycastHit2D[4];
         private ContactFilter2D dashCastFilter;
 
         public Vector2 LastMoveDirection => lastMoveDirection;
         public bool IsDashing => isDashing;
+        public bool IsKnockedBack => isKnockedBack;
 
         private void Awake()
         {
@@ -84,6 +93,15 @@ namespace ButecoDosDevs.Player
         {
             moveAction?.Disable();
             dashAction?.Disable();
+
+            // Drop any in-flight motion so nothing resumes (or drifts) when re-enabled (e.g. after KO).
+            moveInput = Vector2.zero;
+            isDashing = false;
+            isKnockedBack = false;
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
         }
 
         private void OnDestroy()
@@ -126,7 +144,7 @@ namespace ButecoDosDevs.Player
         /// </summary>
         public bool TryDash(Vector2 direction)
         {
-            if (isDashing || dashCooldownTimer > 0f)
+            if (isDashing || isKnockedBack || dashCooldownTimer > 0f)
             {
                 return false;
             }
@@ -166,8 +184,40 @@ namespace ButecoDosDevs.Player
             return true;
         }
 
+        /// <summary>
+        /// Starts a knockback push: for ~duration seconds the given velocity (decaying
+        /// linearly to zero) replaces input-driven movement, resolved with the same
+        /// wall-safe Rigidbody2D.Cast used by dash so it can never cross a wall.
+        /// Cancels any in-progress dash.
+        /// </summary>
+        public void ApplyKnockback(Vector2 velocity, float duration)
+        {
+            isDashing = false;
+            isKnockedBack = true;
+            knockbackDuration = Mathf.Max(duration, 0.0001f);
+            knockbackTimer = knockbackDuration;
+            knockbackVelocity = velocity;
+        }
+
         private void FixedUpdate()
         {
+            // Movement is fully position-driven; clear velocity picked up from contacts so the player never drifts.
+            rb.linearVelocity = Vector2.zero;
+
+            if (isKnockedBack)
+            {
+                float t = knockbackTimer / knockbackDuration;
+                Vector2 currentVelocity = knockbackVelocity * t;
+                MoveWithWallCheck(currentVelocity * Time.fixedDeltaTime);
+
+                knockbackTimer -= Time.fixedDeltaTime;
+                if (knockbackTimer <= 0f)
+                {
+                    isKnockedBack = false;
+                }
+                return;
+            }
+
             if (isDashing)
             {
                 rb.MovePosition(rb.position + dashVelocity * Time.fixedDeltaTime);
@@ -181,6 +231,36 @@ namespace ButecoDosDevs.Player
 
             Vector2 velocity = moveInput * moveSpeed;
             rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+        }
+
+        /// <summary>
+        /// Moves by delta, clamped by a Rigidbody2D.Cast (useTriggers=false) so it
+        /// never crosses a solid wall. Used by knockback.
+        /// </summary>
+        private void MoveWithWallCheck(Vector2 delta)
+        {
+            float distance = delta.magnitude;
+            if (distance < 0.0001f)
+            {
+                return;
+            }
+
+            Vector2 dir = delta / distance;
+            int hitCount = rb.Cast(dir, dashCastFilter, dashCastResults, distance);
+            if (hitCount > 0)
+            {
+                float closest = float.MaxValue;
+                for (int i = 0; i < hitCount; i++)
+                {
+                    if (dashCastResults[i].distance < closest)
+                    {
+                        closest = dashCastResults[i].distance;
+                    }
+                }
+                distance = Mathf.Max(0f, closest - knockbackSkin);
+            }
+
+            rb.MovePosition(rb.position + dir * distance);
         }
     }
 }

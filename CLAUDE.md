@@ -2,7 +2,7 @@
 
 Documento central do projeto. Game Jam de **48 horas**. Leia antes de qualquer tarefa.
 
-> **Fase atual: 1 concluída** (player, movimento, dash, colisão, câmera). Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
+> **Fase atual: 2 concluída** (combate, HP, hitbox/hurtbox, knockback, hit-stop, KO/checkpoint). Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
 > Não avance de fase sem instrução explícita do usuário.
 
 ---
@@ -22,7 +22,7 @@ Documento central do projeto. Game Jam de **48 horas**. Leia antes de qualquer t
 | Plugin | Unity Agent para Claude Code (skills `unity:*`) — **não reinstalar** |
 | Repo | https://github.com/juliomachadome/butecogame (**PÚBLICO**) |
 
-Cena atual: `Assets/Scenes/SampleScene.unity` (só câmera + Global Light 2D). Pasta `Assets/Welcome` é do template.
+Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity` (greybox do bar). `Assets/Scenes/SampleScene.unity` e `Assets/Welcome` são do template — não usar.
 
 ---
 
@@ -105,6 +105,19 @@ Dificuldade cresce por **variedade, posicionamento, quantidade controlada e ataq
 - Ataques têm **janela ativa**. Um ataque **não acerta o mesmo alvo mais de uma vez** na mesma janela.
 - Usar: dano, knockback, i-frames, hit-stop, feedback visual (flash/shake).
 - Player com 0 HP → estado **DOWN/KO** → reinício pelo **checkpoint**. Sem morte instantânea injusta.
+
+### Controles atuais
+| Ação | Teclado | Gamepad |
+|---|---|---|
+| Mover | WASD / setas | Left stick |
+| Dash | Espaço / Shift esq. | — |
+| Atacar | J / mouse esquerdo | Botão West (X/□) |
+
+### Convenções de combate (Fase 2)
+- `Health` (HP, i-frames, eventos `Damaged`/`Died`) + `Hurtbox` (collider trigger filho, com `Team`) + `Hitbox` (`OverlapBox` só na janela ativa, `HashSet` por janela).
+- `Team`: Player, Ally, Enemy, Neutral — Hitbox nunca acerta o próprio time.
+- Player é movido por posição: `PlayerMovement` zera `linearVelocity` todo FixedUpdate; empurrões externos usam `ApplyKnockback` (nunca setar velocidade direto no player).
+- `HitStop` é a única classe estática com runner (sempre restaura `timeScale`).
 
 ### NPCs
 - State machine simples: `Idle, Wander, Talk, Prepare, Follow, Combat, Flee, Timeout, Knocked`.
@@ -216,8 +229,8 @@ Uma feature só está pronta quando: compila · a cena abre · Play Mode funcion
 |---|---|---|
 | 0 | Preparação, documentação, agentes | ✅ |
 | 1 | Player + movimento + colisão + câmera | ✅ `PlayerMovement`, `CameraFollow2D`, greybox `Buteco.unity` |
-| 2 | Combate + HP + hitbox/hurtbox + knockback | ⏳ aguardando ordem |
-| 3 | Inimigo simples | |
+| 2 | Combate + HP + hitbox/hurtbox + knockback | ✅ `Scripts/Combat/*`, `PlayerAttack`, `PlayerKO`, bonecos de treino |
+| 3 | Inimigo simples | ⏳ aguardando ordem |
 | 4 | NPCs + aliados | |
 | 5 | Buteco + interação + soundboard | |
 | 6 | Pedro + TIMEOUT (60 s + retorno por waypoint) | |
