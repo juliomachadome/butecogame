@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3575240796559498523}
   - component: {fileID: 8027578020296640392}
   - component: {fileID: 3525345106743810594}
+  - component: {fileID: 8105232225719746143}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -310,6 +311,22 @@ MonoBehaviour:
   - {fileID: -123770310, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
   - {fileID: 1187448466, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
   fps: 8
+--- !u!114 &8105232225719746143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2355336983522204102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e78e5167912843fbb30f7d934a11b5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Player.PlayerInteractor
+  interactRadius: 1.6
+  dialogueUI: {fileID: 0}
+  movement: {fileID: 0}
+  attack: {fileID: 0}
 --- !u!1 &3257675800767043417
 GameObject:
   m_ObjectHideFlags: 0

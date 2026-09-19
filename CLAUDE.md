@@ -2,7 +2,7 @@
 
 Documento central do projeto. Game Jam de **48 horas**. Leia antes de qualquer tarefa.
 
-> **Fase atual: 3 concluída** (inimigo Hacker Rival com ataque telegrafado). Arte via PixelLab em andamento. Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
+> **Fase atual: 4b concluída** (NPCs no bar, `[E]` conversar, diálogo, OBJETIVO). Próximo: HUD + defesa → 4c aliados. Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
 > Não avance de fase sem instrução explícita do usuário.
 
 ---
@@ -35,6 +35,8 @@ Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity` (greybox do bar). `Assets/S
 - **Tom:** conflito fictício e cartunizado. **Sem gore.** Derrota = knockout cartunizado.
 
 ### História (fluxo)
+**Tom:** começa como **um dia normal** no Buteco — o jogador é um membro novo chegando, explorando e conhecendo a galera (tutorial disfarçado: andar, `[E]` conversar, bater nos bonecos). No meio desse dia comum, a Guerra Púnica estoura: Pedro sai para o bar da frente, volta indignado (acusado de link com vírus) e pede ajuda.
+
 1. Dev Novato entra no Buteco dos Devs.
 2. Explora o bar.
 3. Conhece os personagens.
@@ -75,7 +77,7 @@ Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity` (greybox do bar). `Assets/S
 ## 3. Personagens
 
 - **DEV NOVATO** — controlado pelo jogador.
-- **PEDRO** — veterano. Habilidade **TIMEOUT**: o NPC alvo sai do combate por **60 s** e depois retorna por um **waypoint seguro**.
+- **PEDRO** — veterano ("o mais velho do mundo, 500 anos" — brincadeira) e **moderador do Buteco**: quem fala besteira toma **TIMEOUT** (estilo moderação de Discord). Ironia da história: justo ele é acusado de mandar link com vírus no bar rival. Habilidade **TIMEOUT**: o NPC alvo sai do combate por **60 s** e depois retorna por um **waypoint seguro**.
 - **BARTENDER** — visual do **Moe** (decisão do usuário, ver seção Arte). Serve cerveja, pode expulsar personagens, grita **"RUA!!!"**.
 - **COMUNIDADE** — personagens caricatos; humor da cultura da comunidade. **Não transformar características pessoais sensíveis em mecânicas.**
 - **RIVAIS** — estética exagerada neon/RGB/cyberpunk, computadores, monitores, Linux/root como piada visual, controle de videogame visível. O controle pode virar minigame **somente se sobrar tempo**.
@@ -112,12 +114,31 @@ Dificuldade cresce por **variedade, posicionamento, quantidade controlada e ataq
 | Mover | WASD / setas | Left stick |
 | Dash | Espaço / Shift esq. | — |
 | Atacar | J / mouse esquerdo | Botão West (X/□) |
+| Interagir | E | Botão South (A/✕) — Fase 4b |
+| Defender (planejado) | **segurar mouse direito** / K | LB / L1 |
+| Dash no gamepad (planejado) | — | Botão East (B/○) |
+
+**Defesa (planejada, pedido do usuário):** segurar = guarda (move 50%, não ataca); golpe **frontal** (±90° da direção) leva ~20% do dano e knockback mínimo; pelas costas entra inteiro. **Parry:** iniciar a guarda até ~0.15 s antes do hit → inimigo atordoado (~0.6 s) + dano extra no contra-ataque; +Coragem. Entra junto do HUD, depois da 4b.
 
 ### Convenções de combate (Fase 2)
 - `Health` (HP, i-frames, eventos `Damaged`/`Died`) + `Hurtbox` (collider trigger filho, com `Team`) + `Hitbox` (`OverlapBox` só na janela ativa, `HashSet` por janela).
 - `Team`: Player, Ally, Enemy, Neutral — Hitbox nunca acerta o próprio time.
 - Player é movido por posição: `PlayerMovement` zera `linearVelocity` todo FixedUpdate; empurrões externos usam `ApplyKnockback` (nunca setar velocidade direto no player).
 - `HitStop` é a única classe estática com runner (sempre restaura `timeScale`).
+
+### Sandbox do Buteco (Fase 5 e pós-epílogo) — pedido do usuário
+O jogador pode **mexer em tudo** no bar, sempre pelo mesmo `[E]`/`Interactable`:
+- **Soundboard** (painel com botões): RUA!!!, aplausos, vaias, risadas, burp, gritos — sons gravados pela comunidade; influencia levemente moral/caos.
+- **Jukebox** (troca música), **chopeira/balcão** (Moe serve cerveja, +Coragem leve), **cadeiras/banquetas** (sentar), **dardos/sinuca** (um lance + som, sem minigame), **copos/garrafas** (bater = som; bater demais → Moe grita "RUA!!!"), bonecos de treino.
+- Sem minigames completos (escopo). Cada item = objeto + som + fala curta.
+
+### HUD (pedido do usuário)
+- **Sup. esquerdo:** retrato do Dev + **barra de HP** + **barra de Coragem** (tema; sobe ao acertar/soundboard, cai ao apanhar).
+- **Inferior:** ações com ícone da tecla (Kenney Input Prompts): **[J] Atacar**, **[Espaço] Dash** com cooldown radial, **[E] Interagir**; slot da arma escolhida (Fase 7).
+- **Lateral esquerda (combate):** painel do grupo — retratos dos aliados com HP; indicador de **TIMEOUT pronto** do Pedro; retrato cinza quando o aliado cai. O player luta **junto** com os aliados.
+- **Sup. direito:** caixa OBJETIVO.
+- Feedback: números de dano flutuando, flash vermelho na borda ao tomar dano.
+- Ordem: 4b (NPCs/diálogo/objetivo) → HUD do player → 4c (aliados + painel do grupo).
 
 ### NPCs
 - State machine simples: `Idle, Wander, Talk, Prepare, Follow, Combat, Flee, Timeout, Knocked`.
@@ -183,6 +204,26 @@ Dificuldade cresce por **variedade, posicionamento, quantidade controlada e ataq
 - NPCs que não lutam: só rotações (1 geração); "respirar"/balanço em código.
 - Referências do usuário vão em `refs/` (gitignored).
 
+### Elenco gerado (PixelLab, 48px, low top-down, 4 direções)
+| Personagem | character_id | Visual | Piada/traço |
+|---|---|---|---|
+| Dev Novato | `1f84a9e7-94fe-4d83-aa7d-2d4d230ef1a8` | cabelo preto, óculos, camiseta `</>` | protagonista (idle+walk prontos) |
+| Pedro (PedroPietro) | `89aa4338-9bd7-4c84-bf22-c1f8c539e161` | óculos escuros, barba, camiseta com xícara (Java) | moderador, TIMEOUT 60 s; **"o mais velho do mundo, 500 anos"** (brincadeira) |
+| Rei Luiz | `018aee4a-eeef-4bae-9872-b1b91090541c` | coroa dourada, bigode/cavanhaque | **faz jogos e é o organizador da game jam** |
+| Moe (bartender) | `67341daf-ebff-4319-9c54-95e611ab0fc4` | avental azul, camisa branca, cara fechada | "RUA!!!" — **ajustar depois**: saiu jovem, falta cabelo grisalho e pano no ombro |
+| Funnie | `a7e72f73-35dc-4e0d-9694-03ead8a19ad1` | gordinho, cabelão, óculos, barba, moletom verde, notebook prateado | "coda muito, faz um SaaS em 1 segundo" |
+Descartados (não usar): Rei Luiz prata `e45540e3-…`, Funnie magro `cb44a0ac-…`, Funnie notebook marrom `9bbc8d89-…`.
+
+**Comportamento no Buteco (pedido do usuário):**
+- **Nome aparece sobre o personagem quando o player chega perto** (proximidade), junto do prompt `[E] Conversar`.
+- Cada NPC tem uma **atividade idle em loop**, de tempos em tempos: Pedro **acende o isqueiro e fuma um baseado** (piada interna, cartunizado); Funnie **no notebook**; outros **bebendo** no balcão; Moe **servindo/limpando copo**. Animação de atividade = 1 direção só (sul), ~1 geração cada no PixelLab.
+
+### Assets de terceiros (regra do repo público)
+- **Só entra no repo asset CC0 / domínio público**, ou licença que permita **redistribuição** (git público = redistribuição). Guardar o `License.txt` junto.
+- "Free, redistribution not allowed" (comum no itch.io) **não entra** no repo.
+- Em uso: **Kenney Input Prompts Pixel** (teclas/botões 16px) e **Kenney Pixel UI Pack** (painéis 9-slice) — CC0 — em `Assets/_Game/Art/UI/Kenney/`.
+- Cenário/props do bar e da rua: gerar no PixelLab (`tiles`, `object`) no mesmo estilo dos personagens.
+
 ### Personagens da comunidade (exemplos do conceito)
 Comunista, Cristão, Satanista, Artista/Dev, Dev Cansado. São **cosméticos/humor** entre membros que topam a piada — identidade política ou religiosa **nunca** vira mecânica (sem bônus, dano, facção ou alvo por crença).
 
@@ -197,6 +238,10 @@ Comunista, Cristão, Satanista, Artista/Dev, Dev Cansado. São **cosméticos/hum
 ## 7. Arquitetura Unity
 
 **Priorizar:** componentes pequenos · referências explícitas via `[SerializeField]` · ScriptableObjects só quando úteis (ex.: dados de arma) · state machines pequenas (enum + switch) · prefabs reutilizáveis · cenas pequenas · código fácil de debugar.
+
+**Armadilha Unity:** nunca usar `?.` ou `??` em `UnityEngine.Object` (GameObject, Component) — não detecta objeto destruído ("fake null") e gera `MissingReferenceException`. Usar `if (x != null) x.Metodo();`.
+
+**TextMeshPro:** TMP Essentials já estão em `Assets/TextMesh Pro/` (importados manualmente — o menu Window → TMP → Import travou o Editor). Não reimportar pelo menu.
 
 **Evitar:** arquitetura enterprise · sistemas genéricos · dependências/pacotes externos · abstrações prematuras · singletons globais sem necessidade · `GameObject.Find` / `FindObjectOfType` / `FindAnyObjectByType` em `Update` ou loops.
 
@@ -230,6 +275,8 @@ Nunca implementar vários sistemas ao mesmo tempo.
 3. `editor_play` → testar → `console` (level `error`) → `editor_stop`.
 4. `capture_game_view` quando o resultado for visual.
 
+**Não roubar o foco do usuário:** para avançar o Play Mode, preferir `menu` → `Edit/Play Mode/Step` (quadro a quadro, sem trazer o Unity para frente) ou testar a lógica chamando métodos via `eval`. `editor_focus` só em último caso e o mínimo de vezes — ele joga a janela do Unity na frente do usuário. Nunca usar `open` para mostrar arquivos sem necessidade.
+
 Observação: o Editor só avança frames em Play Mode com a janela **focada** — chame `editor_focus` antes de esperar frames (`wait_for` em `Time.frameCount`).
 
 Observação: chamadas `eval` que disparam compilação estouram o timeout de 5 s do MCP e deixam um log "Main thread operation timed out" — é inofensivo, basta aguardar o reload.
@@ -247,9 +294,9 @@ Uma feature só está pronta quando: compila · a cena abre · Play Mode funcion
 | 1 | Player + movimento + colisão + câmera | ✅ `PlayerMovement`, `CameraFollow2D`, greybox `Buteco.unity` |
 | 2 | Combate + HP + hitbox/hurtbox + knockback | ✅ `Scripts/Combat/*`, `PlayerAttack`, `PlayerKO`, bonecos de treino |
 | 3 | Inimigo simples | ✅ `EnemyController` (Idle/Chase/Windup/Attack/Recover/Hurt/KO), `Enemy_HackerRival.prefab` |
-| 4 | NPCs + aliados | ⏳ aguardando ordem |
+| 4 | NPCs + aliados | 🟡 4b ✅ NPCs/diálogo/objetivo (`Scripts/NPC`, `DialogueUI`, `ObjectiveUI`, prefabs `NPC_*`) · HUD+defesa ⏳ · 4c aliados ⏳ |
 | 5 | Buteco + interação + soundboard | |
-| 6 | Pedro + TIMEOUT (60 s + retorno por waypoint) | |
+| 6 | Pedro + TIMEOUT (60 s + retorno por waypoint) — **efeito: Pedro carimba "TIMEOUT" no alvo → Moe grita "RUA!!!" → alvo sai voando cartunizado pela porta/tela (girando) → silhueta pontilhada com contador 60s no lugar → volta andando pela porta/waypoint seguro**. Fora do Buteco o "RUA!!!" do Moe toca como eco da soundboard. | |
 | 7 | Preparação + escolha de arma + equipar aliados | |
 | 8 | Transição + Guerra Púnica + batalha de rua | |
 | 9 | Bar rival + inimigos finais + boss + epílogo | |
