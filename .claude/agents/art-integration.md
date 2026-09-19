@@ -17,7 +17,7 @@ Leia `CLAUDE.md`, principalmente a seção **Arte** (referências e a regra de p
 - **Não crie arte final** e não gere imagens. Não escreva scripts de gameplay.
 - Não altere lógica de prefabs de gameplay além do visual (SpriteRenderer, Animator, sorting).
 - Não sobrescreva nem apague assets existentes sem o brief pedir.
-- Sinalize ao lead se um asset parecer copiar IP protegida (ver CLAUDE.md).
+- O visual do bartender (Moe) é decisão do usuário — não questionar. Siga as referências da seção Arte do CLAUDE.md.
 
 ## Padrões pixel art
 - Texture import: Sprite (2D and UI), Filter **Point**, Compression **None**, PPU consistente para o projeto inteiro (confirmar com o lead no primeiro import), Mip Maps off.

@@ -2,7 +2,7 @@
 
 Documento central do projeto. Game Jam de **48 horas**. Leia antes de qualquer tarefa.
 
-> **Fase atual: 0 — Preparação concluída.** Nenhuma fase de gameplay foi iniciada.
+> **Fase atual: 1 concluída** (player, movimento, dash, colisão, câmera). Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
 > Não avance de fase sem instrução explícita do usuário.
 
 ---
@@ -76,7 +76,7 @@ Cena atual: `Assets/Scenes/SampleScene.unity` (só câmera + Global Light 2D). P
 
 - **DEV NOVATO** — controlado pelo jogador.
 - **PEDRO** — veterano. Habilidade **TIMEOUT**: o NPC alvo sai do combate por **60 s** e depois retorna por um **waypoint seguro**.
-- **BARTENDER** — personagem **original** inspirado no arquétipo de bartender de desenho animado. Serve cerveja, pode expulsar personagens, grita **"RUA!!!"**. Referências como "bar do Moe" servem só para *clima*; **não copiar visual/arte de personagem protegido.**
+- **BARTENDER** — visual do **Moe** (decisão do usuário, ver seção Arte). Serve cerveja, pode expulsar personagens, grita **"RUA!!!"**.
 - **COMUNIDADE** — personagens caricatos; humor da cultura da comunidade. **Não transformar características pessoais sensíveis em mecânicas.**
 - **RIVAIS** — estética exagerada neon/RGB/cyberpunk, computadores, monitores, Linux/root como piada visual, controle de videogame visível. O controle pode virar minigame **somente se sobrar tempo**.
 
@@ -156,11 +156,9 @@ Dificuldade cresce por **variedade, posicionamento, quantidade controlada e ataq
 
 **Fora do escopo da jam** (aparece nos conceitos, NÃO fazer sem aprovação): cidade explorável aberta, inventário em grade com atributos (+Carisma etc.), menu de opções elaborado.
 
-### ⚠️ Propriedade intelectual — DECISÃO PENDENTE DO USUÁRIO
-A referência principal copia *Os Simpsons* (Moe, letreiro "MOE'S", cerveja "Duff", pele amarela/traço da série). Repo é **público** e o jogo vai para itch.io.
-- Até decisão: o bartender é **arquétipo "Moe"** (rabugento, pano no ombro, avental, serve caneca, grita "RUA!!!"), mas **nome, rosto e paleta originais**.
-- **Não usar** nos assets finais: nome "Moe", "MOE'S", "Duff", "Springfield", pele amarela estilo Simpsons, personagens reconhecíveis da série (ex.: o cliente careca de camisa branca no balcão).
-- Substituições sugeridas: letreiro do bar = "BUTECO DOS DEVS"; cerveja = marca inventada (ex.: "Commit", "Deploy Lager"); flâmula = "CTRL+Z FC".
+### Bartender — DECISÃO DO USUÁRIO (2026-09-19)
+- **Visual do bartender = Moe (Os Simpsons)**, como na referência principal. Decisão tomada pelo usuário ciente de que o repo é público e o jogo vai para o itch.io (risco de IP aceito). Não reabrir o assunto.
+- Sprites finais ainda não definidos (tamanho/PPU em aberto — placeholder usa **PPU 32**).
 
 ### Personagens da comunidade (exemplos do conceito)
 Comunista, Cristão, Satanista, Artista/Dev, Dev Cansado. São **cosméticos/humor** entre membros que topam a piada — identidade política ou religiosa **nunca** vira mecânica (sem bônus, dano, facção ou alvo por crença).
@@ -203,6 +201,8 @@ Nunca implementar vários sistemas ao mesmo tempo.
 3. `editor_play` → testar → `console` (level `error`) → `editor_stop`.
 4. `capture_game_view` quando o resultado for visual.
 
+Observação: o Editor só avança frames em Play Mode com a janela **focada** — chame `editor_focus` antes de esperar frames (`wait_for` em `Time.frameCount`).
+
 Observação: chamadas `eval` que disparam compilação estouram o timeout de 5 s do MCP e deixam um log "Main thread operation timed out" — é inofensivo, basta aguardar o reload.
 
 ### Definition of Done
@@ -215,8 +215,8 @@ Uma feature só está pronta quando: compila · a cena abre · Play Mode funcion
 | Fase | Conteúdo | Status |
 |---|---|---|
 | 0 | Preparação, documentação, agentes | ✅ |
-| 1 | Player + movimento + colisão + câmera | ⏳ aguardando ordem |
-| 2 | Combate + HP + hitbox/hurtbox + knockback | |
+| 1 | Player + movimento + colisão + câmera | ✅ `PlayerMovement`, `CameraFollow2D`, greybox `Buteco.unity` |
+| 2 | Combate + HP + hitbox/hurtbox + knockback | ⏳ aguardando ordem |
 | 3 | Inimigo simples | |
 | 4 | NPCs + aliados | |
 | 5 | Buteco + interação + soundboard | |
@@ -244,6 +244,7 @@ Agentes ficam em `.claude/agents/`. O **agente principal** é o lead: planeja, i
 - **Opus** (`game-architect`): só decisões que podem causar retrabalho grande. Nunca para renomear, importar, ajustes pequenos.
 - **Sonnet**: implementação, integração Unity, QA.
 - **Haiku**: tarefas mecânicas (organizar, renomear, checagens simples) — passar `model: "haiku"` **na chamada** do Agent tool em vez de criar outro agente.
+- Agentes em `.claude/agents/` só são carregados **no início da sessão**. Se criar/editar um agente, reinicie o Claude Code (ou, na sessão atual, use `general-purpose` com `model` e mande-o ler o `.md` do papel).
 - `effort` é fixo por agente no frontmatter; a chamada do Agent tool só permite sobrescrever o **modelo**. Para mudar effort de um agente, editar o arquivo dele.
 
 ### Regras de delegação
