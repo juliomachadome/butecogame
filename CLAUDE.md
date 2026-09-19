@@ -1,0 +1,266 @@
+# Buteco dos Devs: A Guerra Púnica
+
+Documento central do projeto. Game Jam de **48 horas**. Leia antes de qualquer tarefa.
+
+> **Fase atual: 0 — Preparação concluída.** Nenhuma fase de gameplay foi iniciada.
+> Não avance de fase sem instrução explícita do usuário.
+
+---
+
+## 1. Contexto técnico
+
+| Item | Valor |
+|---|---|
+| Unity | 6000.6.2f1 (Apple Silicon) |
+| Template | Universal 2D (URP 17.6, Renderer 2D) |
+| Input | **Input System 1.20** (`activeInputHandler: 1` = só o novo sistema; não usar `Input.GetAxis`) |
+| UI | uGUI 2.6 |
+| Pacotes 2D já presentes | 2d.animation, aseprite, psdimporter, sprite, spriteshape, tilemap, tilemap.extras, timeline |
+| Plataformas | Windows, macOS, Linux |
+| Raiz do projeto | `/Users/juliomachado/Documents/game-jam/ButecoDosDevs/ButecoDosDevs` |
+| Unity MCP | servidor `unity-editor-mcp` (já configurado — **não reinstalar**) |
+| Plugin | Unity Agent para Claude Code (skills `unity:*`) — **não reinstalar** |
+| Repo | https://github.com/juliomachadome/butecogame (**PÚBLICO**) |
+
+Cena atual: `Assets/Scenes/SampleScene.unity` (só câmera + Global Light 2D). Pasta `Assets/Welcome` é do template.
+
+---
+
+## 2. Visão do jogo
+
+- **Título:** Buteco dos Devs: A Guerra Púnica
+- **Gênero:** 2D top-down action / beat'em-up leve
+- **Duração:** ~10–20 min
+- **Protagonista:** DEV NOVATO — membro recém-chegado ao Buteco. O jogador aprende o mundo e a história junto com o personagem, porque acabou de chegar na comunidade.
+- **Tom:** conflito fictício e cartunizado. **Sem gore.** Derrota = knockout cartunizado.
+
+### História (fluxo)
+1. Dev Novato entra no Buteco dos Devs.
+2. Explora o bar.
+3. Conhece os personagens.
+4. Pedro vai ao bar rival divulgar/convidar pessoas para o Buteco.
+5. Pedro volta indignado: foi acusado de divulgar um link com vírus.
+6. A comunidade decide ajudar Pedro.
+7. Fase de preparação.
+8. Jogador escolhe uma arma.
+9. Aliados se equipam.
+10. Pedro chama todos.
+11. Todos saem do Buteco.
+12. Cutscene curta atravessando a rua.
+13. Título: **A GUERRA PÚNICA**
+14. Batalha na rua.
+15. Entrada no bar rival.
+16. Batalha final.
+17. Retorno ao Buteco.
+18. Epílogo.
+19. Buteco volta ao modo sandbox/exploração.
+
+### Temas da jam
+| Tema | Como aparece |
+|---|---|
+| Independência | identidade do Buteco |
+| Revolução | a comunidade se organiza |
+| Sacrifício | aliados podem cair / segurar inimigos |
+| Vida/Morte | apenas knockouts cartunizados |
+| Coragem | sistema simples de moral/coragem |
+
+### Desafio de áudio
+- **Todos os sons são gravados pela equipe/Buteco dos Devs. NÃO gerar sons por IA.**
+- O áudio é parte do gameplay: o Buteco tem uma **soundboard** (RUA!!!, aplausos, vaias, risadas, burp, copos, garrafas, cadeiras, passos, ataques, espadas, gritos).
+- A soundboard pode influenciar **levemente** moral/caos.
+- Até os sons reais chegarem, usar silêncio ou placeholders claramente marcados (`PH_` no nome).
+
+---
+
+## 3. Personagens
+
+- **DEV NOVATO** — controlado pelo jogador.
+- **PEDRO** — veterano. Habilidade **TIMEOUT**: o NPC alvo sai do combate por **60 s** e depois retorna por um **waypoint seguro**.
+- **BARTENDER** — personagem **original** inspirado no arquétipo de bartender de desenho animado. Serve cerveja, pode expulsar personagens, grita **"RUA!!!"**. Referências como "bar do Moe" servem só para *clima*; **não copiar visual/arte de personagem protegido.**
+- **COMUNIDADE** — personagens caricatos; humor da cultura da comunidade. **Não transformar características pessoais sensíveis em mecânicas.**
+- **RIVAIS** — estética exagerada neon/RGB/cyberpunk, computadores, monitores, Linux/root como piada visual, controle de videogame visível. O controle pode virar minigame **somente se sobrar tempo**.
+
+---
+
+## 4. Gameplay — valores iniciais (ajustar por playtest)
+
+**Player:** movimento top-down (WASD + setas), diagonal normalizada, colisão 2D, não atravessa paredes, não sai da área jogável, dash não atravessa paredes, câmera segue o jogador e fica limitada ao mapa.
+
+| Parâmetro | Valor inicial |
+|---|---|
+| HP do player | 100 |
+| Dano inimigo | 10–15 |
+| Dano do player | 25–35 |
+| I-frames | 0.25–0.5 s |
+| Hit-stop | 0.04–0.08 s |
+| Dash cooldown | ~0.8 s |
+| Inimigo comum | 50–80 HP |
+| Inimigo forte | 120–160 HP |
+| Boss | 300–450 HP |
+
+Dificuldade cresce por **variedade, posicionamento, quantidade controlada e ataques telegrafados** — não só inflando HP.
+
+### Combate
+- Separar **Hitbox** (causa dano) e **Hurtbox** (recebe dano).
+- Ataques têm **janela ativa**. Um ataque **não acerta o mesmo alvo mais de uma vez** na mesma janela.
+- Usar: dano, knockback, i-frames, hit-stop, feedback visual (flash/shake).
+- Player com 0 HP → estado **DOWN/KO** → reinício pelo **checkpoint**. Sem morte instantânea injusta.
+
+### NPCs
+- State machine simples: `Idle, Wander, Talk, Prepare, Follow, Combat, Flee, Timeout, Knocked`.
+- Movimento por **waypoints**. Sem pathfinding complexo sem necessidade real.
+- Máximo ~**4–6 aliados** ativos em combate.
+
+### Preparação (antes da Guerra Púnica)
+- Objetivo sempre visível na tela.
+- Escolha de **1 arma** entre 3–4: espada balanceada · espada grande lenta e forte · espada curta rápida · objeto absurdo de bar (ex.: garrafa).
+- **Sem inventário complexo.**
+- Aliados equipam armas → Pedro reúne todos → mensagem **"Bora."** → cutscene Buteco → grupo → rua → rival → título **A GUERRA PÚNICA** → devolve o controle.
+
+---
+
+## 5. Anti-soft-lock (checklist obrigatório)
+
+- [ ] Spawn seguro (nada nasce dentro de collider).
+- [ ] Nenhum NPC dentro de parede.
+- [ ] Nenhuma porta bloqueada permanentemente.
+- [ ] Sempre existe caminho de saída.
+- [ ] Objetivos sempre podem ser concluídos.
+- [ ] NPCs/aliados não bloqueiam progresso nem prendem o jogador.
+- [ ] Coroutines/esperas têm **timeout** — nada espera indefinidamente.
+- [ ] Transições de cena/cutscene têm **fallback**.
+- [ ] Dash não atravessa paredes (usar cast antes de mover).
+- [ ] Câmera não sai dos limites.
+- [ ] Player nunca fica preso permanentemente.
+
+---
+
+## 6. Arte
+
+- Pixel art caricatural, estilo consistente entre personagens.
+- Personagens importantes: idle, walk, attack, hit, knockout; idealmente 4 direções quando necessário.
+- Arte final vem depois (ferramentas de arte/assets). **Nunca bloquear gameplay esperando arte — usar placeholders** (quadrados coloridos / sprites simples).
+
+### Referências visuais (conceitos gerados no ChatGPT — direção, não spec)
+
+**Referência PRINCIPAL — "Buteco estilo bar de desenho" (preferida pelo usuário):**
+- Interior top-down 3/4: balcão em L com banquetas vermelhas, prateleira de garrafas, mesas redondas, sinuca, jukebox, dardos, sofá roxo, porta dos fundos.
+- UI: prompt de interação **`[E] Conversar`** sobre o NPC; caixa **OBJETIVO** no canto superior direito; logo "Buteco dos Devs — A Guerra Púnica" no canto inferior esquerdo.
+- Sprite sheets por personagem: **4 direções (Baixo/Cima/Esquerda/Direita) + Idle + Walk (4 frames) + Attack**; bartender também `Interact` e `Serve`; Pedro também `Timeout` com silhueta pontilhada de **60s** (fantasma enquanto fora do combate).
+- **Pedro (Java)**: barba, óculos, camiseta preta. **Player (Dev)**: cabelo bagunçado, óculos, camiseta `</>`.
+- Rua: os **dois bares lado a lado** na mesma calçada; bar rival = **"RIVAL BAR"** neon azul, "HACK THE PLANET", caveiras/monitores. Tagline: *"...dois bares. Uma comunidade."*
+- Inimigos: **Hacker Rival** (capuz, óculos RGB) e **Admin Rival (Boss)** (cabelo branco, óculos escuros, jaqueta).
+- Tileset do bar: balcão, banqueta, mesa, cadeira, sofá, jukebox, dardos, espelho, garrafas, caneca, sinuca, porta, vitral, flâmula.
+
+**Referência secundária — "cozy pixel RPG":** fachada noturna com neon laranja "BUTECO DOS DEVS", neon "GOOD CODE GREAT BEER", retratos grandes nos diálogos, HP em corações, hotbar com as 4 armas, boss **"General Buggius"**, tagline *"Código, cerveja e glória"*.
+
+**Fora do escopo da jam** (aparece nos conceitos, NÃO fazer sem aprovação): cidade explorável aberta, inventário em grade com atributos (+Carisma etc.), menu de opções elaborado.
+
+### ⚠️ Propriedade intelectual — DECISÃO PENDENTE DO USUÁRIO
+A referência principal copia *Os Simpsons* (Moe, letreiro "MOE'S", cerveja "Duff", pele amarela/traço da série). Repo é **público** e o jogo vai para itch.io.
+- Até decisão: o bartender é **arquétipo "Moe"** (rabugento, pano no ombro, avental, serve caneca, grita "RUA!!!"), mas **nome, rosto e paleta originais**.
+- **Não usar** nos assets finais: nome "Moe", "MOE'S", "Duff", "Springfield", pele amarela estilo Simpsons, personagens reconhecíveis da série (ex.: o cliente careca de camisa branca no balcão).
+- Substituições sugeridas: letreiro do bar = "BUTECO DOS DEVS"; cerveja = marca inventada (ex.: "Commit", "Deploy Lager"); flâmula = "CTRL+Z FC".
+
+### Personagens da comunidade (exemplos do conceito)
+Comunista, Cristão, Satanista, Artista/Dev, Dev Cansado. São **cosméticos/humor** entre membros que topam a piada — identidade política ou religiosa **nunca** vira mecânica (sem bônus, dano, facção ou alvo por crença).
+
+---
+
+## 7. Arquitetura Unity
+
+**Priorizar:** componentes pequenos · referências explícitas via `[SerializeField]` · ScriptableObjects só quando úteis (ex.: dados de arma) · state machines pequenas (enum + switch) · prefabs reutilizáveis · cenas pequenas · código fácil de debugar.
+
+**Evitar:** arquitetura enterprise · sistemas genéricos · dependências/pacotes externos · abstrações prematuras · singletons globais sem necessidade · `GameObject.Find` / `FindObjectOfType` / `FindAnyObjectByType` em `Update` ou loops.
+
+**Não instalar pacotes** sem necessidade real e aprovação do usuário.
+
+### Estrutura de pastas
+```
+Assets/_Game/
+  Scripts/{Player,Combat,NPC,UI,Systems}/
+  Scenes/
+  Prefabs/
+  Art/{Characters,Environment,UI}/
+  Audio/{SFX,Music}/
+  UI/
+```
+Não criar pastas além dessas sem motivo. Não mexer em `Assets/Settings` (URP) nem em `Assets/Welcome` sem motivo.
+
+---
+
+## 8. Processo de desenvolvimento
+
+```
+PLANEJAR → IMPLEMENTAR PEQUENA FEATURE → COMPILAR → ABRIR/TESTAR NO UNITY
+→ VERIFICAR CONSOLE → CORRIGIR → PLAYTEST → VALIDAR → só então avançar
+```
+Nunca implementar vários sistemas ao mesmo tempo.
+
+### Verificação via Unity MCP (padrão)
+1. `editor_status` → `compiling: false`.
+2. `console_status` → `groundTruth.compilationFailed: false` e sem erros novos.
+3. `editor_play` → testar → `console` (level `error`) → `editor_stop`.
+4. `capture_game_view` quando o resultado for visual.
+
+Observação: chamadas `eval` que disparam compilação estouram o timeout de 5 s do MCP e deixam um log "Main thread operation timed out" — é inofensivo, basta aguardar o reload.
+
+### Definition of Done
+Uma feature só está pronta quando: compila · a cena abre · Play Mode funciona · Console sem erros · feature testada · comportamento principal funciona · sem soft-lock · não quebra o que já existia · arquivos organizados · escopo documentado aqui.
+
+---
+
+## 9. Fases
+
+| Fase | Conteúdo | Status |
+|---|---|---|
+| 0 | Preparação, documentação, agentes | ✅ |
+| 1 | Player + movimento + colisão + câmera | ⏳ aguardando ordem |
+| 2 | Combate + HP + hitbox/hurtbox + knockback | |
+| 3 | Inimigo simples | |
+| 4 | NPCs + aliados | |
+| 5 | Buteco + interação + soundboard | |
+| 6 | Pedro + TIMEOUT (60 s + retorno por waypoint) | |
+| 7 | Preparação + escolha de arma + equipar aliados | |
+| 8 | Transição + Guerra Púnica + batalha de rua | |
+| 9 | Bar rival + inimigos finais + boss + epílogo | |
+| 10 | Arte final + áudio + polimento + builds | |
+
+---
+
+## 10. Agentes e delegação
+
+Agentes ficam em `.claude/agents/`. O **agente principal** é o lead: planeja, integra e responde pelo resultado final.
+
+| Agente | Modelo | Effort | Quando usar |
+|---|---|---|---|
+| `game-architect` | opus | high | arquitetura, escopo, integração difícil, riscos, bug difícil, problema MCP complexo |
+| `unity-gameplay` | sonnet | medium | C#, player, combate, HP, inimigos, NPCs, interação, UI de gameplay, prefabs |
+| `qa-playtest` | sonnet | medium | testar, reproduzir bug, Console, Play Mode, soft-lock, regressão (**não cria features**) |
+| `art-integration` | sonnet | low | import PNG, slicing, pivots, Pixel Perfect, SpriteAtlas, Animator, sorting, Tilemap |
+| `build-release` | sonnet | low | Build Settings, builds Win/Mac/Linux, erros de build, pacote itch.io |
+
+### Política de modelo/custo
+- **Opus** (`game-architect`): só decisões que podem causar retrabalho grande. Nunca para renomear, importar, ajustes pequenos.
+- **Sonnet**: implementação, integração Unity, QA.
+- **Haiku**: tarefas mecânicas (organizar, renomear, checagens simples) — passar `model: "haiku"` **na chamada** do Agent tool em vez de criar outro agente.
+- `effort` é fixo por agente no frontmatter; a chamada do Agent tool só permite sobrescrever o **modelo**. Para mudar effort de um agente, editar o arquivo dele.
+
+### Regras de delegação
+- Delegar só quando a tarefa é independente, há ganho real de especialização e o resultado pode ser validado separadamente.
+- **Nunca** dois agentes no mesmo script ou na mesma cena ao mesmo tempo.
+- Não delegar tarefas de 30 segundos; não duplicar investigação.
+- Todo brief de subagente deve dizer: objetivo, arquivos permitidos, o que já foi descartado, critério de pronto.
+- O lead valida (Console + Play Mode) antes de aceitar o trabalho de um agente.
+
+---
+
+## 11. Git e segurança do projeto
+
+- **Repo público** — nunca commitar segredos, tokens, `.env`, dados pessoais, nem arquivos de terceiros sem licença.
+- **Sem commit ou push automático** — só com autorização explícita do usuário.
+- Antes de mudanças grandes: listar os arquivos afetados.
+- Não apagar arquivos existentes nem sobrescrever assets sem necessidade.
+- Não alterar `ProjectSettings/` ou `Packages/` sem motivo explicado antes.
+- Não instalar dependências automaticamente.
+- Se uma mudança puder quebrar o projeto, explicar antes de fazer.
