@@ -28,7 +28,7 @@ namespace ButecoDosDevs.UI
 
             CanvasScaler scaler = go.AddComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1280f, 720f);
+            scaler.referenceResolution = new Vector2(1600f, 900f);
             scaler.matchWidthOrHeight = 0.5f;
 
             go.AddComponent<GraphicRaycaster>();
@@ -85,6 +85,13 @@ namespace ButecoDosDevs.UI
 
         public static Button CreateButton(Transform parent, string label, Vector2 anchoredPos, Vector2 sizeDelta, UnityEngine.Events.UnityAction onClick)
         {
+            return CreateButton(parent, label, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), anchoredPos, sizeDelta, onClick);
+        }
+
+        /// <summary>Same as CreateButton but with an explicit anchor (e.g. top-center (0.5,1) so
+        /// anchoredPos.y can be authored as "distance from the top", matching CreateText's scheme).</summary>
+        public static Button CreateButton(Transform parent, string label, Vector2 anchorMin, Vector2 anchorMax, Vector2 anchoredPos, Vector2 sizeDelta, UnityEngine.Events.UnityAction onClick)
+        {
             GameObject go = new GameObject("Button_" + label, typeof(RectTransform));
             go.transform.SetParent(parent, false);
             Image img = go.AddComponent<Image>();
@@ -92,8 +99,8 @@ namespace ButecoDosDevs.UI
             Button btn = go.AddComponent<Button>();
             btn.targetGraphic = img;
             RectTransform rt = go.GetComponent<RectTransform>();
-            rt.anchorMin = new Vector2(0.5f, 0.5f);
-            rt.anchorMax = new Vector2(0.5f, 0.5f);
+            rt.anchorMin = anchorMin;
+            rt.anchorMax = anchorMax;
             rt.anchoredPosition = anchoredPos;
             rt.sizeDelta = sizeDelta;
 

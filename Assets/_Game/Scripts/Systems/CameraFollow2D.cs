@@ -17,11 +17,18 @@ namespace ButecoDosDevs.Systems
         [SerializeField] private float smoothTime = 0.12f;
         [SerializeField] private float maxShakeIntensity = 0.12f;
 
+        [Header("Fit-whole-map mode (Buteco/BarRival: fixed camera showing the whole room)")]
+        [Tooltip("When true, ignores 'target' and instead fixes the camera on mapBounds's center, sizing orthographicSize so the whole room fits (recalculated on aspect/resolution changes).")]
+        [SerializeField] private bool fitWholeMap;
+        [SerializeField] private float fitMargin = 0.5f;
+
         private Camera cam;
         private Vector3 velocity;
         private Vector3 basePosition;
         private Vector3 shakeOffset;
         private Coroutine shakeRoutine;
+        private int lastScreenWidth;
+        private int lastScreenHeight;
 
         private void Awake()
         {
@@ -30,6 +37,12 @@ namespace ButecoDosDevs.Systems
 
         private void Start()
         {
+            if (fitWholeMap)
+            {
+                ApplyFitWholeMap();
+                return;
+            }
+
             if (target == null)
             {
                 return;
@@ -42,6 +55,17 @@ namespace ButecoDosDevs.Systems
 
         private void LateUpdate()
         {
+            if (fitWholeMap)
+            {
+                // Cheap guard: only recompute the fit when the screen/aspect actually changed.
+                if (Screen.width != lastScreenWidth || Screen.height != lastScreenHeight)
+                {
+                    ApplyFitWholeMap();
+                }
+                transform.position = basePosition + shakeOffset;
+                return;
+            }
+
             if (target == null)
             {
                 return;
@@ -50,6 +74,31 @@ namespace ButecoDosDevs.Systems
             Vector3 desired = new Vector3(target.position.x, target.position.y, basePosition.z);
             Vector3 smoothed = Vector3.SmoothDamp(basePosition, desired, ref velocity, smoothTime);
             basePosition = ClampToBounds(smoothed);
+            transform.position = basePosition + shakeOffset;
+        }
+
+        /// <summary>Centers on mapBounds and sizes orthographicSize so the whole room is visible,
+        /// regardless of window aspect ratio. No-op (logs nothing, just skips) if mapBounds/cam
+        /// aren't wired — never blocks Play Mode.</summary>
+        private void ApplyFitWholeMap()
+        {
+            lastScreenWidth = Screen.width;
+            lastScreenHeight = Screen.height;
+
+            if (mapBounds == null || cam == null)
+            {
+                return;
+            }
+
+            Bounds bounds = mapBounds.bounds;
+            float halfWidth = bounds.extents.x;
+            float halfHeight = bounds.extents.y;
+
+            float sizeFromHeight = halfHeight;
+            float sizeFromWidth = cam.aspect > 0.0001f ? halfWidth / cam.aspect : halfHeight;
+            cam.orthographicSize = Mathf.Max(sizeFromHeight, sizeFromWidth) + fitMargin;
+
+            basePosition = new Vector3(bounds.center.x, bounds.center.y, transform.position.z);
             transform.position = basePosition + shakeOffset;
         }
 

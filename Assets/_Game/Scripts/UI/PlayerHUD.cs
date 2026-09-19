@@ -33,7 +33,12 @@ namespace ButecoDosDevs.UI
         [SerializeField] private Image dashCooldownOverlay; // dark radial mask; 1 = fully on cooldown, 0 = ready
         [SerializeField] private TMP_Text weaponNameText; // HUD_ActionBar/WeaponSlot/Label
 
+        [Header("Combat HUD grouping (top-left portrait+HP+Coragem)")]
+        [Tooltip("Optional: the top-left stats panel (portrait/HP/Coragem). Hidden together with the action bar before a weapon is chosen (Fase 5, exploration-only) via SetCombatHudVisible.")]
+        [SerializeField] private GameObject statsPanelRoot;
+
         private float lastDisplayedHP = -1f;
+        private bool combatHudEnabled = true;
 
         private void Awake()
         {
@@ -83,9 +88,10 @@ namespace ButecoDosDevs.UI
                 dashCooldownOverlay.fillAmount = 1f - movement.DashReadiness01;
             }
 
-            if (actionBarRoot != null && dialogueUI != null)
+            if (actionBarRoot != null)
             {
-                bool shouldShow = !dialogueUI.IsOpen;
+                bool dialogueOpen = dialogueUI != null && dialogueUI.IsOpen;
+                bool shouldShow = combatHudEnabled && !dialogueOpen;
                 if (actionBarRoot.activeSelf != shouldShow)
                 {
                     actionBarRoot.SetActive(shouldShow);
@@ -145,6 +151,23 @@ namespace ButecoDosDevs.UI
             if (weaponNameText != null)
             {
                 weaponNameText.text = weaponName;
+            }
+        }
+
+        /// <summary>Shows/hides the full combat HUD (stats panel + action bar): before the
+        /// arsenal (Fase 5, exploration-only) only OBJETIVO + the [E] prompt should be visible,
+        /// so ButecoFlow calls this false on Start and true once a weapon is chosen.</summary>
+        public void SetCombatHudVisible(bool visible)
+        {
+            combatHudEnabled = visible;
+            if (statsPanelRoot != null)
+            {
+                statsPanelRoot.SetActive(visible);
+            }
+            if (actionBarRoot != null)
+            {
+                bool dialogueOpen = dialogueUI != null && dialogueUI.IsOpen;
+                actionBarRoot.SetActive(visible && !dialogueOpen);
             }
         }
     }

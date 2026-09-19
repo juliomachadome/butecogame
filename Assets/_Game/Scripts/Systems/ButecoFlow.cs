@@ -106,12 +106,57 @@ namespace ButecoDosDevs.Systems
 
             WireConversationCounters();
             Sfx.SetLibrary(soundLibrary);
+
+            // Pedro stands still facing south (his idle activity anim) until he actually walks somewhere.
+            if (pedroSprite != null)
+            {
+                pedroSprite.SetFacing(Vector2.down);
+            }
         }
 
         private void Start()
         {
             StartCoroutine(RunFlow());
             StartCoroutine(PedroBanterLoop());
+            StartCoroutine(FunnieBanterLoop());
+
+            // Only start the combat HUD (HP/Coragem/action bar) once a weapon is chosen;
+            // before that, the Buteco is exploration-only (OBJETIVO + [E] prompt suffice).
+            if (playerHUD != null)
+            {
+                playerHUD.SetCombatHudVisible(GameState.ChosenWeapon != GameState.Weapon.None || GameState.WarFinished);
+            }
+        }
+
+        // ---------------- Funnie ("SaaS em 1 segundo") periodic banter ----------------
+
+        private static readonly string[] FunnieLines =
+        {
+            "Deploy feito.",
+            "Mais um SaaS no ar.",
+            "Quem mexeu na main?",
+            "Tá rodando na minha máquina."
+        };
+
+        [Header("Funnie")]
+        [SerializeField] private float funnieBanterInterval = 15f;
+        [SerializeField] private float funnieBanterRadius = 4f;
+
+        private IEnumerator FunnieBanterLoop()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(funnieBanterInterval);
+                if (funnie != null && funnie.gameObject.activeInHierarchy && player != null)
+                {
+                    float dist = Vector2.Distance(funnie.position, player.position);
+                    if (dist <= funnieBanterRadius)
+                    {
+                        string line = FunnieLines[Random.Range(0, FunnieLines.Length)];
+                        Say(funnie, line, 2.4f);
+                    }
+                }
+            }
         }
 
         private IEnumerator PedroBanterLoop()
@@ -406,8 +451,28 @@ namespace ButecoDosDevs.Systems
                 pedro.gameObject.SetActive(false);
             }
 
-            objectiveUI?.SetObjective("Aproveite o Buteco (soundboard, jukebox...)");
-            yield return new WaitForSeconds(pedroAwayDuration);
+            yield return WaitWithCountdownObjective();
+        }
+
+        /// <summary>Shows "Espere o Pedro voltar... (mm:ss)" ticking down every second, with two
+        /// small sub-objective hints underneath, for pedroAwayDuration seconds. Purely a text
+        /// countdown (no gameplay is gated by it) — anti-soft-lock is inherent since it's just
+        /// a fixed-length wait either way.</summary>
+        private IEnumerator WaitWithCountdownObjective()
+        {
+            float remaining = pedroAwayDuration;
+            while (remaining > 0f)
+            {
+                int totalSeconds = Mathf.CeilToInt(remaining);
+                int mm = totalSeconds / 60;
+                int ss = totalSeconds % 60;
+                objectiveUI?.SetObjective(
+                    $"Espere o Pedro voltar... ({mm:00}:{ss:00})\n<size=80%>• Converse com a galera\n• Teste a soundboard</size>");
+
+                float step = Mathf.Min(1f, remaining);
+                yield return new WaitForSeconds(step);
+                remaining -= step;
+            }
         }
 
         // ---------------- Pedro Returns ----------------
@@ -421,6 +486,15 @@ namespace ButecoDosDevs.Systems
                 pedro.position = doorPosition;
                 pedro.gameObject.SetActive(true);
                 Sfx.Play(SoundId.PortaAbre, doorPosition);
+
+                // Walk in from the door so he's not standing on the doormat facing away,
+                // then turn to face the player/room before talking.
+                Vector3 stopPoint = doorPosition + Vector3.down * 2.5f;
+                yield return WalkTo(pedro, pedroSprite, stopPoint, pedroWalkSpeed, walkTimeout);
+                if (pedroSprite != null)
+                {
+                    pedroSprite.SetFacing(Vector2.down);
+                }
             }
 
             Say(pedro, "ME ACUSARAM DE MANDAR LINK COM VÍRUS!", 2.6f);
@@ -527,6 +601,7 @@ namespace ButecoDosDevs.Systems
             if (playerHUD != null)
             {
                 playerHUD.SetWeaponName(label);
+                playerHUD.SetCombatHudVisible(true);
             }
         }
 

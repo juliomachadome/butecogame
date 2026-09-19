@@ -872,6 +872,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69462134}
   m_CullTransparentMesh: 1
+--- !u!1 &78727413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 78727415}
+  - component: {fileID: 78727414}
+  m_Layer: 0
+  m_Name: BackWallBlocker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &78727414
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78727413}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 40, y: 3}
+  m_EdgeRadius: 0
+--- !u!4 &78727415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78727413}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 7.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &87443154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,6 +1870,8 @@ MonoBehaviour:
   soundLibrary: {fileID: 11400000, guid: 6c38003991af94097a7e43d6d3e45c74, type: 2}
   pedroBanterInterval: 20
   pedroBanterRadius: 4
+  funnieBanterInterval: 15
+  funnieBanterRadius: 4
 --- !u!1 &339526028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3087,7 +3167,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 3400, y: 1912}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
@@ -4029,6 +4109,7 @@ MonoBehaviour:
   actionBarRoot: {fileID: 1240851549}
   dashCooldownOverlay: {fileID: 925516488}
   weaponNameText: {fileID: 45405773}
+  statsPanelRoot: {fileID: 0}
 --- !u!1 &845415407
 GameObject:
   m_ObjectHideFlags: 0
@@ -9131,7 +9212,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.5
+  orthographic size: 7.1
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -9215,6 +9296,8 @@ MonoBehaviour:
   mapBounds: {fileID: 876944930}
   smoothTime: 0.12
   maxShakeIntensity: 0.12
+  fitWholeMap: 1
+  fitMargin: 0.5
 --- !u!1 &1507949425
 GameObject:
   m_ObjectHideFlags: 0
@@ -11708,3 +11791,4 @@ SceneRoots:
   - {fileID: 321232568}
   - {fileID: 2088685485}
   - {fileID: 1361821213}
+  - {fileID: 78727415}

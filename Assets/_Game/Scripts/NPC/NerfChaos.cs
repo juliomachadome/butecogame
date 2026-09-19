@@ -42,6 +42,13 @@ namespace ButecoDosDevs.NPC
         [SerializeField] private float hopHeight = 0.25f;
         [SerializeField] private float hopDuration = 0.25f;
 
+        [Header("Animação (folha Generic_Buteco_Sheet)")]
+        [SerializeField] private Sprite idleSprite;
+        [SerializeField] private Sprite[] walkS;
+        [SerializeField] private Sprite[] walkE;
+        [SerializeField] private Sprite[] walkN;
+        [SerializeField] private float walkFps = 9f;
+
         [Header("Visual variation (tint skin/shirt slightly per instance)")]
         [SerializeField] private SpriteRenderer bodyRenderer;
         [SerializeField] private Color[] tintVariants;
@@ -120,6 +127,42 @@ namespace ButecoDosDevs.NPC
             }
 
             transform.position += toTarget.normalized * moveSpeed * Time.deltaTime;
+            AnimateWalk(toTarget);
+        }
+
+        private void AnimateWalk(Vector2 dir)
+        {
+            if (bodyRenderer == null)
+            {
+                return;
+            }
+            Sprite[] frames;
+            bool flip = false;
+            if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+            {
+                frames = walkE;
+                flip = dir.x < 0f;
+            }
+            else
+            {
+                frames = dir.y > 0f ? walkN : walkS;
+            }
+            if (frames == null || frames.Length == 0)
+            {
+                return;
+            }
+            int frame = (int)(Time.time * walkFps) % frames.Length;
+            bodyRenderer.sprite = frames[frame];
+            bodyRenderer.flipX = flip;
+        }
+
+        private void LateUpdate()
+        {
+            if (!chaosActive && bodyRenderer != null && idleSprite != null)
+            {
+                bodyRenderer.sprite = idleSprite;
+                bodyRenderer.flipX = false;
+            }
         }
 
         private void PickNextWaypoint()
