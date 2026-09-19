@@ -174,6 +174,15 @@ Dificuldade cresce por **variedade, posicionamento, quantidade controlada e ataq
 - **Tamanhos (decidido):** personagens em canvas **48×48** (personagem ~30 px de altura); tiles e props em grade de **32 px**; **PPU 32** em tudo (1 unidade = 1 tile). Filter Point, sem compressão, pivot nos pés.
 - **Geração de arte:** `pixellab-cli` (PixelLab, v0.3.1) instalado via `uv tool`. Token só em `~/.pixellab.json` (fora do repo). Saídas brutas em `pixellab-out/` (gitignored) → copiar só os PNGs aprovados para `Assets/_Game/Art/`. Sempre `--dry-run` antes de gerar; gerar 1 personagem, aprovar estilo com o usuário, depois o resto.
 
+### Plano de arte / orçamento PixelLab (decidido pelo usuário)
+- Conta grátis: 40 gerações. Custo real observado: personagem 4 direções = 1; animação = ~1 por direção (4 frames). Oeste = leste espelhado (flipX) → nunca gerar oeste.
+- **Únicos (poucos):** Dev Novato ✅ (idle + walk, character_id `1f84a9e7-94fe-4d83-aa7d-2d4d230ef1a8`), Pedro, Moe (bartender), **Rei Luiz** ✅ rotações (character_id `018aee4a-eeef-4bae-9872-b1b91090541c`, coroa dourada; papel a definir) e talvez 1 outro da comunidade.
+- **Comunidade genérica = "Membro do Buteco":** 1 base com a **camiseta do Buteco** (laranja com logo da caneca, mesma cor do letreiro), variações por **tint/troca de cor em código** (cabelo, pele, camiseta). Leitura em combate: **laranja = Buteco, neon = rival**.
+- **Rivais:** UM "maluco do outro lado" repetido (variação só de cor) + **Admin Rival** (boss) único.
+- Ataque/impacto: efeito em código (arco de golpe, avanço, shake) — não gerar frames de ataque.
+- NPCs que não lutam: só rotações (1 geração); "respirar"/balanço em código.
+- Referências do usuário vão em `refs/` (gitignored).
+
 ### Personagens da comunidade (exemplos do conceito)
 Comunista, Cristão, Satanista, Artista/Dev, Dev Cansado. São **cosméticos/humor** entre membros que topam a piada — identidade política ou religiosa **nunca** vira mecânica (sem bônus, dano, facção ou alvo por crença).
 

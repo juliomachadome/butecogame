@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1491613373209195605}
   - component: {fileID: 3575240796559498523}
   - component: {fileID: 8027578020296640392}
+  - component: {fileID: 3525345106743810594}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -91,8 +92,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: ac1207feedb47486d8b2b0e789eefc1a, type: 3}
-  m_Color: {r: 1, g: 0.55, b: 0, a: 1}
+  m_Sprite: {fileID: 1164105330, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,7 +101,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
   m_BlendShapeWeights: []
 --- !u!61 &1187313755308349517
 BoxCollider2D:
@@ -136,17 +137,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.18}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.17105263}
+    oldSize: {x: 2.375, y: 2.375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 0.6, y: 0.35}
   m_EdgeRadius: 0
 --- !u!50 &6942517091365040997
 Rigidbody2D:
@@ -271,6 +272,44 @@ MonoBehaviour:
   koDuration: 2
   sprite: {fileID: 7195544358612639916}
   koColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+--- !u!114 &3525345106743810594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2355336983522204102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f7f20d365da4bc4a456094108cddab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Player.PlayerSpriteAnimator
+  spriteRenderer: {fileID: 7195544358612639916}
+  movement: {fileID: 3757001473836183190}
+  idleS:
+  - {fileID: 1164105330, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  idleE:
+  - {fileID: 116217287, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  idleN:
+  - {fileID: 948025890, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  walkS:
+  - {fileID: -1466137014, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  - {fileID: -142291072, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  - {fileID: 1346628059, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  - {fileID: 1226999720, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  walkE:
+  - {fileID: 742349823, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  - {fileID: -1257327279, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  - {fileID: -1488425781, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  - {fileID: -2122314948, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  - {fileID: 297545724, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  walkN:
+  - {fileID: 165422092, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  - {fileID: -468122466, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  - {fileID: -2039910349, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  - {fileID: -123770310, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  - {fileID: 1187448466, guid: 28eb81a5a50684ddb9570a0fe0d719a7, type: 3}
+  fps: 8
 --- !u!1 &3257675800767043417
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +377,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.65}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -348,7 +387,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 0.6, y: 1.2}
   m_EdgeRadius: 0
 --- !u!114 &3005691409812310650
 MonoBehaviour:
@@ -391,7 +430,7 @@ Transform:
   m_GameObject: {fileID: 3491244680345925058}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0.65, z: 0}
   m_LocalScale: {x: 0.9, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

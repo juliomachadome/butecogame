@@ -46,6 +46,7 @@ namespace ButecoDosDevs.Player
         public Vector2 LastMoveDirection => lastMoveDirection;
         public bool IsDashing => isDashing;
         public bool IsKnockedBack => isKnockedBack;
+        public bool IsMoving => moveInput.sqrMagnitude > 0.0001f;
 
         private void Awake()
         {

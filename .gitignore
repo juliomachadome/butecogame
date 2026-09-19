@@ -116,3 +116,4 @@ InitTestScene*.unity*
 # PixelLab CLI (credenciais e saídas brutas — nunca versionar)
 .pixellab.json
 pixellab-out/
+refs/
