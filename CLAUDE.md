@@ -2,7 +2,7 @@
 
 Documento central do projeto. Game Jam de **48 horas**. Leia antes de qualquer tarefa.
 
-> **Fase atual: 2 concluída** (combate, HP, hitbox/hurtbox, knockback, hit-stop, KO/checkpoint). Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
+> **Fase atual: 3 concluída** (inimigo Hacker Rival com ataque telegrafado). Arte via PixelLab em andamento. Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
 > Não avance de fase sem instrução explícita do usuário.
 
 ---
@@ -171,7 +171,8 @@ Dificuldade cresce por **variedade, posicionamento, quantidade controlada e ataq
 
 ### Bartender — DECISÃO DO USUÁRIO (2026-09-19)
 - **Visual do bartender = Moe (Os Simpsons)**, como na referência principal. Decisão tomada pelo usuário ciente de que o repo é público e o jogo vai para o itch.io (risco de IP aceito). Não reabrir o assunto.
-- Sprites finais ainda não definidos (tamanho/PPU em aberto — placeholder usa **PPU 32**).
+- **Tamanhos (decidido):** personagens em canvas **48×48** (personagem ~30 px de altura); tiles e props em grade de **32 px**; **PPU 32** em tudo (1 unidade = 1 tile). Filter Point, sem compressão, pivot nos pés.
+- **Geração de arte:** `pixellab-cli` (PixelLab, v0.3.1) instalado via `uv tool`. Token só em `~/.pixellab.json` (fora do repo). Saídas brutas em `pixellab-out/` (gitignored) → copiar só os PNGs aprovados para `Assets/_Game/Art/`. Sempre `--dry-run` antes de gerar; gerar 1 personagem, aprovar estilo com o usuário, depois o resto.
 
 ### Personagens da comunidade (exemplos do conceito)
 Comunista, Cristão, Satanista, Artista/Dev, Dev Cansado. São **cosméticos/humor** entre membros que topam a piada — identidade política ou religiosa **nunca** vira mecânica (sem bônus, dano, facção ou alvo por crença).
@@ -236,8 +237,8 @@ Uma feature só está pronta quando: compila · a cena abre · Play Mode funcion
 | 0 | Preparação, documentação, agentes | ✅ |
 | 1 | Player + movimento + colisão + câmera | ✅ `PlayerMovement`, `CameraFollow2D`, greybox `Buteco.unity` |
 | 2 | Combate + HP + hitbox/hurtbox + knockback | ✅ `Scripts/Combat/*`, `PlayerAttack`, `PlayerKO`, bonecos de treino |
-| 3 | Inimigo simples | ⏳ aguardando ordem |
-| 4 | NPCs + aliados | |
+| 3 | Inimigo simples | ✅ `EnemyController` (Idle/Chase/Windup/Attack/Recover/Hurt/KO), `Enemy_HackerRival.prefab` |
+| 4 | NPCs + aliados | ⏳ aguardando ordem |
 | 5 | Buteco + interação + soundboard | |
 | 6 | Pedro + TIMEOUT (60 s + retorno por waypoint) | |
 | 7 | Preparação + escolha de arma + equipar aliados | |

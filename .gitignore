@@ -112,3 +112,7 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# PixelLab CLI (credenciais e saídas brutas — nunca versionar)
+.pixellab.json
+pixellab-out/
