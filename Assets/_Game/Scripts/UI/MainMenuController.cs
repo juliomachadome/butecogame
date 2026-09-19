@@ -36,10 +36,10 @@ namespace ButecoDosDevs.UI
 
             BuildCastRow(canvas.transform);
 
-            Button jogar = UIBuilder.CreateButton(canvas.transform, "JOGAR", new Vector2(0f, 10f), new Vector2(300f, 56f), OnJogar);
-            UIBuilder.CreateButton(canvas.transform, "OPÇÕES", new Vector2(0f, -60f), new Vector2(300f, 56f), OnOpcoes);
-            UIBuilder.CreateButton(canvas.transform, "CONTROLES", new Vector2(0f, -130f), new Vector2(300f, 56f), OnControles);
-            UIBuilder.CreateButton(canvas.transform, "SAIR", new Vector2(0f, -200f), new Vector2(300f, 56f), OnSair);
+            Button jogar = UIBuilder.CreateButton(canvas.transform, "JOGAR", new Vector2(0f, -85f), new Vector2(300f, 56f), OnJogar);
+            UIBuilder.CreateButton(canvas.transform, "OPÇÕES", new Vector2(0f, -150f), new Vector2(300f, 56f), OnOpcoes);
+            UIBuilder.CreateButton(canvas.transform, "CONTROLES", new Vector2(0f, -215f), new Vector2(300f, 56f), OnControles);
+            UIBuilder.CreateButton(canvas.transform, "SAIR", new Vector2(0f, -280f), new Vector2(300f, 56f), OnSair);
 
             optionsMenu = gameObject.AddComponent<OptionsMenu>();
 
@@ -79,8 +79,22 @@ namespace ButecoDosDevs.UI
                 RectTransform rt = go.GetComponent<RectTransform>();
                 rt.anchorMin = new Vector2(0.5f, 1f);
                 rt.anchorMax = new Vector2(0.5f, 1f);
-                rt.anchoredPosition = new Vector2(startX + i * spacing, -330f);
+                rt.anchoredPosition = new Vector2(startX + i * spacing, -300f);
                 rt.sizeDelta = new Vector2(110f, 110f);
+                // Mesma escala usada em jogo: sprites do Julio/Moe ocupam o quadro inteiro.
+                string spriteName = castPortraits[i].name;
+                float scale = spriteName.StartsWith("Julio") ? 0.75f : (spriteName.StartsWith("MoeSimpsons") ? 0.82f : 1f);
+                rt.localScale = new Vector3(scale, scale, 1f);
+
+                string displayName = spriteName.StartsWith("Dev") ? "Dev Novato"
+                    : spriteName.StartsWith("Pedro") ? "Pedro Pietro"
+                    : spriteName.StartsWith("ReiLuiz") ? "Rei Luiz"
+                    : spriteName.StartsWith("Funnie") ? "Funnie"
+                    : spriteName.StartsWith("Julio") ? "J Machado (Naldo)"
+                    : spriteName.StartsWith("Moe") ? "Moe"
+                    : "";
+                UIBuilder.CreateText(parent, displayName, 15f, TextAlignmentOptions.Center, new Color(1f, 0.85f, 0.55f, 1f),
+                    new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(startX + i * spacing, -368f), new Vector2(128f, 24f));
             }
         }
 

@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6bcd567410c45479e368020f51d4c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.Interactable
-  displayName: Pedro
+  displayName: Pedro Pietro
   dialogueLines:
   - "E a\xED, novato! Regra da casa: falou besteira, toma TIMEOUT."
   - "*tsc tsc* ...500 anos de vida e esse isqueiro ainda n\xE3o acende..."

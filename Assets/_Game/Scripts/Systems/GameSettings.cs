@@ -30,8 +30,8 @@ namespace ButecoDosDevs.Systems
         public static int VSyncCount { get; private set; } = 1;
         public static Quality QualityLevel { get; private set; } = Quality.Medium;
         public static FullScreenMode ScreenMode { get; private set; } = FullScreenMode.Windowed;
-        public static int ResolutionWidth { get; private set; } = 1280;
-        public static int ResolutionHeight { get; private set; } = 720;
+        public static int ResolutionWidth { get; private set; } = 1600;
+        public static int ResolutionHeight { get; private set; } = 900;
         public static int VolumePercent { get; private set; } = 100;
 
         private static bool loaded;
@@ -64,9 +64,9 @@ namespace ButecoDosDevs.Systems
             TargetFrameRate = PlayerPrefs.GetInt(KeyFps, 60);
             VSyncCount = PlayerPrefs.GetInt(KeyVSync, TargetFrameRate <= 30 ? 0 : 1);
             QualityLevel = (Quality)Mathf.Clamp(PlayerPrefs.GetInt(KeyQuality, (int)Quality.Medium), 0, 2);
-            ScreenMode = (FullScreenMode)PlayerPrefs.GetInt(KeyScreenMode, (int)FullScreenMode.Windowed);
-            ResolutionWidth = PlayerPrefs.GetInt(KeyResW, 1280);
-            ResolutionHeight = PlayerPrefs.GetInt(KeyResH, 720);
+            ScreenMode = (FullScreenMode)PlayerPrefs.GetInt(KeyScreenMode, (int)FullScreenMode.FullScreenWindow);
+            ResolutionWidth = PlayerPrefs.GetInt(KeyResW, Display.main.systemWidth);
+            ResolutionHeight = PlayerPrefs.GetInt(KeyResH, Display.main.systemHeight);
             VolumePercent = Mathf.Clamp(PlayerPrefs.GetInt(KeyVolume, 100), 0, 100);
         }
 

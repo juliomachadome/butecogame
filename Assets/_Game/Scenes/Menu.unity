@@ -252,7 +252,7 @@ MonoBehaviour:
   - {fileID: 2088884470, guid: 6065936b324a4464f997bb15f2c403d0, type: 3}
   - {fileID: -1970449315, guid: a5053abfb2b1a485dab3eb9ce512d85d, type: 3}
   - {fileID: 21300000, guid: 185ad23bee3a445ccaa3f0c81dd9375e, type: 3}
-  - {fileID: -1255270795, guid: 43eca516ab40c4f469829a18196215d0, type: 3}
+  - {fileID: 21300000, guid: afeb7864572824a31ab10b41e46c23d6, type: 3}
   firstScene: Buteco
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

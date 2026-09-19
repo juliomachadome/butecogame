@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6bcd567410c45479e368020f51d4c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.Interactable
-  displayName: '"Julio"'
+  displayName: J Machado (Naldo)
   dialogueLines:
   - "\"E a\xED, novato! Eu que fiz esse jogo. Achou bug? \xC9 feature.\""
   - "\"T\xF4 aqui tomando uma com o Moe. Criador tamb\xE9m precisa de pausa.\""
