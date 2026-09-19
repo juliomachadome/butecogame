@@ -44,8 +44,14 @@ namespace ButecoDosDevs.Systems
         {
             GameState.ApplyWeapon(playerAttack, GameState.ChosenWeapon);
 
-            if (playerMovement != null) playerMovement.enabled = false;
-            if (playerAttack != null) playerAttack.enabled = false;
+            // A "passeio" street visit (Fase 5, before the war) skips the walk-out/title/
+            // waves entirely: the player just came in on their own two feet and should
+            // stay in full control.
+            if (!GameState.StreetVisit)
+            {
+                if (playerMovement != null) playerMovement.enabled = false;
+                if (playerAttack != null) playerAttack.enabled = false;
+            }
         }
 
         private void Start()
@@ -55,6 +61,12 @@ namespace ButecoDosDevs.Systems
 
         private IEnumerator RunFlow()
         {
+            if (GameState.StreetVisit)
+            {
+                objectiveUI?.SetObjective("Modo passeio. Volte pro Buteco quando quiser.");
+                yield break;
+            }
+
             objectiveUI?.SetObjective("...");
 
             yield return WalkGroupOut();

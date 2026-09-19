@@ -31,6 +31,7 @@ namespace ButecoDosDevs.Player
         [SerializeField] private CourageMeter courage;
         [SerializeField] private AttackFX attackFX;
         [SerializeField] private CameraFollow2D cameraShake;
+        [SerializeField] private PlayerNerf nerf;
 
         [Header("Feedback")]
         [SerializeField] private float hitShakeIntensity = 0.08f;
@@ -79,6 +80,10 @@ namespace ButecoDosDevs.Player
             if (attackFX == null)
             {
                 attackFX = GetComponent<AttackFX>();
+            }
+            if (nerf == null)
+            {
+                nerf = GetComponent<PlayerNerf>();
             }
             if (cameraShake == null)
             {
@@ -177,6 +182,12 @@ namespace ButecoDosDevs.Player
             activeTime = baseActiveTime * timeMultiplier;
             recoveryTime = baseRecoveryTime * timeMultiplier;
             knockbackForce = baseKnockbackForce * knockbackMultiplier;
+
+            // The toy Nerf gun's job is done once a real weapon is in hand.
+            if (nerf != null)
+            {
+                nerf.Clear();
+            }
         }
 
         /// <summary>
@@ -196,6 +207,12 @@ namespace ButecoDosDevs.Player
 
             if (GameState.ChosenWeapon == GameState.Weapon.None)
             {
+                if (nerf != null && nerf.HasNerf)
+                {
+                    nerf.Fire(movement.LastMoveDirection);
+                    return true;
+                }
+
                 if (noWeaponWarnTimer <= 0f)
                 {
                     SpeechBubble.Say(transform, "Sem arma. Espera a guerra.", 1.4f);

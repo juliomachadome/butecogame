@@ -733,6 +733,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 158980162}
+  - component: {fileID: 158980163}
+  - component: {fileID: 158980164}
+  - component: {fileID: 158980165}
   m_Layer: 0
   m_Name: RivalDoorPoint
   m_TagString: Untagged
@@ -755,6 +758,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &158980163
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158980161}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 1.2
+--- !u!114 &158980164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158980161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6bcd567410c45479e368020f51d4c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.Interactable
+  displayName: Porta do Rival
+  dialogueLines:
+  - "Fechado. S\xF3 pra hackers de tutorial."
+  portrait: {fileID: 0}
+  npcController: {fileID: 0}
+  nameTag: {fileID: 0}
+  onConversationEnded:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &158980165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158980161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af75c86283464adcb5f2114b6b9ec7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Systems.SceneDoor
+  onlyDuringStreetVisit: 1
+  locked: 1
+  targetScene: 
+  setStreetVisitOnLoad: 0
+  clearStreetVisitOnLoad: 0
+  gateFlow: {fileID: 0}
 --- !u!1001 &162625226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5305,6 +5383,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1926058668}
+  - component: {fileID: 1926058669}
+  - component: {fileID: 1926058670}
+  - component: {fileID: 1926058671}
   m_Layer: 0
   m_Name: ButecoDoorPoint
   m_TagString: Untagged
@@ -5327,6 +5408,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1926058669
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926058667}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 1.2
+--- !u!114 &1926058670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926058667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6bcd567410c45479e368020f51d4c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.Interactable
+  displayName: Voltar pro Buteco
+  dialogueLines:
+  - Voltar pro Buteco?
+  portrait: {fileID: 0}
+  npcController: {fileID: 0}
+  nameTag: {fileID: 0}
+  onConversationEnded:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1926058671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926058667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af75c86283464adcb5f2114b6b9ec7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Systems.SceneDoor
+  onlyDuringStreetVisit: 1
+  locked: 0
+  targetScene: Buteco
+  setStreetVisitOnLoad: 0
+  clearStreetVisitOnLoad: 1
+  gateFlow: {fileID: 0}
 --- !u!1 &1932280673
 GameObject:
   m_ObjectHideFlags: 0

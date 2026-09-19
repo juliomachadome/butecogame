@@ -24,6 +24,15 @@ namespace ButecoDosDevs.Systems
         public static Weapon ChosenWeapon { get; set; } = Weapon.None;
         public static bool WarFinished { get; set; }
 
+        /// <summary>True while the player is on a "passeio" trip to the Rua scene before
+        /// the war (door in the Buteco -> door in the Rua), set/cleared by SceneDoor.</summary>
+        public static bool StreetVisit { get; set; }
+
+        /// <summary>True once ButecoFlow's arrival gag (Pedro's "Tem 18?" gate) has played.
+        /// Lets a return trip from a street visit skip straight back to free-roam instead
+        /// of replaying the whole intro.</summary>
+        public static bool IntroDone { get; set; }
+
         /// <summary>The chosen weapon's held-item sprite (set once by ButecoFlow's arsenal
         /// pickup), so Rua/BarRival can re-show it in the player's hand on scene start
         /// without needing their own copy of the sword/bottle art references.</summary>
@@ -36,6 +45,8 @@ namespace ButecoDosDevs.Systems
             ChosenWeapon = Weapon.None;
             ChosenWeaponSprite = null;
             WarFinished = false;
+            StreetVisit = false;
+            IntroDone = false;
         }
 
         /// <summary>Combat stats for a weapon: damage, windup/active/recovery time multiplier, knockback multiplier, held-item visual scale.</summary>

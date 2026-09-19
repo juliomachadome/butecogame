@@ -192,6 +192,29 @@ namespace ButecoDosDevs.NPC
             }
         }
 
+        /// <summary>Finds the closest chaos member to a point within maxDistance, or null.
+        /// Used by the player's toy Nerf gun (PlayerNerf) to resolve which member a fired
+        /// dart "hits" without needing a Collider2D on every wandering member.</summary>
+        public static NerfChaos FindNearest(Vector3 point, float maxDistance)
+        {
+            NerfChaos best = null;
+            float bestDist = maxDistance;
+            for (int i = 0; i < Members.Count; i++)
+            {
+                if (Members[i] == null)
+                {
+                    continue;
+                }
+                float dist = Vector2.Distance(Members[i].transform.position, point);
+                if (dist <= bestDist)
+                {
+                    bestDist = dist;
+                    best = Members[i];
+                }
+            }
+            return best;
+        }
+
         private IEnumerator ThrowLoop()
         {
             // Small random stagger so members in the same scene don't throw in lockstep.

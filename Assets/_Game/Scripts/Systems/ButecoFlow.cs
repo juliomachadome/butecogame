@@ -98,6 +98,11 @@ namespace ButecoDosDevs.Systems
         /// <summary>Exposed as an int for QA/debug eval checks (State is a private nested enum).</summary>
         public int CurrentStateIndex => (int)state;
 
+        /// <summary>True while it's safe to pop out the Buteco's street door: free-roam
+        /// (Explore) or the "wait for Pedro" period, and never mid-cutscene. Read by
+        /// SceneDoor on the entrance so the exit only opens outside of scripted beats.</summary>
+        public bool CanVisitStreet => (state == State.Explore || state == State.PedroLeaves) && !CutsceneMode.IsActive;
+
         private bool[] talkedTo = new bool[5]; // Pedro, Moe, Julio, Funnie, ReiLuiz
         private Coroutine strangerRoutine;
 
@@ -226,7 +231,19 @@ namespace ButecoDosDevs.Systems
                 yield break;
             }
 
-            yield return RunArrival();
+            if (!GameState.IntroDone)
+            {
+                yield return RunArrival();
+                GameState.IntroDone = true;
+            }
+            else
+            {
+                // Returning from a street visit: skip Pedro's "Tem 18?" gag, resume free-roam.
+                state = State.Explore;
+                NerfChaos.SetAllActive(true);
+                objectiveUI?.SetObjective("Converse com a galera do Buteco");
+            }
+
             yield return RunExplore();
             yield return RunPedroLeaves();
             yield return RunPedroReturns();
