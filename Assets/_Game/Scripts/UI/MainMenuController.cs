@@ -19,6 +19,7 @@ namespace ButecoDosDevs.UI
         [SerializeField] private string firstScene = "Buteco";
 
         private GameObject controlsPanel;
+        private OptionsMenu optionsMenu;
 
         private void Start()
         {
@@ -36,8 +37,11 @@ namespace ButecoDosDevs.UI
             BuildCastRow(canvas.transform);
 
             Button jogar = UIBuilder.CreateButton(canvas.transform, "JOGAR", new Vector2(0f, 10f), new Vector2(300f, 56f), OnJogar);
-            UIBuilder.CreateButton(canvas.transform, "CONTROLES", new Vector2(0f, -60f), new Vector2(300f, 56f), OnControles);
-            UIBuilder.CreateButton(canvas.transform, "SAIR", new Vector2(0f, -130f), new Vector2(300f, 56f), OnSair);
+            UIBuilder.CreateButton(canvas.transform, "OPÇÕES", new Vector2(0f, -60f), new Vector2(300f, 56f), OnOpcoes);
+            UIBuilder.CreateButton(canvas.transform, "CONTROLES", new Vector2(0f, -130f), new Vector2(300f, 56f), OnControles);
+            UIBuilder.CreateButton(canvas.transform, "SAIR", new Vector2(0f, -200f), new Vector2(300f, 56f), OnSair);
+
+            optionsMenu = gameObject.AddComponent<OptionsMenu>();
 
             UIBuilder.CreateText(canvas.transform, "Game Jam - Buteco dos Devs - Sons pela comunidade", 14f, TextAlignmentOptions.Center, new Color(1f, 1f, 1f, 0.4f),
                 new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 24f), new Vector2(1000f, 30f));
@@ -119,6 +123,14 @@ namespace ButecoDosDevs.UI
         private void OnSair()
         {
             Application.Quit();
+        }
+
+        private void OnOpcoes()
+        {
+            if (optionsMenu != null)
+            {
+                optionsMenu.Open();
+            }
         }
     }
 }

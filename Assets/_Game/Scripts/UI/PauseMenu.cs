@@ -25,6 +25,7 @@ namespace ButecoDosDevs.UI
 
         private InputAction pauseAction;
         private GameObject panelRoot;
+        private OptionsMenu optionsMenu;
         private bool paused;
         private bool prevMovementEnabled;
         private bool prevAttackEnabled;
@@ -141,10 +142,13 @@ namespace ButecoDosDevs.UI
             UIBuilder.CreateText(panelRoot.transform, "PAUSADO", 40f, TextAlignmentOptions.Center, Color.white,
                 new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 160f), new Vector2(600f, 60f));
 
-            UIBuilder.CreateButton(panelRoot.transform, "CONTINUAR", new Vector2(0f, 70f), new Vector2(320f, 56f), Resume);
-            UIBuilder.CreateButton(panelRoot.transform, "NOVA GUERRA PÚNICA", new Vector2(0f, 0f), new Vector2(320f, 56f), OnNewWar);
-            UIBuilder.CreateButton(panelRoot.transform, "MENU", new Vector2(0f, -70f), new Vector2(320f, 56f), OnMenu);
-            UIBuilder.CreateButton(panelRoot.transform, "SAIR", new Vector2(0f, -140f), new Vector2(320f, 56f), OnQuit);
+            UIBuilder.CreateButton(panelRoot.transform, "CONTINUAR", new Vector2(0f, 90f), new Vector2(320f, 56f), Resume);
+            UIBuilder.CreateButton(panelRoot.transform, "OPÇÕES", new Vector2(0f, 20f), new Vector2(320f, 56f), OnOpcoes);
+            UIBuilder.CreateButton(panelRoot.transform, "NOVA GUERRA PÚNICA", new Vector2(0f, -50f), new Vector2(320f, 56f), OnNewWar);
+            UIBuilder.CreateButton(panelRoot.transform, "MENU", new Vector2(0f, -120f), new Vector2(320f, 56f), OnMenu);
+            UIBuilder.CreateButton(panelRoot.transform, "SAIR", new Vector2(0f, -190f), new Vector2(320f, 56f), OnQuit);
+
+            optionsMenu = gameObject.AddComponent<OptionsMenu>();
 
             panelRoot.SetActive(false);
         }
@@ -166,6 +170,14 @@ namespace ButecoDosDevs.UI
         {
             Time.timeScale = 1f;
             Application.Quit();
+        }
+
+        private void OnOpcoes()
+        {
+            if (optionsMenu != null)
+            {
+                optionsMenu.Open(); // stacks above the pause panel; timeScale stays 0 (pause owns it)
+            }
         }
     }
 }

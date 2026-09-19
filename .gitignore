@@ -126,3 +126,6 @@ refs/
 
 # macOS
 .DS_Store
+
+# Unity: artefatos de teste de performance gerados no build
+/[Aa]ssets/[Rr]esources/PerformanceTestRun*
