@@ -714,7 +714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.Light2D
   m_ComponentVersion: 4
-  m_LightType: 3
+  m_LightType: 4
   m_BlendStyleIndex: 0
   m_Light2DProvider:
     rid: -2
@@ -768,7 +768,7 @@ MonoBehaviour:
     - rid: 6296504414032363599
       type: {class: Light2DProviderSources, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data:
-        m_SelectedHashCode: 0
+        m_SelectedHashCode: 4
         m_SelectedSource:
           rid: -2
         m_Provider2DCache:
