@@ -6,7 +6,7 @@ Um beat'em-up top-down em pixel art sobre a comunidade **Buteco dos Devs**, feit
 
 Você é o **Dev Novato**, recém-chegado no Buteco. Mal deu tempo de pedir a primeira cerveja e o Pedro volta do bar rival indignado: acusaram ele de espalhar um link com vírus. Aí a comunidade se organiza. Cada um escolhe uma arma, atravessa a rua e começa **A Guerra Púnica**.
 
-> 🚧 **Em desenvolvimento durante a jam.** Este README acompanha o progresso.
+> 🎮 **Jogável do começo ao fim** — Windows, macOS e Linux.
 
 ---
 
@@ -18,12 +18,11 @@ Você é o **Dev Novato**, recém-chegado no Buteco. Mal deu tempo de pedir a pr
 | **Duração** | ~10–20 minutos |
 | **Plataformas** | Windows · macOS · Linux |
 | **Engine** | Unity 6 (URP 2D) |
-| **Controles** | WASD / setas para mover (combate em definição) |
+| **Controles** | WASD/setas mover · J/clique atacar · segurar clique direito defender · Espaço dash · E interagir · Esc pausar |
 
 ### O que te espera
 - 🍻 **O Buteco**: explore o bar, conheça a galera e aperte os botões da **soundboard**.
 - ⚔️ **Escolha sua arma**: espada equilibrada, espada grande, espada curta ou… uma garrafa.
-- ⏱️ **TIMEOUT do Pedro**: o veterano tira um inimigo de combate por 60 segundos.
 - 🗣️ **"RUA!!!"**: o bartender resolve as coisas do jeito dele.
 - 🌃 **O bar rival**: neon, RGB, monitores e muito `root`.
 - 👾 **Batalha final** contra o chefão do bar rival.
@@ -74,19 +73,17 @@ Assets/_Game/
 
 ---
 
-## 🗺️ Roadmap da jam
+## 📖 A história
 
-- [x] Fase 0: setup, documentação e pipeline
-- [ ] Fase 1: player, movimento, colisão e câmera
-- [ ] Fase 2: combate (hitbox/hurtbox, HP, knockback)
-- [ ] Fase 3: primeiro inimigo
-- [ ] Fase 4: NPCs e aliados
-- [ ] Fase 5: o Buteco, interação e soundboard
-- [ ] Fase 6: Pedro e o TIMEOUT
-- [ ] Fase 7: preparação e escolha de armas
-- [ ] Fase 8: a travessia e a batalha de rua
-- [ ] Fase 9: bar rival, chefão e epílogo
-- [ ] Fase 10: arte final, áudio, polimento e builds
+Um dia normal no Buteco: a bagunça de sempre, guerra de Nerf, o Pedro pedindo seu **alistamento** na porta. Até o Pedro atravessar a rua para divulgar o Buteco no bar vizinho, o **SCRIPT KIDDIES** (hackers de tutorial que se acham sênior)... e voltar acusado de mandar **link com vírus**. Justo ele, o moderador.
+
+A comunidade pega em armas (tem até garrafa), atravessa a rua e começa **A GUERRA PÚNICA**: 10 contra 10 na rua, invasão do bar rival e o chefão **Admin Rival**. No fim, uma lição sobre liberdade e justiça — *"liberdade ainda que tardia... mas a cerveja não"* — e o Buteco volta ao modo livre.
+
+## ⬇️ Como jogar
+
+Baixe o `.zip` da sua plataforma na página do itch.io, extraia e execute.
+- **macOS:** o app não é assinado — na primeira vez, **botão direito → Abrir**.
+- **Opções** (menu ou Esc): modo janela/tela cheia, resolução, qualidade, limite de FPS, volume.
 
 ---
 
