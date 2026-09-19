@@ -192,6 +192,8 @@ namespace ButecoDosDevs.Systems
             Say(julio, "Criador aprova.", 2f);
             yield return new WaitForSeconds(1.2f);
             Say(pedro, "*tsc tsc*... agora sim acendeu.", 2.6f);
+            yield return new WaitForSeconds(2.8f);
+            Say(julio, "Parabéns, você zerou meu jogo. Agora vai gravar os sons.", 3.2f);
             yield return new WaitForSeconds(1f);
 
             strangerRoutine = StartCoroutine(StrangerLoop());
@@ -387,7 +389,9 @@ namespace ButecoDosDevs.Systems
             Say(pedro, "EU! O MODERADOR!", 2.2f);
             yield return new WaitForSeconds(2.2f);
             Say(pedro, "Isso não vai ficar assim.", 2f);
-            yield return new WaitForSeconds(1.4f);
+            yield return new WaitForSeconds(2f);
+            Say(pedro, "Galera! Vão deixar o Buteco ser chamado de vírus? Hoje a gente defende a nossa casa!", 3.2f);
+            yield return new WaitForSeconds(3.2f);
             Say(reiLuiz, "Então é guerra.", 2f);
             yield return new WaitForSeconds(2f);
 

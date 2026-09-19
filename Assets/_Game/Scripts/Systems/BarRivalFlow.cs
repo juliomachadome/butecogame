@@ -111,6 +111,12 @@ namespace ButecoDosDevs.Systems
             {
                 SpeechBubble.Say(pedro, "EU DISSE.", 1.8f);
                 yield return new WaitForSeconds(1.8f);
+                SpeechBubble.Say(pedro, "Tiradentes lutou pela liberdade. Hoje a gente lutou pela verdade.", 3.4f);
+                yield return new WaitForSeconds(3.4f);
+                SpeechBubble.Say(pedro, "O Buteco é livre. E aqui ninguém é julgado sem provas.", 3.2f);
+                yield return new WaitForSeconds(3.2f);
+                SpeechBubble.Say(pedro, "Liberdade ainda que tardia... mas a cerveja não. Bora pro Buteco!", 3.2f);
+                yield return new WaitForSeconds(3.2f);
             }
         }
     }
