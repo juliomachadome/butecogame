@@ -39,6 +39,7 @@ namespace ButecoDosDevs.UI
 
         private float lastDisplayedHP = -1f;
         private bool combatHudEnabled = true;
+        private bool cutsceneHidden;
 
         private void Awake()
         {
@@ -91,7 +92,7 @@ namespace ButecoDosDevs.UI
             if (actionBarRoot != null)
             {
                 bool dialogueOpen = dialogueUI != null && dialogueUI.IsOpen;
-                bool shouldShow = combatHudEnabled && !dialogueOpen;
+                bool shouldShow = combatHudEnabled && !dialogueOpen && !cutsceneHidden;
                 if (actionBarRoot.activeSelf != shouldShow)
                 {
                     actionBarRoot.SetActive(shouldShow);
@@ -162,12 +163,30 @@ namespace ButecoDosDevs.UI
             combatHudEnabled = visible;
             if (statsPanelRoot != null)
             {
-                statsPanelRoot.SetActive(visible);
+                statsPanelRoot.SetActive(visible && !cutsceneHidden);
             }
             if (actionBarRoot != null)
             {
                 bool dialogueOpen = dialogueUI != null && dialogueUI.IsOpen;
-                actionBarRoot.SetActive(visible && !dialogueOpen);
+                actionBarRoot.SetActive(visible && !dialogueOpen && !cutsceneHidden);
+            }
+        }
+
+        /// <summary>Called by CutsceneMode: forces the whole HUD (stats panel + action
+        /// bar) off for the duration of a scripted story beat, regardless of the normal
+        /// combat-HUD/dialogue visibility rules, then restores whatever those rules say
+        /// once the cutscene ends.</summary>
+        public void SetCutsceneHidden(bool hidden)
+        {
+            cutsceneHidden = hidden;
+            if (statsPanelRoot != null)
+            {
+                statsPanelRoot.SetActive(combatHudEnabled && !cutsceneHidden);
+            }
+            if (actionBarRoot != null)
+            {
+                bool dialogueOpen = dialogueUI != null && dialogueUI.IsOpen;
+                actionBarRoot.SetActive(combatHudEnabled && !dialogueOpen && !cutsceneHidden);
             }
         }
     }

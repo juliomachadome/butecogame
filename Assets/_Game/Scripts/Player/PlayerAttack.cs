@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using ButecoDosDevs.Combat;
 using ButecoDosDevs.Systems;
+using ButecoDosDevs.UI;
 
 namespace ButecoDosDevs.Player
 {
@@ -35,11 +36,15 @@ namespace ButecoDosDevs.Player
         [SerializeField] private float hitShakeIntensity = 0.08f;
         [SerializeField] private float hitShakeDuration = 0.1f;
 
+        [Header("No-weapon gate (Fase 5: sem atacar antes do arsenal, Fase 7)")]
+        [SerializeField] private float noWeaponWarnCooldown = 1.5f;
+
         private PlayerMovement movement;
         private InputAction attackAction;
         private bool isAttacking;
         private Coroutine attackRoutine;
         private float currentAttackDamage;
+        private float noWeaponWarnTimer;
 
         public bool IsAttacking => isAttacking;
 
@@ -189,9 +194,27 @@ namespace ButecoDosDevs.Player
                 return false;
             }
 
+            if (GameState.ChosenWeapon == GameState.Weapon.None)
+            {
+                if (noWeaponWarnTimer <= 0f)
+                {
+                    SpeechBubble.Say(transform, "Sem arma. Espera a guerra.", 1.4f);
+                    noWeaponWarnTimer = noWeaponWarnCooldown;
+                }
+                return false;
+            }
+
             currentAttackDamage = block != null ? damage * block.ConsumeAttackBonus() : damage;
             attackRoutine = StartCoroutine(AttackSequence());
             return true;
+        }
+
+        private void Update()
+        {
+            if (noWeaponWarnTimer > 0f)
+            {
+                noWeaponWarnTimer -= Time.deltaTime;
+            }
         }
 
         private void StopAttackImmediate()

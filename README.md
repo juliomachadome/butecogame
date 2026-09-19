@@ -6,7 +6,7 @@ Um beat'em-up top-down em pixel art sobre a comunidade **Buteco dos Devs**, feit
 
 Você é o **Dev Novato**, recém-chegado no Buteco. Mal deu tempo de pedir a primeira cerveja e o Pedro volta do bar rival indignado: acusaram ele de espalhar um link com vírus. Aí a comunidade se organiza. Cada um escolhe uma arma, atravessa a rua e começa **A Guerra Púnica**.
 
-> 🎮 **Jogável do começo ao fim** — Windows, macOS e Linux.
+> 🎮 **Jogável do começo ao fim**: Windows, macOS e Linux.
 
 ---
 
@@ -77,12 +77,12 @@ Assets/_Game/
 
 Um dia normal no Buteco: a bagunça de sempre, guerra de Nerf, o Pedro pedindo seu **alistamento** na porta. Até o Pedro atravessar a rua para divulgar o Buteco no bar vizinho, o **SCRIPT KIDDIES** (hackers de tutorial que se acham sênior)... e voltar acusado de mandar **link com vírus**. Justo ele, o moderador.
 
-A comunidade pega em armas (tem até garrafa), atravessa a rua e começa **A GUERRA PÚNICA**: 10 contra 10 na rua, invasão do bar rival e o chefão **Admin Rival**. No fim, uma lição sobre liberdade e justiça — *"liberdade ainda que tardia... mas a cerveja não"* — e o Buteco volta ao modo livre.
+A comunidade pega em armas (tem até garrafa), atravessa a rua e começa **A GUERRA PÚNICA**: 10 contra 10 na rua, invasão do bar rival e o chefão **Admin Rival**. No fim, a verdade aparece e o Buteco volta ao modo livre.
 
 ## ⬇️ Como jogar
 
 Baixe o `.zip` da sua plataforma na página do itch.io, extraia e execute.
-- **macOS:** o app não é assinado — na primeira vez, **botão direito → Abrir**.
+- **macOS:** o app não é assinado. Na primeira vez, **botão direito → Abrir**.
 - **Opções** (menu ou Esc): modo janela/tela cheia, resolução, qualidade, limite de FPS, volume.
 
 ---

@@ -27,6 +27,7 @@ namespace ButecoDosDevs.UI
         [SerializeField] private Vector3 belowOffset = new Vector3(0f, -1.1f, 0f);
 
         private GameObject root;
+        private bool useBelow;
         private TextMeshPro label;
         private TextMeshPro nameLabel;
         private SpriteRenderer background;
@@ -193,7 +194,19 @@ namespace ButecoDosDevs.UI
             Vector3 worldPos = transform.position + offset;
             Vector3 viewport = cam.WorldToViewportPoint(worldPos);
             bool offscreenTop = viewport.z > 0f && viewport.y > 0.92f;
+            useBelow = offscreenTop;
             root.transform.localPosition = offscreenTop ? belowOffset : offset;
+        }
+
+        // Keeps the balloon upright and above the head even when the speaker is rotated (KO).
+        private void LateUpdate()
+        {
+            if (root == null || !root.activeSelf)
+            {
+                return;
+            }
+            root.transform.rotation = Quaternion.identity;
+            root.transform.position = transform.position + (useBelow ? belowOffset : offset);
         }
 
         /// <summary>Gets (or lazily adds) a SpeechBubble on the anchor and shows text on it.</summary>

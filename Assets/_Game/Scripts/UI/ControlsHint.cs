@@ -47,7 +47,7 @@ namespace ButecoDosDevs.UI
             rt.anchoredPosition = new Vector2(20f, 20f);
             rt.sizeDelta = new Vector2(420f, 140f);
 
-            string body = "WASD / setas — mover\nEspaço — dash\nJ / clique — atacar\nSegurar clique dir. / K — defender\nE — interagir";
+            string body = "WASD / setas: mover\nEspaço: dash\nJ / clique: atacar\nSegurar clique dir. / K: defender\nE: interagir";
             TextMeshProUGUI label = UIBuilder.CreateText(panel.transform, body, 16f, TextAlignmentOptions.Left, Color.white,
                 Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
             RectTransform labelRt = label.rectTransform;

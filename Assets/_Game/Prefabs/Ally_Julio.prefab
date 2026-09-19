@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 3568607232938486086}
   - component: {fileID: 9166862378612458}
   - component: {fileID: 8585155566993794107}
+  - component: {fileID: -2309538006573577622}
   m_Layer: 0
   m_Name: Ally_Julio
   m_TagString: Untagged
@@ -390,6 +391,27 @@ MonoBehaviour:
   lungeDistance: 0.15
   windupSquash: {x: 1.15, y: 0.88}
   hitStretch: {x: 0.9, y: 1.1}
+--- !u!114 &-2309538006573577622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3062532329936220560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fded685d77f241c8bfb541f0d0e9c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.HealthBar
+  fillColor: {r: 0, g: 1, b: 0, a: 1}
+  offset: {x: 0, y: 1, z: 0}
+  width: 0.9
+  height: 0.12
+  visibleSeconds: 3
+  isBoss: 0
+  bossName: Admin Rival
+  bossWidth: 2.2
+  bossHeight: 0.22
 --- !u!1 &3178274061787960706
 GameObject:
   m_ObjectHideFlags: 0

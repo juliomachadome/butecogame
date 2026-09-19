@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4660898790951369844}
   - component: {fileID: 2649550545575356706}
   - component: {fileID: 6726392486004924944}
+  - component: {fileID: -2464498787770886356}
   m_Layer: 0
   m_Name: Boss_AdminRival
   m_TagString: Untagged
@@ -243,6 +244,27 @@ MonoBehaviour:
   - {fileID: -4457214945759148987, guid: 92a7d150cfab841f5b321b2102e756e1, type: 3}
   - {fileID: 2742404189733557518, guid: 92a7d150cfab841f5b321b2102e756e1, type: 3}
   walkFps: 8
+--- !u!114 &-2464498787770886356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2539551651063923932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fded685d77f241c8bfb541f0d0e9c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.HealthBar
+  fillColor: {r: 0.85, g: 0.15, b: 0.15, a: 1}
+  offset: {x: 0, y: 1.3, z: 0}
+  width: 0.9
+  height: 0.12
+  visibleSeconds: 3
+  isBoss: 1
+  bossName: Admin Rival
+  bossWidth: 2.2
+  bossHeight: 0.22
 --- !u!1 &6274010095597541991
 GameObject:
   m_ObjectHideFlags: 0

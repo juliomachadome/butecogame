@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a22872df187408abd1e6b61e3a31a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.HeldItem
+  smokeTint: {r: 0.55, g: 0.95, b: 0.45, a: 1}
   characterAnimator: {fileID: 2951116047678743664}
   npcSprite: {fileID: 0}
   playerAnimator: {fileID: 0}
@@ -121,6 +122,8 @@ MonoBehaviour:
   smokeRiseDistance: 0.35
   smokeDuration: 1.2
   smokeTipOffset: {x: 0.08, y: 0.02}
+  isqueiroFlavor: 1
+  isqueiroFailEvery: 3
 --- !u!1 &1076727544254796661
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +235,7 @@ GameObject:
   - component: {fileID: 2355284682096857606}
   - component: {fileID: 3970938327648009134}
   - component: {fileID: 6306017918035994245}
+  - component: {fileID: -5931758394240993893}
   m_Layer: 0
   m_Name: Ally_Pedro
   m_TagString: Untagged
@@ -433,6 +437,19 @@ MonoBehaviour:
   spriteAnimator: {fileID: 2951116047678743664}
   attackFX: {fileID: 0}
   role: 0
+  supportBackDistance: 2.5
+  healInterval: 6
+  healAmount: 15
+  healRange: 7
+  shieldInterval: 9
+  shieldDuration: 4
+  shieldDamageMultiplier: 0.5
+  shieldRange: 7
+  orbSprite: {fileID: 0}
+  orbTravelTime: 0.4
+  healOrbColor: {r: 0.3, g: 1, b: 0.4, a: 1}
+  shieldOrbColor: {r: 0.3, g: 0.6, b: 1, a: 1}
+  supportFlashDuration: 0.25
   formationBackDistance: 1.4
   formationSideOffset: -1
   followStopDistance: 0.8
@@ -454,6 +471,9 @@ MonoBehaviour:
   windupColor: {r: 1, g: 0.8, b: 0.2, a: 1}
   combatStuckCheckInterval: 1
   slideTime: 0.4
+  separationRadius: 0.8
+  separationStrength: 1
+  surroundRadiusFactor: 0.85
   knockedCheckRadius: 8
   knockedReviveClearTime: 4
   reviveHpFraction: 0.5
@@ -498,6 +518,27 @@ MonoBehaviour:
   lungeDistance: 0.15
   windupSquash: {x: 1.15, y: 0.88}
   hitStretch: {x: 0.9, y: 1.1}
+--- !u!114 &-5931758394240993893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3874506636707126778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fded685d77f241c8bfb541f0d0e9c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.HealthBar
+  fillColor: {r: 0, g: 1, b: 0, a: 1}
+  offset: {x: 0, y: 1, z: 0}
+  width: 0.9
+  height: 0.12
+  visibleSeconds: 3
+  isBoss: 0
+  bossName: Admin Rival
+  bossWidth: 2.2
+  bossHeight: 0.22
 --- !u!1 &4046047325211805195
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,6 +846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a22872df187408abd1e6b61e3a31a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.HeldItem
+  smokeTint: {r: 0.55, g: 0.95, b: 0.45, a: 1}
   characterAnimator: {fileID: 2951116047678743664}
   npcSprite: {fileID: 0}
   playerAnimator: {fileID: 0}
@@ -821,3 +863,5 @@ MonoBehaviour:
   smokeRiseDistance: 0.35
   smokeDuration: 1.2
   smokeTipOffset: {x: 0.08, y: 0.02}
+  isqueiroFlavor: 1
+  isqueiroFailEvery: 3

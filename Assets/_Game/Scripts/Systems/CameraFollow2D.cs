@@ -30,6 +30,18 @@ namespace ButecoDosDevs.Systems
         private int lastScreenWidth;
         private int lastScreenHeight;
 
+        [Header("Focus override (cutscenes: temporary zoom on a target, e.g. Pedro)")]
+        private bool focusActive;
+        private bool focusReturning;
+        private Transform focusTarget;
+        private float focusTargetSize;
+        private Vector3 focusBlendStartPos;
+        private float focusBlendStartSize;
+        private float focusT;
+        private float focusBlendDuration = 0.5f;
+        private Vector3 preFocusPosition;
+        private float preFocusSize;
+
         private void Awake()
         {
             cam = GetComponent<Camera>();
@@ -55,6 +67,12 @@ namespace ButecoDosDevs.Systems
 
         private void LateUpdate()
         {
+            if (focusActive)
+            {
+                UpdateFocus();
+                return;
+            }
+
             if (fitWholeMap)
             {
                 // Cheap guard: only recompute the fit when the screen/aspect actually changed.
@@ -100,6 +118,86 @@ namespace ButecoDosDevs.Systems
 
             basePosition = new Vector3(bounds.center.x, bounds.center.y, transform.position.z);
             transform.position = basePosition + shakeOffset;
+        }
+
+        /// <summary>
+        /// Temporarily overrides the normal follow/fit-whole-map behaviour to smoothly
+        /// zoom on target at orthographicSize. Used by story beats (e.g. ButecoFlow
+        /// focusing on Pedro while he's yelling). Call EndFocus() to blend back; if the
+        /// caller forgets, this is purely visual (no input/HUD is affected) so nothing
+        /// soft-locks, but callers should still always pair it with EndFocus().
+        /// </summary>
+        public void BeginFocus(Transform target, float orthographicSize, float blendSeconds = 0.5f)
+        {
+            if (cam == null || target == null)
+            {
+                return;
+            }
+
+            if (!focusActive)
+            {
+                preFocusPosition = basePosition;
+                preFocusSize = cam.orthographicSize;
+            }
+
+            focusActive = true;
+            focusReturning = false;
+            focusTarget = target;
+            focusTargetSize = orthographicSize;
+            focusBlendStartPos = transform.position;
+            focusBlendStartSize = cam.orthographicSize;
+            focusT = 0f;
+            focusBlendDuration = Mathf.Max(blendSeconds, 0.01f);
+        }
+
+        /// <summary>Blends back to the pre-focus position/size (re-snapping precisely via
+        /// ApplyFitWholeMap once the blend finishes, so screen-resize tracking resumes
+        /// correctly). No-op if BeginFocus was never called (or already ended).</summary>
+        public void EndFocus(float blendSeconds = 0.5f)
+        {
+            if (!focusActive || focusReturning)
+            {
+                return;
+            }
+            focusReturning = true;
+            focusBlendStartPos = transform.position;
+            focusBlendStartSize = cam.orthographicSize;
+            focusT = 0f;
+            focusBlendDuration = Mathf.Max(blendSeconds, 0.01f);
+        }
+
+        private void UpdateFocus()
+        {
+            focusT += Time.unscaledDeltaTime;
+            float t01 = Mathf.Clamp01(focusT / focusBlendDuration);
+
+            if (focusReturning)
+            {
+                Vector3 targetPos = preFocusPosition;
+                float targetSize = preFocusSize;
+                transform.position = Vector3.Lerp(focusBlendStartPos, new Vector3(targetPos.x, targetPos.y, transform.position.z), t01);
+                cam.orthographicSize = Mathf.Lerp(focusBlendStartSize, targetSize, t01);
+
+                if (t01 >= 1f)
+                {
+                    focusActive = false;
+                    focusReturning = false;
+                    basePosition = targetPos;
+                    if (fitWholeMap)
+                    {
+                        ApplyFitWholeMap();
+                    }
+                }
+                return;
+            }
+
+            // Anti-soft-lock: if the focus target got destroyed mid-cutscene, just hold
+            // the current camera position/size instead of throwing on a null Transform.
+            Vector3 desired = focusTarget != null
+                ? new Vector3(focusTarget.position.x, focusTarget.position.y, transform.position.z)
+                : transform.position;
+            transform.position = Vector3.Lerp(focusBlendStartPos, desired, t01);
+            cam.orthographicSize = Mathf.Lerp(focusBlendStartSize, focusTargetSize, t01);
         }
 
         /// <summary>

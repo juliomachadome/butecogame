@@ -31,7 +31,7 @@ namespace ButecoDosDevs.UI
         {
             "Existe um lugar onde devs se encontram depois do expediente: o Buteco dos Devs.",
             "A galera conversa muito. Fala muita besteira. Às vezes, até de código.",
-            "Lá estão o Moe, o bartender; Pedro Pietro — o mais velho do mundo, 500 anos, e moderador do Buteco; o Rei Luiz, que inventou a game jam; o Funnie, que faz um SaaS em 1 segundo; e J Machado (Naldo), o criador deste jogo.",
+            "Lá estão o Moe, o bartender; Pedro Pietro, o mais velho do mundo, 500 anos, e moderador do Buteco; o Rei Luiz, que inventou a game jam; o Funnie, que faz um SaaS em 1 segundo; e J Machado (Naldo), o criador deste jogo.",
             "Do outro lado da rua fica o SCRIPT KIDDIES: o bar dos hackers de tutorial, que se acham sênior.",
             "Você é o Dev Novato. Hoje é seu primeiro dia no Buteco. Um dia normal... por enquanto."
         };
@@ -128,12 +128,12 @@ namespace ButecoDosDevs.UI
                 new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -30f), new Vector2(500f, 40f));
 
             string body =
-                "WASD / setas — mover\n" +
-                "Espaço — dash\n" +
-                "J / clique esquerdo — atacar\n" +
-                "Segurar clique direito / K — defender\n" +
-                "E — interagir\n" +
-                "Esc — pausar";
+                "WASD / setas: mover\n" +
+                "Espaço: dash\n" +
+                "J / clique esquerdo: atacar\n" +
+                "Segurar clique direito / K: defender\n" +
+                "E: interagir\n" +
+                "Esc: pausar";
             UIBuilder.CreateText(controlsPanel.transform, body, 20f, TextAlignmentOptions.Center, new Color(1f, 1f, 1f, 0.9f),
                 new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 0f), new Vector2(560f, 260f));
 
@@ -179,7 +179,7 @@ namespace ButecoDosDevs.UI
 
             TMP_Text body = UIBuilder.CreateText(canvas.transform, "", 26f, TextAlignmentOptions.Center, Color.white,
                 new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, -60f), new Vector2(1200f, 260f));
-            UIBuilder.CreateText(canvas.transform, "Enter / Espaço — avançar     Esc — pular", 16f, TextAlignmentOptions.Center, new Color(1f, 1f, 1f, 0.5f),
+            UIBuilder.CreateText(canvas.transform, "Enter / Espaço: avançar     Esc: pular", 16f, TextAlignmentOptions.Center, new Color(1f, 1f, 1f, 0.5f),
                 new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 40f), new Vector2(800f, 30f));
 
             for (int i = 0; i < IntroLines.Length && !introSkipped; i++)

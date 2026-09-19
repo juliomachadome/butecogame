@@ -219,6 +219,20 @@ namespace ButecoDosDevs.Player
             isGuarding = guarding;
         }
 
+        /// <summary>
+        /// Force-sets the facing used by sprite animation/attacks (e.g. CutsceneMode
+        /// turning the player to face whoever's talking). Only meaningful while this
+        /// component is disabled: Update, which would otherwise overwrite it from raw
+        /// input every frame, doesn't run then, so the override sticks.
+        /// </summary>
+        public void SetFacingOverride(Vector2 direction)
+        {
+            if (direction.sqrMagnitude > 0.0001f)
+            {
+                lastMoveDirection = direction.normalized;
+            }
+        }
+
         private void FixedUpdate()
         {
             // Movement is fully position-driven; clear velocity picked up from contacts so the player never drifts.

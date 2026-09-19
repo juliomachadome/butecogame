@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 6798375260938788288}
   - component: {fileID: -5729649187636414007}
   - component: {fileID: 9111667107108655109}
+  - component: {fileID: -6815577903797227697}
   m_Layer: 0
   m_Name: Ally_Funnie
   m_TagString: Untagged
@@ -361,6 +362,9 @@ MonoBehaviour:
   windupColor: {r: 1, g: 0.8, b: 0.2, a: 1}
   combatStuckCheckInterval: 1
   slideTime: 0.4
+  separationRadius: 0.8
+  separationStrength: 1
+  surroundRadiusFactor: 0.85
   knockedCheckRadius: 8
   knockedReviveClearTime: 4
   reviveHpFraction: 0.5
@@ -405,6 +409,27 @@ MonoBehaviour:
   lungeDistance: 0.15
   windupSquash: {x: 1.15, y: 0.88}
   hitStretch: {x: 0.9, y: 1.1}
+--- !u!114 &-6815577903797227697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272399059303611883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fded685d77f241c8bfb541f0d0e9c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.HealthBar
+  fillColor: {r: 0, g: 1, b: 0, a: 1}
+  offset: {x: 0, y: 1, z: 0}
+  width: 0.9
+  height: 0.12
+  visibleSeconds: 3
+  isBoss: 0
+  bossName: Admin Rival
+  bossWidth: 2.2
+  bossHeight: 0.22
 --- !u!1 &6473706727242596575
 GameObject:
   m_ObjectHideFlags: 0

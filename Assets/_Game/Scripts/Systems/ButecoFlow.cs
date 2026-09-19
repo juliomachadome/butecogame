@@ -46,12 +46,18 @@ namespace ButecoDosDevs.Systems
 
         [Header("Player refs")]
         [SerializeField] private PlayerAttack playerAttack;
+        [SerializeField] private PlayerMovement playerMovement;
         [SerializeField] private PlayerHUD playerHUD;
+        [SerializeField] private Transform playerVisual; // e.g. Player/Visual, for the arrival gag's cartoon fly-out spin
         [SerializeField] private SpriteRenderer heldWeaponRenderer;
         [SerializeField] private GameObject heldWeaponGO;
 
         [Header("UI")]
         [SerializeField] private ObjectiveUI objectiveUI;
+
+        [Header("Camera (cutscene focus)")]
+        [SerializeField] private CameraFollow2D cameraFollow;
+        [SerializeField] private float pedroFocusOrthoSize = 4.5f;
 
         [Header("World points")]
         [SerializeField] private Vector3 doorPosition = new Vector3(1.1f, 6f, 0f);
@@ -102,6 +108,13 @@ namespace ButecoDosDevs.Systems
             {
                 player = playerGo.transform;
                 if (playerAttack == null) playerAttack = playerGo.GetComponent<PlayerAttack>();
+                if (playerMovement == null) playerMovement = playerGo.GetComponent<PlayerMovement>();
+            }
+
+            if (cameraFollow == null)
+            {
+                Camera main = Camera.main;
+                cameraFollow = main != null ? main.GetComponent<CameraFollow2D>() : FindAnyObjectByType<CameraFollow2D>();
             }
 
             WireConversationCounters();
@@ -227,9 +240,12 @@ namespace ButecoDosDevs.Systems
         private IEnumerator RunEpilogue()
         {
             state = State.Explore; // reuse Explore's free-roam behaviour (soundboard, stranger event, etc.)
-            objectiveUI?.SetObjective("Modo livre — fale com o Pedro para uma nova Guerra Púnica");
+            objectiveUI?.SetObjective("Modo livre. Fale com o Pedro para uma nova Guerra Púnica");
 
             yield return new WaitForSeconds(1f);
+
+            BeginCutscene();
+
             Say(moe, "Rodada por conta da casa. Só hoje.", 2.6f);
             yield return new WaitForSeconds(1.4f);
             Say(reiLuiz, "Essa foi a melhor jam.", 2.4f);
@@ -240,6 +256,8 @@ namespace ButecoDosDevs.Systems
             yield return new WaitForSeconds(2.8f);
             Say(julio, "Parabéns, você zerou meu jogo. Agora vai gravar os sons.", 3.2f);
             yield return new WaitForSeconds(1f);
+
+            CutsceneMode.End();
 
             NerfChaos.SetAllActive(true);
             strangerRoutine = StartCoroutine(StrangerLoop());
@@ -307,20 +325,156 @@ namespace ButecoDosDevs.Systems
                 yield return WalkTo(pedro, pedroSprite, stopPoint, pedroWalkSpeed, walkTimeout);
             }
 
+            Vector3 arrivalSpot = player != null ? player.position : doorPosition;
+
+            BeginCutscene();
+            FaceEachOther(pedro, pedroSprite);
+
             Say(pedro, "Opa, opa. Quem é você?", 2.2f);
             yield return new WaitForSeconds(2.2f);
-            Say(pedro, "Tem 18? Mostra o alistamento.", 2.4f);
-            yield return new WaitForSeconds(2.4f);
-            if (player != null)
-            {
-                Say(player, "...sério?", 1.6f);
-                yield return new WaitForSeconds(1.6f);
-            }
-            Say(pedro, "Regra da casa. Sem alistamento, sem cerveja.", 2.6f);
+
+            yield return AskGateQuestion(
+                "Tem 18? Mostra o alistamento.",
+                "Tenho sim.",
+                new[] { "Tenho 17 e meio.", "Idade é só um número." },
+                arrivalSpot);
+
+            yield return AskGateQuestion(
+                "E como foi o alistamento?",
+                "Fui dispensado. Excesso de contingente.",
+                new[] { "Nem fui, tava codando.", "Alistamento? Sou dev, não soldado." },
+                arrivalSpot);
+
+            Say(pedro, "Tá liberado. Bem-vindo ao Buteco, novato.", 2.6f);
             yield return new WaitForSeconds(2.6f);
+
+            CutsceneMode.End();
 
             NerfChaos.SetAllActive(true);
             objectiveUI?.SetObjective("Converse com a galera do Buteco");
+        }
+
+        /// <summary>
+        /// Asks a multiple-choice gate question via ChoicePrompt and loops until the
+        /// player picks the correct option. A wrong pick triggers TIMEOUT/"RUA!!!" and
+        /// the cartoon fly-out gag, then re-asks the same question (bounded by
+        /// ChoicePrompt's own input timeout, so this can never hang forever).
+        /// </summary>
+        private IEnumerator AskGateQuestion(string question, string correctAnswer, string[] wrongAnswers, Vector3 returnSpot)
+        {
+            while (true)
+            {
+                Say(pedro, question, 2f);
+
+                string[] options = BuildShuffledOptions(correctAnswer, wrongAnswers, out int correctIndex);
+
+                int chosen = -1;
+                ChoicePrompt.Show(question, options, i => chosen = i);
+                yield return new WaitUntil(() => chosen >= 0);
+
+                if (chosen == correctIndex)
+                {
+                    yield break;
+                }
+
+                Say(pedro, "TIMEOUT.", 1.4f);
+                Sfx.Play(SoundId.Timeout, pedro != null ? pedro.position : doorPosition);
+                yield return new WaitForSeconds(1.4f);
+                Say(moe, "RUA!!!", 1.4f);
+                Sfx.Play(SoundId.Rua, moe != null ? moe.position : doorPosition);
+                yield return new WaitForSeconds(1.4f);
+                Sfx.Play(SoundId.PortaAbre, doorPosition);
+
+                yield return FlyPlayerOutAndBack(returnSpot);
+
+                FaceEachOther(pedro, pedroSprite);
+            }
+        }
+
+        private static string[] BuildShuffledOptions(string correct, string[] wrongs, out int correctIndex)
+        {
+            string[] options = new string[wrongs.Length + 1];
+            options[0] = correct;
+            for (int i = 0; i < wrongs.Length; i++)
+            {
+                options[i + 1] = wrongs[i];
+            }
+
+            for (int i = options.Length - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                (options[i], options[j]) = (options[j], options[i]);
+            }
+
+            correctIndex = System.Array.IndexOf(options, correct);
+            return options;
+        }
+
+        /// <summary>Cartoon "kicked out to the door and back" gag: spins the player's
+        /// Visual child while the root flies to doorPosition, then snaps back to
+        /// returnSpot facing Pedro. Bounded duration; never destroys the player.</summary>
+        private IEnumerator FlyPlayerOutAndBack(Vector3 returnSpot)
+        {
+            if (player == null)
+            {
+                yield break;
+            }
+
+            Vector3 startPos = player.position;
+            float outDuration = 0.6f;
+            float elapsed = 0f;
+            while (elapsed < outDuration)
+            {
+                if (player == null)
+                {
+                    yield break;
+                }
+                elapsed += Time.deltaTime;
+                float t01 = Mathf.Clamp01(elapsed / outDuration);
+                player.position = Vector3.Lerp(startPos, doorPosition, t01);
+                if (playerVisual != null)
+                {
+                    playerVisual.localRotation = Quaternion.Euler(0f, 0f, 720f * t01);
+                }
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(0.4f);
+
+            if (playerVisual != null)
+            {
+                playerVisual.localRotation = Quaternion.identity;
+            }
+            if (player != null)
+            {
+                player.position = returnSpot;
+            }
+        }
+
+        /// <summary>Shared shorthand for CutsceneMode.Begin with this flow's standard
+        /// player/HUD refs (movement, attack, HUD, objective panel).</summary>
+        private void BeginCutscene()
+        {
+            CutsceneMode.Begin(playerMovement, playerAttack, playerHUD, objectiveUI != null ? objectiveUI.gameObject : null);
+        }
+
+        /// <summary>Turns the player (via PlayerMovement.SetFacingOverride) and npc
+        /// toward each other. Only meaningful while movement is disabled (cutscene).</summary>
+        private void FaceEachOther(Transform npc, NPCSprite npcSprite)
+        {
+            if (player == null || npc == null)
+            {
+                return;
+            }
+            Vector2 toNpc = (Vector2)(npc.position - player.position);
+            if (playerMovement != null)
+            {
+                playerMovement.SetFacingOverride(toNpc);
+            }
+            if (npcSprite != null)
+            {
+                npcSprite.SetFacing(-toNpc);
+            }
         }
 
         // ---------------- Explore ----------------
@@ -441,8 +595,14 @@ namespace ButecoDosDevs.Systems
         private IEnumerator RunPedroLeaves()
         {
             state = State.PedroLeaves;
+
+            BeginCutscene();
+            FaceEachOther(pedro, pedroSprite);
+
             Say(pedro, "Vou dar um pulo no bar da frente chamar a galera pra cá. O que pode dar errado?", 3f);
             yield return new WaitForSeconds(3f);
+
+            CutsceneMode.End();
 
             if (pedro != null)
             {
@@ -497,18 +657,84 @@ namespace ButecoDosDevs.Systems
                 }
             }
 
-            Say(pedro, "ME ACUSARAM DE MANDAR LINK COM VÍRUS!", 2.6f);
+            // The whole bar stops (Nerf war included) and turns to face Pedro; the camera
+            // pushes in on him for the story beats, then both revert at the end.
+            NerfChaos.SetAllActive(false);
+            FaceCrowdAtPedro();
+
+            BeginCutscene();
+            FaceEachOther(pedro, pedroSprite);
+
+            if (cameraFollow != null && pedro != null)
+            {
+                cameraFollow.BeginFocus(pedro, pedroFocusOrthoSize, 0.6f);
+            }
+
+            Say(pedro, "VOCÊS NÃO VÃO ACREDITAR NO QUE ACONTECEU!", 2.6f);
             yield return new WaitForSeconds(2.6f);
-            Say(pedro, "EU! O MODERADOR!", 2.2f);
+            Say(pedro, "Fui lá no Script Kiddies, de boa, divulgar o Buteco...", 2.8f);
+            yield return new WaitForSeconds(2.8f);
+            Say(pedro, "Mandei o link do nosso Discord no grupo deles...", 2.6f);
+            yield return new WaitForSeconds(2.6f);
+            Say(pedro, "E os caras disseram que era LINK COM VÍRUS!", 2.6f);
+            yield return new WaitForSeconds(2.6f);
+            Say(pedro, "VÍRUS! EU! O MODERADOR! 500 ANOS DE COMUNIDADE!", 2.8f);
+            yield return new WaitForSeconds(2.8f);
+            Say(pedro, "E ainda falaram que o Buteco é coisa de júnior...", 2.6f);
+            yield return new WaitForSeconds(2.6f);
+            Say(moe, "...ninguém fala assim do meu bar.", 2.2f);
             yield return new WaitForSeconds(2.2f);
-            Say(pedro, "Isso não vai ficar assim.", 2f);
-            yield return new WaitForSeconds(2f);
-            Say(pedro, "Galera! Vão deixar o Buteco ser chamado de vírus? Hoje a gente defende a nossa casa!", 3.2f);
-            yield return new WaitForSeconds(3.2f);
-            Say(reiLuiz, "Então é guerra.", 2f);
-            yield return new WaitForSeconds(2f);
+            Say(funnie, "Mexeu com o Pedro, mexeu com o Buteco inteiro.", 2.4f);
+            yield return new WaitForSeconds(2.4f);
+            Say(reiLuiz, "Então é guerra. E essa guerra é nossa.", 2.4f);
+            yield return new WaitForSeconds(2.4f);
+            Say(pedro, "Então bora pegar as armas. E VAMOS LÁ!", 2.6f);
+            yield return new WaitForSeconds(2.6f);
+
+            if (cameraFollow != null)
+            {
+                cameraFollow.EndFocus(0.6f);
+            }
+            CutsceneMode.End();
+            EndCrowdFocus();
 
             objectiveUI?.SetObjective("Pegue uma arma no arsenal (mesa de sinuca)");
+        }
+
+        /// <summary>Turns every non-fighting community NPC (Moe/Julio/Funnie/Rei Luiz) to
+        /// face Pedro via their NPCController's existing Talk-state facing, reused here
+        /// purely for the visual (no dialogue is actually opened).</summary>
+        private void FaceCrowdAtPedro()
+        {
+            BeginTalkSafe(moeInteractable);
+            BeginTalkSafe(julioInteractable);
+            BeginTalkSafe(funnieInteractable);
+            BeginTalkSafe(reiLuizInteractable);
+        }
+
+        private void EndCrowdFocus()
+        {
+            EndTalkSafe(moeInteractable);
+            EndTalkSafe(julioInteractable);
+            EndTalkSafe(funnieInteractable);
+            EndTalkSafe(reiLuizInteractable);
+            NerfChaos.SetAllActive(true);
+        }
+
+        private void BeginTalkSafe(Interactable interactable)
+        {
+            if (interactable != null && interactable.Controller != null && pedro != null)
+            {
+                interactable.Controller.BeginTalk(pedro);
+            }
+        }
+
+        private void EndTalkSafe(Interactable interactable)
+        {
+            if (interactable != null && interactable.Controller != null)
+            {
+                interactable.Controller.EndTalk();
+            }
         }
 
         // ---------------- Arsenal ----------------
@@ -584,6 +810,7 @@ namespace ButecoDosDevs.Systems
             }
 
             GameState.ChosenWeapon = weapon;
+            GameState.ChosenWeaponSprite = sprite;
 
             if (playerAttack != null)
             {
@@ -612,6 +839,8 @@ namespace ButecoDosDevs.Systems
             state = State.Bora;
             NerfChaos.SetAllActive(false);
 
+            BeginCutscene();
+
             Say(reiLuiz, "Pelo reino!", 2f);
             yield return new WaitForSeconds(1f);
             Say(funnie, "Deploy da armadura em 1 segundo.", 2.2f);
@@ -623,9 +852,12 @@ namespace ButecoDosDevs.Systems
             {
                 yield return WalkTo(pedro, pedroSprite, doorPosition, pedroWalkSpeed, walkTimeout);
             }
+            FaceEachOther(pedro, pedroSprite);
             Say(pedro, "Bora.", 1.6f);
             Sfx.Play(SoundId.BoraGrito, pedro != null ? pedro.position : doorPosition);
             yield return new WaitForSeconds(1.6f);
+
+            CutsceneMode.End();
 
             objectiveUI?.SetObjective("Siga o Pedro até a rua!");
 

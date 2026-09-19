@@ -24,11 +24,17 @@ namespace ButecoDosDevs.Systems
         public static Weapon ChosenWeapon { get; set; } = Weapon.None;
         public static bool WarFinished { get; set; }
 
+        /// <summary>The chosen weapon's held-item sprite (set once by ButecoFlow's arsenal
+        /// pickup), so Rua/BarRival can re-show it in the player's hand on scene start
+        /// without needing their own copy of the sword/bottle art references.</summary>
+        public static Sprite ChosenWeaponSprite { get; set; }
+
         /// <summary>Reset everything a new "Guerra Púnica" run needs cleared: called by the
         /// main menu's JOGAR button and by "NOVA GUERRA PÚNICA" (pause menu / epilogue).</summary>
         public static void ResetAll()
         {
             ChosenWeapon = Weapon.None;
+            ChosenWeaponSprite = null;
             WarFinished = false;
         }
 
@@ -62,10 +68,13 @@ namespace ButecoDosDevs.Systems
         }
 
         /// <summary>
-        /// Applies ChosenWeapon's stats to a PlayerAttack (and, optionally, a held-item
-        /// visual). Safe to call with weapon = None (falls back to Balanced) — used both
-        /// by ButecoFlow's arsenal pickups and by Rua/BarRival on scene start so the
-        /// player keeps their chosen weapon across scenes.
+        /// Applies ChosenWeapon's stats to a PlayerAttack, AND re-shows the weapon in
+        /// the player's hand (sprite + scale + active) by locating the conventional
+        /// "Visual/HeldItem_Weapon" child under attack's own GameObject — no extra
+        /// Inspector wiring needed in Rua/BarRival's flow scripts, they already call
+        /// this once in Awake with the same 2 args. Safe to call with weapon = None
+        /// (falls back to Balanced for stats; the visual step still no-ops if
+        /// ChosenWeaponSprite hasn't been set yet, e.g. testing a scene standalone).
         /// </summary>
         public static void ApplyWeapon(PlayerAttack attack, Weapon weapon)
         {
@@ -74,10 +83,29 @@ namespace ButecoDosDevs.Systems
                 weapon = Weapon.Balanced;
             }
             WeaponStats stats = GetWeaponStats(weapon);
-            if (attack != null)
+            if (attack == null)
             {
-                attack.SetWeapon(stats.damage, stats.timeMultiplier, stats.knockbackMultiplier);
+                return;
             }
+
+            attack.SetWeapon(stats.damage, stats.timeMultiplier, stats.knockbackMultiplier);
+
+            if (ChosenWeaponSprite == null)
+            {
+                return;
+            }
+            Transform held = attack.transform.Find("Visual/HeldItem_Weapon");
+            if (held == null)
+            {
+                return;
+            }
+            SpriteRenderer heldRenderer = held.GetComponent<SpriteRenderer>();
+            if (heldRenderer != null)
+            {
+                heldRenderer.sprite = ChosenWeaponSprite;
+            }
+            held.localScale = Vector3.one * stats.visualScale;
+            held.gameObject.SetActive(true);
         }
 
         /// <summary>Human-readable label for HUD/weapon slot.</summary>

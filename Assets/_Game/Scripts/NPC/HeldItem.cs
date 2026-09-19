@@ -18,6 +18,7 @@ namespace ButecoDosDevs.NPC
     public class HeldItem : MonoBehaviour
     {
         [Header("Facing source (assign exactly one)")]
+        [SerializeField] private Color smokeTint = new Color(0.55f, 0.95f, 0.45f, 1f); // fumaça verde do Pedro
         [SerializeField] private CharacterSpriteAnimator characterAnimator;
         [SerializeField] private NPCSprite npcSprite;
         [SerializeField] private PlayerSpriteAnimator playerAnimator;
@@ -193,7 +194,7 @@ namespace ButecoDosDevs.NPC
             smokeTransform.gameObject.SetActive(true);
             if (smokeRenderer != null)
             {
-                Color c = smokeRenderer.color;
+                Color c = smokeTint;
                 c.a = 1f;
                 smokeRenderer.color = c;
             }

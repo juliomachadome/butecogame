@@ -310,6 +310,7 @@ GameObject:
   - component: {fileID: 9178010228990981867}
   - component: {fileID: 1997667019650008827}
   - component: {fileID: 3557651934626653041}
+  - component: {fileID: 6417270597233497198}
   m_Layer: 0
   m_Name: Enemy_HackerRival
   m_TagString: Untagged
@@ -489,6 +490,11 @@ MonoBehaviour:
   koColor: {r: 0.25, g: 0.25, b: 0.3, a: 1}
   respawnForTesting: 0
   respawnDelay: 5
+  separationRadius: 0.8
+  separationStrength: 1
+  surroundRadiusFactor: 0.85
+  attackQueueStrafeRadius: 2.5
+  attackQueueStrafeSpeed: 40
 --- !u!114 &1997667019650008827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,3 +534,24 @@ MonoBehaviour:
   lungeDistance: 0.15
   windupSquash: {x: 1.15, y: 0.88}
   hitStretch: {x: 0.9, y: 1.1}
+--- !u!114 &6417270597233497198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3750980508106168279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fded685d77f241c8bfb541f0d0e9c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.HealthBar
+  fillColor: {r: 0.85, g: 0.15, b: 0.15, a: 1}
+  offset: {x: 0, y: 1, z: 0}
+  width: 0.9
+  height: 0.12
+  visibleSeconds: 3
+  isBoss: 0
+  bossName: Admin Rival
+  bossWidth: 2.2
+  bossHeight: 0.22
