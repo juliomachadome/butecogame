@@ -27,6 +27,10 @@ namespace ButecoDosDevs.Player
 
         public bool IsDown { get; private set; }
 
+        /// <summary>Fires once per KO, right when it happens (before the down/respawn coroutine
+        /// runs). Used by RuaFlow/BarRivalFlow to count lives toward a defeat screen.</summary>
+        public System.Action Knocked;
+
         private void Awake()
         {
             health = GetComponent<Health>();
@@ -60,7 +64,10 @@ namespace ButecoDosDevs.Player
             {
                 StopCoroutine(koRoutine);
             }
+            // KORoutine sets IsDown = true synchronously (before its first yield), so
+            // starting it first means listeners of Knocked observe IsDown already true.
             koRoutine = StartCoroutine(KORoutine());
+            Knocked?.Invoke();
         }
 
         private IEnumerator KORoutine()

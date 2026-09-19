@@ -182,7 +182,7 @@ namespace ButecoDosDevs.Systems
         private IEnumerator RunEpilogue()
         {
             state = State.Explore; // reuse Explore's free-roam behaviour (soundboard, stranger event, etc.)
-            objectiveUI?.SetObjective("Aproveite o Buteco (modo livre)");
+            objectiveUI?.SetObjective("Modo livre — fale com o Pedro para uma nova Guerra Púnica");
 
             yield return new WaitForSeconds(1f);
             Say(moe, "Rodada por conta da casa. Só hoje.", 2.6f);
@@ -198,6 +198,44 @@ namespace ButecoDosDevs.Systems
 
             NerfChaos.SetAllActive(true);
             strangerRoutine = StartCoroutine(StrangerLoop());
+
+            WireNewWarPrompt();
+        }
+
+        /// <summary>Appends "E aí, mais uma Guerra Púnica?" as Pedro's last epilogue line and
+        /// listens for that conversation ending to offer the SIM/NÃO restart prompt.</summary>
+        private void WireNewWarPrompt()
+        {
+            if (pedroInteractable == null)
+            {
+                return;
+            }
+
+            string[] baseLines = pedroInteractable.DialogueLines;
+            string[] lines;
+            if (baseLines != null && baseLines.Length > 0)
+            {
+                lines = new string[baseLines.Length + 1];
+                baseLines.CopyTo(lines, 0);
+                lines[baseLines.Length] = "E aí, mais uma Guerra Púnica?";
+            }
+            else
+            {
+                lines = new[] { "E aí, mais uma Guerra Púnica?" };
+            }
+            pedroInteractable.SetDialogue(pedroInteractable.DisplayName, lines);
+            pedroInteractable.OnConversationEndedEvent.AddListener(OnEpiloguePedroTalked);
+        }
+
+        private void OnEpiloguePedroTalked()
+        {
+            NewWarPrompt.Show(OnNewWarConfirmed);
+        }
+
+        private void OnNewWarConfirmed()
+        {
+            GameState.ResetAll();
+            SceneTransition.Load(SceneManager.GetActiveScene().name);
         }
 
         // ---------------- Arrival ----------------

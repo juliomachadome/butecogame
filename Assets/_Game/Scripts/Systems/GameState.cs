@@ -24,6 +24,14 @@ namespace ButecoDosDevs.Systems
         public static Weapon ChosenWeapon { get; set; } = Weapon.None;
         public static bool WarFinished { get; set; }
 
+        /// <summary>Reset everything a new "Guerra Púnica" run needs cleared: called by the
+        /// main menu's JOGAR button and by "NOVA GUERRA PÚNICA" (pause menu / epilogue).</summary>
+        public static void ResetAll()
+        {
+            ChosenWeapon = Weapon.None;
+            WarFinished = false;
+        }
+
         /// <summary>Combat stats for a weapon: damage, windup/active/recovery time multiplier, knockback multiplier, held-item visual scale.</summary>
         public struct WeaponStats
         {

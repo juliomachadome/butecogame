@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using ButecoDosDevs.Combat;
 using ButecoDosDevs.Player;
@@ -80,6 +81,13 @@ namespace ButecoDosDevs.NPC
         [SerializeField] private Color windupColor = new Color(1f, 0.8f, 0.2f, 1f);
         [SerializeField] private float combatStuckCheckInterval = 1f;
         [SerializeField] private float slideTime = 0.4f;
+
+        [Header("Formation / separação (combate mais natural)")]
+        [SerializeField] private float separationRadius = 0.8f;
+        [SerializeField] private float separationStrength = 1f;
+        [SerializeField] private float surroundRadiusFactor = 0.85f;
+
+        private float surroundAngle;
 
         [Header("Knocked (Sacrifice)")]
         [SerializeField] private float knockedCheckRadius = 8f;
@@ -181,6 +189,11 @@ namespace ButecoDosDevs.NPC
             stuckCheckTimer = stuckTimeout;
             lastCombatStuckPosition = transform.position;
             combatStuckCheckTimer = combatStuckCheckInterval;
+
+            // Per-instance variation so a group doesn't move/attack in lockstep.
+            surroundAngle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
+            moveSpeed *= Random.Range(0.88f, 1.12f);
+            recoverTime *= Random.Range(0.8f, 1.2f);
         }
 
         private void Start()
@@ -666,10 +679,15 @@ namespace ButecoDosDevs.NPC
                 {
                     isSliding = false;
                 }
+                ApplySeparation();
                 return;
             }
 
-            moveDir = (dist > 0.0001f ? toTarget / dist : Vector2.zero) * moveSpeed;
+            // Aim at a point around the target (not dead center) so multiple attackers spread out.
+            Vector2 targetPos = combatTargetHealth.transform.position;
+            Vector2 aimPoint = targetPos + new Vector2(Mathf.Cos(surroundAngle), Mathf.Sin(surroundAngle)) * (approachDistance * surroundRadiusFactor);
+            Vector2 toAim = aimPoint - (Vector2)transform.position;
+            moveDir = (toAim.sqrMagnitude > 0.0001f ? toAim.normalized : Vector2.zero) * moveSpeed;
 
             combatStuckCheckTimer -= Time.deltaTime;
             if (combatStuckCheckTimer <= 0f)
@@ -686,6 +704,34 @@ namespace ButecoDosDevs.NPC
                 }
                 lastCombatStuckPosition = transform.position;
                 combatStuckCheckTimer = combatStuckCheckInterval;
+            }
+
+            ApplySeparation();
+        }
+
+        /// <summary>Adds a soft push away from other allies closer than separationRadius, so a group doesn't stack on the exact same point.</summary>
+        private void ApplySeparation()
+        {
+            IReadOnlyList<Health> list = CombatantRegistry.Allies;
+            Vector2 push = Vector2.zero;
+            for (int i = 0; i < list.Count; i++)
+            {
+                Health other = list[i];
+                if (other == null || other == health || other.IsDead)
+                {
+                    continue;
+                }
+                Vector2 diff = (Vector2)transform.position - (Vector2)other.transform.position;
+                float d = diff.magnitude;
+                if (d > 0.0001f && d < separationRadius)
+                {
+                    push += diff.normalized * ((separationRadius - d) / separationRadius);
+                }
+            }
+            moveDir += push * separationStrength * moveSpeed;
+            if (moveDir.sqrMagnitude > moveSpeed * moveSpeed)
+            {
+                moveDir = moveDir.normalized * moveSpeed;
             }
         }
 

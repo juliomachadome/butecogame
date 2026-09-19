@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using ButecoDosDevs.Combat;
 using ButecoDosDevs.Player;
@@ -48,6 +49,15 @@ namespace ButecoDosDevs.NPC
         [SerializeField] private Color koColor = new Color(0.25f, 0.25f, 0.3f, 1f);
         [SerializeField] private bool respawnForTesting = true;
         [SerializeField] private float respawnDelay = 5f;
+
+        [Header("Formation / separação (combate mais natural)")]
+        [SerializeField] private float separationRadius = 0.8f;
+        [SerializeField] private float separationStrength = 1f;
+        [SerializeField] private float surroundRadiusFactor = 0.85f;
+        [SerializeField] private float attackQueueStrafeRadius = 2.5f;
+        [SerializeField] private float attackQueueStrafeSpeed = 40f; // deg/s
+
+        private float surroundAngle;
 
         private State state = State.Idle;
         private float stateTimer;
@@ -120,6 +130,11 @@ namespace ButecoDosDevs.NPC
             lastStuckPosition = transform.position;
             stuckCheckTimer = stuckCheckInterval;
             retargetTimer = 0f; // retarget immediately on the first Update
+
+            // Per-instance variation so a crowd doesn't move/attack in lockstep.
+            surroundAngle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
+            moveSpeed *= Random.Range(0.88f, 1.12f);
+            recoverTime *= Random.Range(0.8f, 1.2f);
         }
 
         private void OnEnable()
@@ -142,6 +157,7 @@ namespace ButecoDosDevs.NPC
 
         private void OnDestroy()
         {
+            EnemyAttackQueue.Release(this);
             if (hitbox != null)
             {
                 hitbox.OnHit -= OnHitboxHit;
@@ -291,13 +307,28 @@ namespace ButecoDosDevs.NPC
                 return;
             }
 
-            Vector2 toTarget = (Vector2)target.position - rb.position;
-            float dist = toTarget.magnitude;
+            // Only the Player has a PlayerKO component -> targetKO != null means we're
+            // chasing the player, which is the only case the attack queue caps.
+            bool targetIsPlayer = targetKO != null;
+            Vector2 targetPos = target.position;
+            Vector2 toTargetRaw = targetPos - rb.position;
+            float distRaw = toTargetRaw.magnitude;
 
-            if (dist <= attackRange)
+            if (distRaw <= attackRange)
             {
-                Vector2 dir = dist > 0.0001f ? toTarget / dist : Vector2.down;
-                StartWindup(dir);
+                if (!targetIsPlayer || EnemyAttackQueue.TryAcquire(this))
+                {
+                    Vector2 dir = distRaw > 0.0001f ? toTargetRaw / distRaw : Vector2.down;
+                    StartWindup(dir);
+                    return;
+                }
+
+                // Attack queue full: strafe around the player instead of stacking on top.
+                surroundAngle += attackQueueStrafeSpeed * Mathf.Deg2Rad * Time.deltaTime;
+                Vector2 strafePoint = targetPos + new Vector2(Mathf.Cos(surroundAngle), Mathf.Sin(surroundAngle)) * attackQueueStrafeRadius;
+                Vector2 toStrafe = strafePoint - rb.position;
+                moveDir = toStrafe.sqrMagnitude > 0.0001f ? toStrafe.normalized : Vector2.zero;
+                ApplySeparation();
                 return;
             }
 
@@ -309,10 +340,14 @@ namespace ButecoDosDevs.NPC
                 {
                     isSliding = false;
                 }
+                ApplySeparation();
                 return;
             }
 
-            moveDir = dist > 0.0001f ? toTarget / dist : Vector2.zero;
+            // Aim at a point around the target (not dead center) so multiple attackers spread out.
+            Vector2 aimPoint = targetPos + new Vector2(Mathf.Cos(surroundAngle), Mathf.Sin(surroundAngle)) * (attackRange * surroundRadiusFactor);
+            Vector2 toAim = aimPoint - rb.position;
+            moveDir = toAim.sqrMagnitude > 0.0001f ? toAim.normalized : Vector2.zero;
 
             stuckCheckTimer -= Time.deltaTime;
             if (stuckCheckTimer <= 0f)
@@ -328,6 +363,34 @@ namespace ButecoDosDevs.NPC
                 }
                 lastStuckPosition = rb.position;
                 stuckCheckTimer = stuckCheckInterval;
+            }
+
+            ApplySeparation();
+        }
+
+        /// <summary>Adds a soft push away from same-team enemies closer than separationRadius, so a crowd doesn't stack on the exact same point.</summary>
+        private void ApplySeparation()
+        {
+            IReadOnlyList<Health> list = CombatantRegistry.Enemies;
+            Vector2 push = Vector2.zero;
+            for (int i = 0; i < list.Count; i++)
+            {
+                Health other = list[i];
+                if (other == null || other == health || other.IsDead)
+                {
+                    continue;
+                }
+                Vector2 diff = rb.position - (Vector2)other.transform.position;
+                float d = diff.magnitude;
+                if (d > 0.0001f && d < separationRadius)
+                {
+                    push += diff.normalized * ((separationRadius - d) / separationRadius);
+                }
+            }
+            moveDir += push * separationStrength;
+            if (moveDir.sqrMagnitude > 1f)
+            {
+                moveDir = moveDir.normalized;
             }
         }
 
@@ -391,6 +454,7 @@ namespace ButecoDosDevs.NPC
 
         private void EndAttack()
         {
+            EnemyAttackQueue.Release(this);
             if (hitbox != null)
             {
                 hitbox.Close();
@@ -452,6 +516,7 @@ namespace ButecoDosDevs.NPC
                 return;
             }
 
+            EnemyAttackQueue.Release(this);
             if (hitbox != null)
             {
                 hitbox.Close();
@@ -479,6 +544,7 @@ namespace ButecoDosDevs.NPC
 
         private void OnDamaged(DamageInfo info)
         {
+            EnemyAttackQueue.Release(this);
             if (state == State.KO)
             {
                 return;
@@ -503,6 +569,7 @@ namespace ButecoDosDevs.NPC
 
         private void OnDied()
         {
+            EnemyAttackQueue.Release(this);
             state = State.KO;
 
             if (hitbox != null)
@@ -567,6 +634,39 @@ namespace ButecoDosDevs.NPC
 
             health.ResetHealth();
             state = State.Idle;
+        }
+    }
+
+    /// <summary>
+    /// Caps how many enemies can be actively winding up/attacking the PLAYER at once
+    /// (max 3) so a crowd doesn't stack every hit on the player simultaneously. Allies
+    /// have no such limit (see AllyController). Same "no persistent object, just a
+    /// plain static collection self-maintained by the owning components" pattern as
+    /// CombatantRegistry — cleared entry-by-entry as each EnemyController releases,
+    /// dies, or is destroyed, so nothing leaks across a scene reload.
+    /// </summary>
+    internal static class EnemyAttackQueue
+    {
+        private const int MaxConcurrent = 3;
+        private static readonly HashSet<EnemyController> active = new HashSet<EnemyController>();
+
+        public static bool TryAcquire(EnemyController enemy)
+        {
+            if (active.Contains(enemy))
+            {
+                return true;
+            }
+            if (active.Count >= MaxConcurrent)
+            {
+                return false;
+            }
+            active.Add(enemy);
+            return true;
+        }
+
+        public static void Release(EnemyController enemy)
+        {
+            active.Remove(enemy);
         }
     }
 }
