@@ -226,7 +226,10 @@ O jogador pode **mexer em tudo** no bar, sempre pelo mesmo `[E]`/`Interactable`:
 ### Plano de arte / orçamento PixelLab (decidido pelo usuário)
 - Conta grátis: 40 gerações. Custo real observado: personagem 4 direções = 1; animação = ~1 por direção (4 frames). Oeste = leste espelhado (flipX) → nunca gerar oeste.
 - **Únicos (poucos):** Dev Novato ✅ (idle + walk, character_id `1f84a9e7-94fe-4d83-aa7d-2d4d230ef1a8`), Pedro, Moe (bartender), **Rei Luiz** ✅ rotações (character_id `018aee4a-eeef-4bae-9872-b1b91090541c`, coroa dourada; papel a definir) e talvez 1 outro da comunidade.
-- **Comunidade genérica = "Membro do Buteco":** 1 base com a **camiseta do Buteco** (laranja com logo da caneca, mesma cor do letreiro), variações por **tint/troca de cor em código** (cabelo, pele, camiseta). Leitura em combate: **laranja = Buteco, neon = rival**.
+- **Genéricos (feitos por RECOLORAÇÃO da folha do Dev, 0 gerações, já com idle + walk 4 direções — mesmo layout 76x76 5x4 do `DevNovato_Sheet`):**
+  - **Membro do Buteco** = camiseta **AMARELA**, calça marrom, cabelo preto → `Characters/Generic/Generic_Buteco_Sheet.png`.
+  - **Rival** = **todos iguais**, camiseta **VERDE** + cabelo verde ("hacker punk"), pele mais escura, calça preta → `Characters/Generic/Generic_Rival_Sheet.png`.
+  - Leitura em combate: **amarelo = Buteco, verde = rival**. Variação extra por tint em código se precisar.
 - **Rivais:** UM "maluco do outro lado" repetido (variação só de cor) + **Admin Rival** (boss) único.
 - Ataque/impacto: efeito em código (arco de golpe, avanço, shake) — não gerar frames de ataque.
 - NPCs que não lutam: só rotações (1 geração); "respirar"/balanço em código.
