@@ -4,7 +4,7 @@ description: Build e release do Buteco dos Devs. Use para configurar Build Setti
 model: sonnet
 effort: low
 color: orange
-maxTurns: 30
+maxTurns: 150
 tools: Read, Glob, Grep, Bash, Skill, mcp__unity-editor-mcp
 ---
 

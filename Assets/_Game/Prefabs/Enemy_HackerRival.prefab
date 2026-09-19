@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 9215503771645934617}
   - component: {fileID: 1301989872855921339}
   - component: {fileID: 9178010228990981867}
+  - component: {fileID: 1997667019650008827}
   m_Layer: 0
   m_Name: Enemy_HackerRival
   m_TagString: Untagged
@@ -437,6 +438,7 @@ MonoBehaviour:
   hurtboxCollider: {fileID: 2660952519216162802}
   hitboxSprite: {fileID: 6415804407138328231}
   detectRadius: 7
+  retargetInterval: 0.5
   moveSpeed: 3
   attackRange: 1.1
   stuckCheckInterval: 1
@@ -454,3 +456,16 @@ MonoBehaviour:
   koColor: {r: 0.25, g: 0.25, b: 0.3, a: 1}
   respawnForTesting: 1
   respawnDelay: 5
+--- !u!114 &1997667019650008827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3750980508106168279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256d4ce4b1f574c6c8fd5461b673d2fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.Combatant
+  team: 2

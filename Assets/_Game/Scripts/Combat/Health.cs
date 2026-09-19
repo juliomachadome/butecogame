@@ -96,5 +96,21 @@ namespace ButecoDosDevs.Combat
             IsDead = false;
             iFrameTimer = 0f;
         }
+
+        /// <summary>
+        /// Revives from a dead state with HP set to the given fraction of max (clamped
+        /// 0..1). No-op if not currently dead. Used by AllyController's Knocked ->
+        /// Follow revive (comes back at partial HP, not full).
+        /// </summary>
+        public void ReviveWithFraction(float fraction)
+        {
+            if (!IsDead)
+            {
+                return;
+            }
+            currentHP = Mathf.Clamp01(fraction) * maxHP;
+            IsDead = false;
+            iFrameTimer = 0f;
+        }
     }
 }

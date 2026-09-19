@@ -2,7 +2,7 @@
 
 Documento central do projeto. Game Jam de **48 horas**. Leia antes de qualquer tarefa.
 
-> **Fase atual: HUD + defesa concluídos** (HP, Coragem, barra de ações, guarda/parry, números de dano). Próximo: 4c aliados. ⚠️ Playtest manual pendente: parry completo e regressão ao vivo (diálogo/KO/dash) após crash do Unity. Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
+> **Fase atual: 4c-1 concluída** (aliados Pedro/Rei Luiz/Funnie seguem em formação e lutam; inimigos atacam player ou aliados; cena `Test_Combat`). Próximo: 4c-2 (poder azul/verde do suporte + painel do grupo). ⚠️ Playtest manual pendente: parry completo e regressão ao vivo (diálogo/KO/dash) após crash do Unity. Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
 > Não avance de fase sem instrução explícita do usuário.
 
 ---
@@ -126,7 +126,9 @@ Dificuldade cresce por **variedade, posicionamento, quantidade controlada e ataq
 - `Health` (HP, i-frames, eventos `Damaged`/`Died`) + `Hurtbox` (collider trigger filho, com `Team`) + `Hitbox` (`OverlapBox` só na janela ativa, `HashSet` por janela).
 - `Team`: Player, Ally, Enemy, Neutral — Hitbox nunca acerta o próprio time.
 - Player é movido por posição: `PlayerMovement` zera `linearVelocity` todo FixedUpdate; empurrões externos usam `ApplyKnockback` (nunca setar velocidade direto no player).
-- `HitStop` é a única classe estática com runner (sempre restaura `timeScale`).
+- `HitStop` e `CombatantRegistry` são as únicas classes estáticas (exceções documentadas). Todo combatente precisa do componente `Combatant` (registra o `Health` por `Team`) — sem ele, aliados/inimigos não se enxergam.
+- ⚠️ Observar em playtest: `timeScale` ficou preso em 0 uma vez no teste com vários hits simultâneos (possível artefato do teste via eval). `HitStop.ForceReset()` destrava.
+- Uma classe MonoBehaviour por arquivo, com o **mesmo nome do arquivo** (senão "missing script" no prefab).
 
 ### Sandbox do Buteco (Fase 5 e pós-epílogo) — pedido do usuário
 O jogador pode **mexer em tudo** no bar, sempre pelo mesmo `[E]`/`Interactable`:
@@ -225,7 +227,15 @@ O jogador pode **mexer em tudo** no bar, sempre pelo mesmo `[E]`/`Interactable`:
 | Rei Luiz | `018aee4a-eeef-4bae-9872-b1b91090541c` | coroa dourada, bigode/cavanhaque | **faz jogos e é o organizador da game jam** |
 | Moe (bartender) | `67341daf-ebff-4319-9c54-95e611ab0fc4` | avental azul, camisa branca, cara fechada | "RUA!!!" — **ajustar depois**: saiu jovem, falta cabelo grisalho e pano no ombro |
 | Funnie | `a7e72f73-35dc-4e0d-9694-03ead8a19ad1` | gordinho, cabelão, óculos, barba, moletom verde, notebook prateado | "coda muito, faz um SaaS em 1 segundo" |
-Descartados (não usar): Rei Luiz prata `e45540e3-…`, Funnie magro `cb44a0ac-…`, Funnie notebook marrom `9bbc8d89-…`.
+**Limite do plano grátis:** a criação de PERSONAGEM (`character new`) está bloqueada (402 "Insufficient resources") mesmo com gerações sobrando e com 0 personagens salvos — o grátis parece limitar o nº de criações de personagem. **Todos os personagens foram apagados do servidor em 2026-09-19** (os sprites/walks usados no jogo estão no projeto). `pixellab-cli sprite` (imagem avulsa, 1 geração) e `rotate` (8 direções a partir de uma imagem, ~3) continuam funcionando.
+- **Moe dos Simpsons (novo, decisão do usuário):** gerado via `sprite` sem referência de estilo → `pixellab-out/2026-09-19T1532-full-body-pixel-art-character-bartender-with-yel/` (pele amarela, cabelo grisalho p/ trás, sobrancelhona, camisa branca, avental azul). ⚠️ `--style` com o Dev contamina roupa/cabelo — não usar para personagens diferentes.
+- Novas animações dos 4 principais exigem recriar a partir do sprite local (`character new --reference`, bloqueado no grátis) → alternativa: animação em código ou plano pago.
+**Descartados como personagem único → reaproveitados como NPCs ALEATÓRIOS** (só rotações locais em `pixellab-out/`, sem walk gerada; animação em código). Apagados do servidor para liberar espaço:
+- Funnie magro `cb44a0ac-…` → membro aleatório do Buteco (Nerf, "Tem 18?").
+- Funnie notebook marrom `9bbc8d89-…` → dev aleatório, ou rival com tint neon.
+- Moe jovem `67341daf-…` → bartender do bar rival.
+- Moe duplicado `3d5f91b3-…` (backup em `pixellab-out/backup_moe_dup/`) → cliente aleatório.
+- Rei Luiz prateado `e45540e3-…` → só como piada ("Rei impostor" do bar rival), senão não usar (confunde).
 
 **Comportamento no Buteco (pedido do usuário):**
 - **Nome aparece sobre o personagem quando o player chega perto** (proximidade), junto do prompt `[E] Conversar`.
@@ -309,7 +319,7 @@ Uma feature só está pronta quando: compila · a cena abre · Play Mode funcion
 | 1 | Player + movimento + colisão + câmera | ✅ `PlayerMovement`, `CameraFollow2D`, greybox `Buteco.unity` |
 | 2 | Combate + HP + hitbox/hurtbox + knockback | ✅ `Scripts/Combat/*`, `PlayerAttack`, `PlayerKO`, bonecos de treino |
 | 3 | Inimigo simples | ✅ `EnemyController` (Idle/Chase/Windup/Attack/Recover/Hurt/KO), `Enemy_HackerRival.prefab` |
-| 4 | NPCs + aliados | 🟡 4b ✅ NPCs/diálogo/objetivo (`Scripts/NPC`, `DialogueUI`, `ObjectiveUI`, prefabs `NPC_*`) · HUD+defesa ✅ (`PlayerHUD`, `PlayerBlock`, `CourageMeter`, `DamageNumbers`, `DamageVignette`) · 4c aliados ⏳ |
+| 4 | NPCs + aliados | 🟡 4b ✅ NPCs/diálogo/objetivo (`Scripts/NPC`, `DialogueUI`, `ObjectiveUI`, prefabs `NPC_*`) · HUD+defesa ✅ (`PlayerHUD`, `PlayerBlock`, `CourageMeter`, `DamageNumbers`, `DamageVignette`) · 4c-1 ✅ aliados (`AllyController`, `CharacterSpriteAnimator`, `CombatantRegistry`+`Combatant`, prefabs `Ally_*`, cena `Test_Combat`) · 4c-2 ⏳ suporte + painel |
 | 5 | Buteco + interação + soundboard | |
 | 6 | Pedro + TIMEOUT (60 s + retorno por waypoint) — **efeito: Pedro carimba "TIMEOUT" no alvo → Moe grita "RUA!!!" → alvo sai voando cartunizado pela porta/tela (girando) → silhueta pontilhada com contador 60s no lugar → volta andando pela porta/waypoint seguro**. Fora do Buteco o "RUA!!!" do Moe toca como eco da soundboard. | |
 | 7 | Preparação + escolha de arma + equipar aliados | |

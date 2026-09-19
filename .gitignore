@@ -117,3 +117,9 @@ InitTestScene*.unity*
 .pixellab.json
 pixellab-out/
 refs/
+
+# Unity: cena de recuperação pós-crash e prints de teste — nunca versionar
+/[Aa]ssets/_Recovery/
+/[Aa]ssets/_Recovery.meta
+/[Aa]ssets/Screenshots/
+/[Aa]ssets/Screenshots.meta

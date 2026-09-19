@@ -4,7 +4,7 @@ description: Arquiteto do Buteco dos Devs. Use SOMENTE para decisões difíceis 
 model: opus
 effort: high
 color: purple
-maxTurns: 25
+maxTurns: 60
 tools: Read, Glob, Grep, Bash, Edit, Write, WebFetch, mcp__unity-editor-mcp
 ---
 

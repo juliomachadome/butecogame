@@ -1,0 +1,645 @@
+fileFormatVersion: 2
+guid: 1b6fc12177b214c948b4b309e88502f5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3965457617695113797
+    second: ReiLuiz_FullSheet_0
+  - first:
+      213: -2615433016032371754
+    second: ReiLuiz_FullSheet_1
+  - first:
+      213: -5423576672782152906
+    second: ReiLuiz_FullSheet_2
+  - first:
+      213: 6227333846092510008
+    second: ReiLuiz_FullSheet_3
+  - first:
+      213: 7863597274106390308
+    second: ReiLuiz_FullSheet_4
+  - first:
+      213: -1377058629789608945
+    second: ReiLuiz_FullSheet_5
+  - first:
+      213: -6066733749926274993
+    second: ReiLuiz_FullSheet_6
+  - first:
+      213: -682144904417642506
+    second: ReiLuiz_FullSheet_7
+  - first:
+      213: 4323776622985873866
+    second: ReiLuiz_FullSheet_8
+  - first:
+      213: -4265751688388347478
+    second: ReiLuiz_FullSheet_9
+  - first:
+      213: -4822204216608834948
+    second: ReiLuiz_FullSheet_10
+  - first:
+      213: -5471001523104358037
+    second: ReiLuiz_FullSheet_11
+  - first:
+      213: -5951408484979303204
+    second: ReiLuiz_FullSheet_12
+  - first:
+      213: 3882741460095008569
+    second: ReiLuiz_FullSheet_13
+  - first:
+      213: 7585608911334224191
+    second: ReiLuiz_FullSheet_14
+  - first:
+      213: -6093600071894577231
+    second: ReiLuiz_FullSheet_15
+  - first:
+      213: -2616395778093517536
+    second: ReiLuiz_FullSheet_16
+  - first:
+      213: -337807296472121011
+    second: ReiLuiz_FullSheet_17
+  - first:
+      213: -2578687554567609056
+    second: ReiLuiz_FullSheet_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ReiLuiz_Idle_S
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27d2b7ba54da647d38a42c2e4db66513
+      internalID: -2048869996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Idle_W
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 240
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46dfaafcbcf4049ba90093732a526cb1
+      internalID: -1965896553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Idle_E
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 240
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60b6097c8de2b4389b4b26fa5ff03253
+      internalID: -769521266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Idle_N
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 240
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6a904e5e483a470d97b1e8c76d3b46d
+      internalID: -1981864937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Walk_S_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 532e7a865c2c8489496f398d60877457
+      internalID: -1071056330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Walk_S_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 160
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d03517a3e5574405a0bd032ee6bad54
+      internalID: -923155703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Walk_S_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 160
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ef432ce45ce340bfb1f2842cd682626
+      internalID: -408564822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Walk_S_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 160
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4460df0704874479b8d98d09b0256baf
+      internalID: 972877032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Walk_S_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 160
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52ed284b27861457e95dfcc24a0be7f5
+      internalID: 1927402225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Walk_E_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96bc9d06783b94ad79f5c1d856aee876
+      internalID: -1136748164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Walk_E_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8810d4639f6f64042a2d0f022da9a536
+      internalID: -312050015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Walk_E_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 80
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 487a8ee0e27554418af9a886efe51ecd
+      internalID: -519621428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Walk_E_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 80
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1401549c55824097a01b7acc62c80f0
+      internalID: 594165740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Walk_E_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 80
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b276b887686ef4e2cb0a7b31298166fc
+      internalID: -90112761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Walk_N_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f27fa8c5c90d640b484c7fc2b85e8931
+      internalID: -759267840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Walk_N_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55baaf8a56b2f497cbc0ab83908adee9
+      internalID: -1297525839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Walk_N_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebca5095bbf4a4cecbadb40feacefdc8
+      internalID: -969727313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Walk_N_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff27615b96b01422397a6fb29b0152ce
+      internalID: 1896837364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ReiLuiz_Walk_N_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59f95b863a62f4e958516836ce0208ec
+      internalID: 665259567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: beb9bd4f9cf944aa18dcf389f739cdfd
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ReiLuiz_FullSheet_0: 3965457617695113797
+      ReiLuiz_FullSheet_1: -2615433016032371754
+      ReiLuiz_FullSheet_10: -4822204216608834948
+      ReiLuiz_FullSheet_11: -5471001523104358037
+      ReiLuiz_FullSheet_12: -5951408484979303204
+      ReiLuiz_FullSheet_13: 3882741460095008569
+      ReiLuiz_FullSheet_14: 7585608911334224191
+      ReiLuiz_FullSheet_15: -6093600071894577231
+      ReiLuiz_FullSheet_16: -2616395778093517536
+      ReiLuiz_FullSheet_17: -337807296472121011
+      ReiLuiz_FullSheet_18: -2578687554567609056
+      ReiLuiz_FullSheet_2: -5423576672782152906
+      ReiLuiz_FullSheet_3: 6227333846092510008
+      ReiLuiz_FullSheet_4: 7863597274106390308
+      ReiLuiz_FullSheet_5: -1377058629789608945
+      ReiLuiz_FullSheet_6: -6066733749926274993
+      ReiLuiz_FullSheet_7: -682144904417642506
+      ReiLuiz_FullSheet_8: 4323776622985873866
+      ReiLuiz_FullSheet_9: -4265751688388347478
+      ReiLuiz_Idle_E: -769521266
+      ReiLuiz_Idle_N: -1981864937
+      ReiLuiz_Idle_S: -2048869996
+      ReiLuiz_Idle_W: -1965896553
+      ReiLuiz_Walk_E_0: -1136748164
+      ReiLuiz_Walk_E_1: -312050015
+      ReiLuiz_Walk_E_2: -519621428
+      ReiLuiz_Walk_E_3: 594165740
+      ReiLuiz_Walk_E_4: -90112761
+      ReiLuiz_Walk_N_0: -759267840
+      ReiLuiz_Walk_N_1: -1297525839
+      ReiLuiz_Walk_N_2: -969727313
+      ReiLuiz_Walk_N_3: 1896837364
+      ReiLuiz_Walk_N_4: 665259567
+      ReiLuiz_Walk_S_0: -1071056330
+      ReiLuiz_Walk_S_1: -923155703
+      ReiLuiz_Walk_S_2: -408564822
+      ReiLuiz_Walk_S_3: 972877032
+      ReiLuiz_Walk_S_4: 1927402225
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

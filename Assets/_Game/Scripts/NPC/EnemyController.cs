@@ -26,6 +26,7 @@ namespace ButecoDosDevs.NPC
 
         [Header("Detection / Movement")]
         [SerializeField] private float detectRadius = 7f;
+        [SerializeField] private float retargetInterval = 0.5f;
         [SerializeField] private float moveSpeed = 3f;
         [SerializeField] private float attackRange = 1.1f;
         [SerializeField] private float stuckCheckInterval = 1f;
@@ -63,6 +64,7 @@ namespace ButecoDosDevs.NPC
 
         private Health targetHealth;
         private PlayerKO targetKO;
+        private float retargetTimer;
 
         private Vector3 originalPosition;
         private Quaternion originalRotation;
@@ -111,6 +113,7 @@ namespace ButecoDosDevs.NPC
 
             lastStuckPosition = transform.position;
             stuckCheckTimer = stuckCheckInterval;
+            retargetTimer = 0f; // retarget immediately on the first Update
         }
 
         private void OnEnable()
@@ -133,6 +136,18 @@ namespace ButecoDosDevs.NPC
 
         private void Update()
         {
+            // Re-pick the closest live target between Team.Player and Team.Ally every
+            // ~0.5s (not every frame) while free to move/notice; never mid-attack, and
+            // never while down.
+            if (state == State.Idle || state == State.Chase)
+            {
+                retargetTimer -= Time.deltaTime;
+                if (retargetTimer <= 0f)
+                {
+                    RetargetNearest();
+                }
+            }
+
             switch (state)
             {
                 case State.Idle:
@@ -175,6 +190,42 @@ namespace ButecoDosDevs.NPC
                 // Hurt: velocity is driven by Knockback, do not override it here.
                 // KO: velocity was zeroed once on death; nothing pushes it (collider disabled).
             }
+        }
+
+        /// <summary>
+        /// Picks the closest live Health between Team.Player and Team.Ally within
+        /// detectRadius (via CombatantRegistry, no Find*) and switches target to it.
+        /// A Knocked ally (Health.IsDead) or a downed player (PlayerKO.IsDown, handled
+        /// by IsTargetDown) is simply skipped by CombatantRegistry.FindClosest/IsTargetDown.
+        /// Leaves the current target untouched if nothing is in range.
+        /// </summary>
+        private void RetargetNearest()
+        {
+            retargetTimer = retargetInterval;
+
+            Health closestPlayer = CombatantRegistry.FindClosest(Team.Player, transform.position, detectRadius);
+            Health closestAlly = CombatantRegistry.FindClosest(Team.Ally, transform.position, detectRadius);
+
+            Health best;
+            if (closestPlayer != null && closestAlly != null)
+            {
+                float dp = Vector2.Distance(transform.position, closestPlayer.transform.position);
+                float da = Vector2.Distance(transform.position, closestAlly.transform.position);
+                best = dp <= da ? closestPlayer : closestAlly;
+            }
+            else
+            {
+                best = closestPlayer != null ? closestPlayer : closestAlly;
+            }
+
+            if (best == null || best.transform == target)
+            {
+                return;
+            }
+
+            target = best.transform;
+            targetHealth = best;
+            targetKO = best.GetComponent<PlayerKO>(); // null for allies; IsTargetDown falls back to targetHealth.IsDead
         }
 
         private bool IsTargetDown()

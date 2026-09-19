@@ -4,7 +4,7 @@ description: Integração de arte do Buteco dos Devs. Use para importar PNG/Asep
 model: sonnet
 effort: low
 color: cyan
-maxTurns: 30
+maxTurns: 150
 tools: Read, Glob, Grep, Bash, Skill, mcp__unity-editor-mcp
 ---
 

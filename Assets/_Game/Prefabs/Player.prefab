@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 8105232225719746143}
   - component: {fileID: 1387469966724019021}
   - component: {fileID: 7735628701400207087}
+  - component: {fileID: 8869614337733170830}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -463,6 +464,19 @@ MonoBehaviour:
   parryHitStop: 0.08
   courage: {fileID: 1387469966724019021}
   guardIndicator: {fileID: 8691232271041712197}
+--- !u!114 &8869614337733170830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2355336983522204102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256d4ce4b1f574c6c8fd5461b673d2fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.Combatant
+  team: 0
 --- !u!1 &3257675800767043417
 GameObject:
   m_ObjectHideFlags: 0

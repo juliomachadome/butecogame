@@ -4,7 +4,7 @@ description: QA e playtest do Buteco dos Devs. Use depois de cada feature para t
 model: sonnet
 effort: medium
 color: yellow
-maxTurns: 30
+maxTurns: 150
 tools: Read, Glob, Grep, Bash, mcp__unity-editor-mcp
 disallowedTools: mcp__unity-editor-mcp__create_script, mcp__unity-editor-mcp__write_text_file, mcp__unity-editor-mcp__delete_asset, mcp__unity-editor-mcp__move_asset, mcp__unity-editor-mcp__rename_asset, mcp__unity-editor-mcp__package_add, mcp__unity-editor-mcp__package_remove, mcp__unity-editor-mcp__save_scene, mcp__unity-editor-mcp__save_all, mcp__unity-editor-mcp__build
 ---

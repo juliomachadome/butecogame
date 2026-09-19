@@ -4,7 +4,7 @@ description: Implementador de gameplay em C#/Unity do Buteco dos Devs. Use para 
 model: sonnet
 effort: medium
 color: green
-maxTurns: 40
+maxTurns: 200
 tools: Read, Glob, Grep, Bash, Edit, Write, Skill, mcp__unity-editor-mcp
 ---
 
