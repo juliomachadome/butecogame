@@ -81,6 +81,10 @@ namespace ButecoDosDevs.Systems
             Vector3 pos = bossThronePoint != null ? bossThronePoint.position : transform.position;
             bossInstance = Instantiate(bossPrefab, pos, Quaternion.identity);
             bossHealth = bossInstance.GetComponent<Health>();
+            if (bossHealth == null)
+            {
+                Debug.LogWarning("[BarRivalFlow] Boss sem Health — a luta será pulada. Confira o bossPrefab.");
+            }
 
             SpeechBubble.Say(bossInstance.transform, "Link com vírus? Aqui quem decide sou EU.", 2.6f);
             yield return new WaitForSeconds(2.6f);

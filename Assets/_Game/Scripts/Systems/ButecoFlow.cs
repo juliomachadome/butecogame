@@ -196,6 +196,7 @@ namespace ButecoDosDevs.Systems
             Say(julio, "Parabéns, você zerou meu jogo. Agora vai gravar os sons.", 3.2f);
             yield return new WaitForSeconds(1f);
 
+            NerfChaos.SetAllActive(true);
             strangerRoutine = StartCoroutine(StrangerLoop());
         }
 

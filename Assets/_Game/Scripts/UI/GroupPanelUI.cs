@@ -43,6 +43,25 @@ namespace ButecoDosDevs.UI
                 }
                 BuildRow(row.displayName, health, row.ally.CurrentRole == AllyController.Role.Support);
             }
+
+            // Aliados que não estão na lista do Inspector (ex.: membros extras do Buteco) também aparecem.
+            foreach (AllyController extra in FindObjectsByType<AllyController>())
+            {
+                bool listed = false;
+                foreach (Row row in allies)
+                {
+                    if (row.ally == extra)
+                    {
+                        listed = true;
+                        break;
+                    }
+                }
+                Health health = extra.GetComponent<Health>();
+                if (!listed && health != null)
+                {
+                    BuildRow("Membro do Buteco", health, extra.CurrentRole == AllyController.Role.Support);
+                }
+            }
         }
 
         private void BuildRow(string label, Health health, bool isSupport)
