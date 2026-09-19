@@ -1,0 +1,429 @@
+fileFormatVersion: 2
+guid: 379420f4dab434b8e9d003bfbb0e911b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8421108603903011307
+    second: Bar_Props_Fun_0
+  - first:
+      213: -1622075677591184565
+    second: Bar_Props_Fun_1
+  - first:
+      213: 9194118500070973594
+    second: Bar_Props_Fun_2
+  - first:
+      213: 201468195478157968
+    second: Bar_Props_Fun_3
+  - first:
+      213: 3954425520348582992
+    second: Bar_Props_Fun_4
+  - first:
+      213: -6861974549605211784
+    second: Bar_Props_Fun_5
+  - first:
+      213: -3957161407518743001
+    second: Bar_Props_Fun_6
+  - first:
+      213: 731698921544532873
+    second: Bar_Props_Fun_7
+  - first:
+      213: 3637514519247679659
+    second: Bar_Props_Fun_8
+  - first:
+      213: 2604636991605514947
+    second: Bar_Props_Fun_9
+  - first:
+      213: 8994137809377644495
+    second: Bar_Props_Fun_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Prop_LoveTester
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 169
+        width: 50
+        height: 77
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae01781fda69a424db7b9ddf27db14e7
+      internalID: -104673196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_Jukebox
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 170
+        width: 47
+        height: 76
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be51854c9230249f5b3c450cba6071e4
+      internalID: 1856847572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_SlotMachineSlim
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 174
+        width: 23
+        height: 72
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00afe980dbfb04208bce6ed648c8a4fe
+      internalID: -1804419287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_NeonBeer
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 184
+        width: 53
+        height: 59
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 550686a9326894e08b769af9ed93225d
+      internalID: -746859628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_PoolTable
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 97
+        width: 110
+        height: 60
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cee089bf05b34107bd3e81e1a1b5b22
+      internalID: 2135048630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_Arcade
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 98
+        width: 41
+        height: 67
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a3f67dc87214fd1a2779788271bfd9
+      internalID: 730607404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_CigaretteMachine
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 98
+        width: 29
+        height: 69
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86144de5f0b314979b0d27271a52e339
+      internalID: 573029275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_Chair
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 21
+        width: 25
+        height: 57
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 288a89d6a17a14aa7be2d48ad01a8308
+      internalID: -498657722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_RoundTable
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 14
+        width: 56
+        height: 58
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec917c5fbb9fb423fb9278dd282175ea
+      internalID: 384936668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_Sofa
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 12
+        width: 96
+        height: 77
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9b9e45efa0294455aad73a6b58c432f
+      internalID: -851441180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_Chair_Wood
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 15
+        width: 23
+        height: 57
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38ad30d8603654ec593fc8023861e9d4
+      internalID: 2046175707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: bbeea28896c584e1b85e287a4c5cc80d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Bar_Props_Fun_0: 8421108603903011307
+      Bar_Props_Fun_1: -1622075677591184565
+      Bar_Props_Fun_10: 8994137809377644495
+      Bar_Props_Fun_2: 9194118500070973594
+      Bar_Props_Fun_3: 201468195478157968
+      Bar_Props_Fun_4: 3954425520348582992
+      Bar_Props_Fun_5: -6861974549605211784
+      Bar_Props_Fun_6: -3957161407518743001
+      Bar_Props_Fun_7: 731698921544532873
+      Bar_Props_Fun_8: 3637514519247679659
+      Bar_Props_Fun_9: 2604636991605514947
+      Prop_Arcade: 730607404
+      Prop_Chair: -498657722
+      Prop_Chair_Wood: 2046175707
+      Prop_CigaretteMachine: 573029275
+      Prop_Jukebox: 1856847572
+      Prop_LoveTester: -104673196
+      Prop_NeonBeer: -746859628
+      Prop_PoolTable: 2135048630
+      Prop_RoundTable: 384936668
+      Prop_SlotMachineSlim: -1804419287
+      Prop_Sofa: -851441180
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -2,7 +2,7 @@
 
 Documento central do projeto. Game Jam de **48 horas**. Leia antes de qualquer tarefa.
 
-> **Fase atual: 4c-1 concluída** (aliados Pedro/Rei Luiz/Funnie seguem em formação e lutam; inimigos atacam player ou aliados; cena `Test_Combat`). Próximo: 4c-2 (poder azul/verde do suporte + painel do grupo). ⚠️ Playtest manual pendente: parry completo e regressão ao vivo (diálogo/KO/dash) após crash do Unity. Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
+> **Bar com arte real montado** (entrada na parede do fundo, Moe atrás do balcão, Julio e Funnie "sentados" atrás das mesas). **Fase atual: 4c-1 concluída** (aliados Pedro/Rei Luiz/Funnie seguem em formação e lutam; inimigos atacam player ou aliados; cena `Test_Combat`). Próximo: 4c-2 (poder azul/verde do suporte + painel do grupo). ⚠️ Playtest manual pendente: parry completo e regressão ao vivo (diálogo/KO/dash) após crash do Unity. Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
 > Não avance de fase sem instrução explícita do usuário.
 
 ---
@@ -71,6 +71,7 @@ Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity` (greybox do bar). `Assets/S
 - O áudio é parte do gameplay: o Buteco tem uma **soundboard** (RUA!!!, aplausos, vaias, risadas, burp, copos, garrafas, cadeiras, passos, ataques, espadas, gritos).
 - A soundboard pode influenciar **levemente** moral/caos.
 - Até os sons reais chegarem, usar silêncio ou placeholders claramente marcados (`PH_` no nome).
+- **Lista de sons a gravar (prioridade):** 1) "RUA!!!" (Moe) 2) aplausos/vaias 3) risadas 4) copo/garrafa 5) golpe + "ai" 6) **isqueiro do Pedro ("tsc tsc" falhando + acendendo)** — toca no loop de atividade dele, perto do player (som posicional) 7) dardo de Nerf "pew" 8) caneca batendo na mesa (Julio bebendo).
 
 ---
 
@@ -122,6 +123,12 @@ Dificuldade cresce por **variedade, posicionamento, quantidade controlada e ataq
 
 **Defesa (implementada — `PlayerBlock` via `Health.DamageFilter`, `EnemyController.Stagger`):** segurar = guarda (move 50%, não ataca); golpe **frontal** (±90° da direção) leva ~20% do dano e knockback mínimo; pelas costas entra inteiro. **Parry:** iniciar a guarda até ~0.15 s antes do hit → inimigo atordoado (~0.6 s) + dano extra no contra-ataque; +Coragem. Entra junto do HUD, depois da 4b.
 
+### Animação de combate e itens na mão (pedido do usuário) — por CÓDIGO, sem gerar frames
+- **Itens na mão = sprites sobrepostos** (filho do personagem, posição/ordem por direção; W espelha E): arma na mão principal (Fase 7), **cigarro sempre na mão do Pedro** (branco + ponta laranja brilhando, fumacinha periódica) — **inclusive na batalha: espada numa mão, cigarro na outra**.
+- **Golpe:** arco/rastro curvo da arma (sprite de "slash" por arma) + avanço curto (lunge) + squash & stretch no personagem + faíscas no impacto + screen shake leve em golpes fortes. Vale para player, aliados e rivais.
+- **Defesa:** escudinho azul na frente (substitui o quadrado placeholder).
+- Isqueiro do Pedro com som gravado pela equipe (ver Desafio de áudio).
+
 ### Convenções de combate (Fase 2)
 - `Health` (HP, i-frames, eventos `Damaged`/`Died`) + `Hurtbox` (collider trigger filho, com `Team`) + `Hitbox` (`OverlapBox` só na janela ativa, `HashSet` por janela).
 - `Team`: Player, Ally, Enemy, Neutral — Hitbox nunca acerta o próprio time.
@@ -165,6 +172,12 @@ O jogador pode **mexer em tudo** no bar, sempre pelo mesmo `[E]`/`Interactable`:
 - Escolha de **1 arma** entre 3–4: espada balanceada · espada grande lenta e forte · espada curta rápida · objeto absurdo de bar (ex.: garrafa).
 - **Sem inventário complexo.**
 - Aliados equipam armas → Pedro reúne todos → mensagem **"Bora."** → cutscene Buteco → grupo → rua → rival → título **A GUERRA PÚNICA** → devolve o controle.
+
+### Mapa das próximas áreas (proposta aprovada em conversa, 2026-09-19)
+- **Arsenal (Fase 7) — sem sala nova:** Moe abre um arsenal escondido debaixo do balcão; as 4 armas aparecem na **mesa de sinuca** (vira "mesa de armas"): espada equilibrada, espadona lenta, espada curta rápida, **garrafa**. `[E]` escolhe. Aliados pegam as deles → Pedro: "Bora." → saem pela porta.
+- **Rua (Fase 8) — cena `Rua`:** os **dois bares lado a lado** na mesma calçada (Buteco à esquerda, letreiro laranja; RIVAL BAR à direita, neon azul, "HACK THE PLANET"), faixa de pedestre, postes, noite. Cutscene de travessia → título **A GUERRA PÚNICA** → batalha na rua com ondas saindo do bar rival.
+- **Bar rival (Fase 9) — cena `BarRival`:** "anti-Buteco" com a mesma planta (porta embaixo, balcão no canto), estética cyberpunk/gamer: PCs, monitores, rack de servidores, cadeiras gamer, LED RGB, neon de caveira, piadas Linux/root, controle de videogame gigante (minigame só se sobrar tempo). Bartender = Moe jovem descartado com neon. Rivais = genéricos com tint neon (custo 0). **Admin Rival** num "trono de servidores" com monitor gigante → luta final.
+- **Orçamento (6 gerações):** Admin Rival 1 · folha props do bar rival 1 · folha da rua 1 · paredes/piso rival = Buteco tingido (0) · rivais = tint (0) · **reserva 3**.
 
 ---
 
@@ -240,6 +253,22 @@ O jogador pode **mexer em tudo** no bar, sempre pelo mesmo `[E]`/`Interactable`:
 **Comportamento no Buteco (pedido do usuário):**
 - **Nome aparece sobre o personagem quando o player chega perto** (proximidade), junto do prompt `[E] Conversar`.
 - Cada NPC tem uma **atividade idle em loop**, de tempos em tempos: Pedro **acende o isqueiro e fuma um baseado** (piada interna, cartunizado); Funnie **no notebook**; outros **bebendo** no balcão; Moe **servindo/limpando copo**. Animação de atividade = 1 direção só (sul), ~1 geração cada no PixelLab.
+
+### Arte do bar e novos personagens (2026-09-19, dia 2)
+- **Truque de orçamento:** `pixellab-cli sprite --size 256x256` custa 1 geração → gerar **folhas de props** e recortar. `sprite` sai com fundo sólido: remover com flood-fill das bordas (Pillow via `uv run --with pillow`).
+- `Assets/_Game/Art/Environment/Bar/`: `Bar_Props_Counter.png` (balcão, banquetas, chopeira, prateleiras, caixa, caneca, espelho), `Bar_Props_Fun.png` (jukebox, Love Tester, neon BEER, sinuca, fliperama, máquina de cigarro, cadeiras, mesa, sofá roxo), `Bar_Room_Tiles.png` (parede verde + lambri, portas, janela, piso xadrez vermelho/preto).
+- **Moe dos Simpsons** (magro, topete azul-acinzentado, camisa cinza, gravata-borboleta, avental branco, braços cruzados) em `Characters/MoeSimpsons/` (South + East; oeste = East espelhado). Joga gente pra fora ("RUA!!!") → anda pelo bar com balanço em código.
+- **Julio** (boné NY preto, puffer branca, correntinha) em `Characters/Julio/` (4 direções via `rotate`).
+- Referências do usuário em `refs/` (ex.: `refs/moe_ref.png`). Imagem como referência no PixelLab custa ~30 gerações — não usar.
+- **Saldo PixelLab: ~6 gerações** — reservadas para rival genérico + Admin Rival (boss). Não gastar à toa (pedido do usuário).
+
+### Montagem do cenário 3/4 — regras aprendidas (bar do Buteco)
+- **Entrada principal fica na PAREDE DO FUNDO** (porta + tapete vermelho em x≈1.1): em 3/4 a parede de baixo não aparece. Player/Checkpoint nascem na frente dela, Pedro ao lado (intercepta).
+- **MapBounds (limite da câmera) tem que incluir a parede do fundo** (hoje y -6.4..7.8), senão a câmera corta parede/porta/Moe.
+- **"Sentado" sem sprite de sentado:** NPC um pouco ACIMA da mesa (y do NPC > y da mesa → desenhado atrás), com o tampo cobrindo da cintura pra baixo. Mesa `Prop_RoundTable` foi recortada para tirar o encosto de cadeira embutido.
+- **Pivot nos pés sempre** — sprites vindos de `sprite`/`rotate` chegam com pivot no CENTRO: corrigir no import (medir a linha mais baixa opaca).
+- Escala: props da folha 256px estão em PPU 32; mesas/cadeiras usam escala 0.55–0.6, chopeira 0.5, caixa 0.45, Julio 0.75, Moe 0.82 (os sprites deles ocupam o canvas inteiro).
+- Paredes/decoração de parede: sortingOrder -20/-19 (sempre atrás); props e personagens no Y-sort.
 
 ### Assets de terceiros (regra do repo público)
 - **Só entra no repo asset CC0 / domínio público**, ou licença que permita **redistribuição** (git público = redistribuição). Guardar o `License.txt` junto.

@@ -1,0 +1,429 @@
+fileFormatVersion: 2
+guid: 9817e5eb9ce9f4e03b7828c4b2658678
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1951224834367940850
+    second: Bar_Props_Counter_0
+  - first:
+      213: -3976962171376091148
+    second: Bar_Props_Counter_1
+  - first:
+      213: 8884765688953504721
+    second: Bar_Props_Counter_2
+  - first:
+      213: 1843224468296080624
+    second: Bar_Props_Counter_3
+  - first:
+      213: 2508170057845491740
+    second: Bar_Props_Counter_4
+  - first:
+      213: -2224408183722701684
+    second: Bar_Props_Counter_5
+  - first:
+      213: 6222616248029858563
+    second: Bar_Props_Counter_6
+  - first:
+      213: 6032686604290312054
+    second: Bar_Props_Counter_7
+  - first:
+      213: 4790113810484062862
+    second: Bar_Props_Counter_8
+  - first:
+      213: 854725897896523021
+    second: Bar_Props_Counter_9
+  - first:
+      213: 7282868586488246899
+    second: Bar_Props_Counter_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Prop_BottleShelf
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 164
+        width: 55
+        height: 75
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c66407727730f4373b838ecac6743834
+      internalID: 1108503008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_BeerTap
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 166
+        width: 30
+        height: 54
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47135f3f7948744aab169ece915c5046
+      internalID: 482181008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_BarCounter
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 165
+        width: 99
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 324066ea4590e4f6982661670a11316a
+      internalID: -1610709434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_CashRegister
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 83
+        width: 36
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 418e8a984a7244906819ba14ef938dfe
+      internalID: -128798832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_BottleShelf2
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 81
+        width: 44
+        height: 75
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70ee93096f7be473e90287f4fbc404de
+      internalID: -2033264044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_BarCounterCorner
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 84
+        width: 96
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50370193198c24a9d8b474f1456e9958
+      internalID: -1693616595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_BeerMug
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 25
+        width: 28
+        height: 33
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79e800c38b89640afa370d04e2295d54
+      internalID: -798186922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_MirrorCabinet
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 19
+        width: 30
+        height: 50
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cdee8a4852f0482bb7c17f2b741ac59
+      internalID: 1321428977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_Stool_1
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 27
+        width: 21
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a29b1fa5e30514c53a85a99c5c18631f
+      internalID: 879034310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_Stool_2
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 27
+        width: 21
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6715ee6b76ae344b38ec4c4faa7f4454
+      internalID: -1150916444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prop_Stool_3
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 27
+        width: 21
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa41475326173451cb4f4a4db5f97e41
+      internalID: -254668378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: fb4a3fa92217b43a1a16197c4b441893
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Bar_Props_Counter_0: -1951224834367940850
+      Bar_Props_Counter_1: -3976962171376091148
+      Bar_Props_Counter_10: 7282868586488246899
+      Bar_Props_Counter_2: 8884765688953504721
+      Bar_Props_Counter_3: 1843224468296080624
+      Bar_Props_Counter_4: 2508170057845491740
+      Bar_Props_Counter_5: -2224408183722701684
+      Bar_Props_Counter_6: 6222616248029858563
+      Bar_Props_Counter_7: 6032686604290312054
+      Bar_Props_Counter_8: 4790113810484062862
+      Bar_Props_Counter_9: 854725897896523021
+      Prop_BarCounter: -1610709434
+      Prop_BarCounterCorner: -1693616595
+      Prop_BeerMug: -798186922
+      Prop_BeerTap: 482181008
+      Prop_BottleShelf: 1108503008
+      Prop_BottleShelf2: -2033264044
+      Prop_CashRegister: -128798832
+      Prop_MirrorCabinet: 1321428977
+      Prop_Stool_1: 879034310
+      Prop_Stool_2: -1150916444
+      Prop_Stool_3: -254668378
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
