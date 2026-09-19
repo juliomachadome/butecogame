@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ButecoDosDevs.Combat;
+using ButecoDosDevs.Systems;
 
 namespace ButecoDosDevs.Player
 {
@@ -25,17 +26,28 @@ namespace ButecoDosDevs.Player
         [Header("Refs")]
         [SerializeField] private Hitbox hitbox;
         [SerializeField] private SpriteRenderer hitboxSprite;
+        [SerializeField] private PlayerBlock block;
+        [SerializeField] private CourageMeter courage;
 
         private PlayerMovement movement;
         private InputAction attackAction;
         private bool isAttacking;
         private Coroutine attackRoutine;
+        private float currentAttackDamage;
 
         public bool IsAttacking => isAttacking;
 
         private void Awake()
         {
             movement = GetComponent<PlayerMovement>();
+            if (block == null)
+            {
+                block = GetComponent<PlayerBlock>();
+            }
+            if (courage == null)
+            {
+                courage = GetComponent<CourageMeter>();
+            }
 
             if (hitbox != null)
             {
@@ -89,6 +101,10 @@ namespace ButecoDosDevs.Player
         private void OnHitboxHit(Health target, DamageInfo info)
         {
             HitStop.Trigger(hitStopDuration);
+            if (courage != null)
+            {
+                courage.OnHitLanded();
+            }
         }
 
         /// <summary>
@@ -101,6 +117,12 @@ namespace ButecoDosDevs.Player
                 return false;
             }
 
+            if (block != null && block.IsBlocking)
+            {
+                return false;
+            }
+
+            currentAttackDamage = block != null ? damage * block.ConsumeAttackBonus() : damage;
             attackRoutine = StartCoroutine(AttackSequence());
             return true;
         }
@@ -147,7 +169,7 @@ namespace ButecoDosDevs.Player
             float t = 0f;
             while (t < activeTime)
             {
-                hitbox?.CheckHits(damage, knockbackForce);
+                hitbox?.CheckHits(currentAttackDamage, knockbackForce);
                 t += Time.deltaTime;
                 yield return null;
             }

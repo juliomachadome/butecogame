@@ -2,7 +2,7 @@
 
 Documento central do projeto. Game Jam de **48 horas**. Leia antes de qualquer tarefa.
 
-> **Fase atual: 4b concluída** (NPCs no bar, `[E]` conversar, diálogo, OBJETIVO). Próximo: HUD + defesa → 4c aliados. Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
+> **Fase atual: HUD + defesa concluídos** (HP, Coragem, barra de ações, guarda/parry, números de dano). Próximo: 4c aliados. ⚠️ Playtest manual pendente: parry completo e regressão ao vivo (diálogo/KO/dash) após crash do Unity. Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
 > Não avance de fase sem instrução explícita do usuário.
 
 ---
@@ -79,6 +79,8 @@ Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity` (greybox do bar). `Assets/S
 - **DEV NOVATO** — controlado pelo jogador.
 - **PEDRO** — veterano ("o mais velho do mundo, 500 anos" — brincadeira) e **moderador do Buteco**: quem fala besteira toma **TIMEOUT** (estilo moderação de Discord). Ironia da história: justo ele é acusado de mandar link com vírus no bar rival. Habilidade **TIMEOUT**: o NPC alvo sai do combate por **60 s** e depois retorna por um **waypoint seguro**.
 - **BARTENDER** — visual do **Moe** (decisão do usuário, ver seção Arte). Serve cerveja, pode expulsar personagens, grita **"RUA!!!"**.
+- **JULIO (criador do jogo, nick "Naldo")** — NPC: fica **no canto do balcão tomando cerveja com o Moe** (piada do criador dentro do jogo). Na guerra, **Julio + Funnie são SUPORTE na retaguarda — "dão vida"** (curam, não entram no corpo a corpo): **Funnie** sobe uma estação de cura no chão ("HealthCheck as a Service", cura em área aos poucos); **Julio** joga uma **cerveja** no aliado com menos HP de tempos em tempos ("a rodada é por conta do criador"). Ambos com ícone de cura no painel do grupo. Sprite: aguardando foto de referência do usuário.
+- **Grupo na guerra:** linha de frente = Pedro, Rei Luiz e 1–3 **membros do Buteco genéricos** (camiseta laranja); retaguarda de cura = Julio + Funnie. O protagonista continua sendo o **Dev Novato** genérico (não é o Julio).
 - **COMUNIDADE** — personagens caricatos; humor da cultura da comunidade. **Não transformar características pessoais sensíveis em mecânicas.**
 - **RIVAIS** — estética exagerada neon/RGB/cyberpunk, computadores, monitores, Linux/root como piada visual, controle de videogame visível. O controle pode virar minigame **somente se sobrar tempo**.
 
@@ -115,10 +117,10 @@ Dificuldade cresce por **variedade, posicionamento, quantidade controlada e ataq
 | Dash | Espaço / Shift esq. | — |
 | Atacar | J / mouse esquerdo | Botão West (X/□) |
 | Interagir | E | Botão South (A/✕) — Fase 4b |
-| Defender (planejado) | **segurar mouse direito** / K | LB / L1 |
-| Dash no gamepad (planejado) | — | Botão East (B/○) |
+| Defender | **segurar mouse direito** / K | LB / L1 |
+| Dash (gamepad) | — | Botão East (B/○) |
 
-**Defesa (planejada, pedido do usuário):** segurar = guarda (move 50%, não ataca); golpe **frontal** (±90° da direção) leva ~20% do dano e knockback mínimo; pelas costas entra inteiro. **Parry:** iniciar a guarda até ~0.15 s antes do hit → inimigo atordoado (~0.6 s) + dano extra no contra-ataque; +Coragem. Entra junto do HUD, depois da 4b.
+**Defesa (implementada — `PlayerBlock` via `Health.DamageFilter`, `EnemyController.Stagger`):** segurar = guarda (move 50%, não ataca); golpe **frontal** (±90° da direção) leva ~20% do dano e knockback mínimo; pelas costas entra inteiro. **Parry:** iniciar a guarda até ~0.15 s antes do hit → inimigo atordoado (~0.6 s) + dano extra no contra-ataque; +Coragem. Entra junto do HUD, depois da 4b.
 
 ### Convenções de combate (Fase 2)
 - `Health` (HP, i-frames, eventos `Damaged`/`Died`) + `Hurtbox` (collider trigger filho, com `Team`) + `Hitbox` (`OverlapBox` só na janela ativa, `HashSet` por janela).
@@ -131,6 +133,17 @@ O jogador pode **mexer em tudo** no bar, sempre pelo mesmo `[E]`/`Interactable`:
 - **Soundboard** (painel com botões): RUA!!!, aplausos, vaias, risadas, burp, gritos — sons gravados pela comunidade; influencia levemente moral/caos.
 - **Jukebox** (troca música), **chopeira/balcão** (Moe serve cerveja, +Coragem leve), **cadeiras/banquetas** (sentar), **dardos/sinuca** (um lance + som, sem minigame), **copos/garrafas** (bater = som; bater demais → Moe grita "RUA!!!"), bonecos de treino.
 - Sem minigames completos (escopo). Cada item = objeto + som + fala curta.
+
+### Clima de chegada: bagunça no Buteco (pedido do usuário)
+- Quando o jogador entra, o bar já está **uma bagunça**: 2–3 membros genéricos numa **guerra de Nerf** (dardos de espuma; quem leva faz "ai!", pulinho cômico e revida — sem HP, sem dano, cartunizado). Resto da galera nas atividades (Pedro isqueiro/baseado, Funnie notebook, Rei Luiz cerveja, Julio no balcão com Moe).
+- **Tutorial disfarçado de dash:** dardos perdidos vêm na direção do player (0 dano, só "pew"); desviar com dash → galera comemora ("boa, novato!") + Coragem leve.
+- **Nível de caos = "startup/hacker house" (referência do usuário: cena de filme sobre o Spotify em que alguém entra e o escritório é uma bagunça):** dardos cruzando a sala, gente escondida atrás de mesa/balcão/sofá, alguém de **patinete/skate** cortando o bar (NPC em rota fixa), **música alta** da jukebox com leve shake no grave, chão com caixas de pizza/cabos/latinhas/notebook, gritos em balões ("DEPLOY NA SEXTA!", "QUEM MEXEU NA MAIN?", "É FEATURE!").
+- **O caos PARA de uma vez** quando o Pedro grita "OPA!" e vai até o jogador com o "Tem 18? Mostra o alistamento" (o contraste é a piada); depois a bagunça volta.
+
+### Piada recorrente: "Tem 18? Mostra o alistamento" (pedido do usuário)
+- **Intro do jogo:** Dev Novato entra pela porta → Pedro vem até ele: "Opa, opa. Quem é você?" / "Tem 18? Mostra o alistamento." / Dev: "...sério?" / Pedro: "Regra da casa. Sem alistamento, sem cerveja." → objetivo "Converse com o Pedro" segue daí.
+- **Evento do sandbox:** de tempos em tempos um **desconhecido aleatório** (membro genérico) entra; Pedro anda até ele e faz a triagem em **balões de fala** ("Quem é você?", "Tem 18?", "Cadê o alistamento?"). Resposta aleatória ("perdi", "tá no gov.br", "tenho 17 e meio"...). Pedro libera **ou** dá **TIMEOUT** → Moe "RUA!!!" → sai voando (mesmo efeito da Fase 6).
+- Implementação: balões de fala world-space (mais leves que o DialogueUI) + Pedro andando por waypoint até a porta; timeout/fallback se alguém travar no caminho.
 
 ### HUD (pedido do usuário)
 - **Sup. esquerdo:** retrato do Dev + **barra de HP** + **barra de Coragem** (tema; sobe ao acertar/soundboard, cai ao apanhar).
@@ -279,6 +292,8 @@ Nunca implementar vários sistemas ao mesmo tempo.
 
 Observação: o Editor só avança frames em Play Mode com a janela **focada** — chame `editor_focus` antes de esperar frames (`wait_for` em `Time.frameCount`).
 
+Observação: prints do MCP em Play Mode (`source=screen`) saem na resolução da aba Game — se estiver pequena, TUDO fica borrado (parece texto quebrado, não é). Para checar UI nítida: fora do Play, trocar temporariamente o Canvas para ScreenSpaceCamera, `capture_game_view` 1920x1080, e voltar para Overlay sem salvar.
+
 Observação: chamadas `eval` que disparam compilação estouram o timeout de 5 s do MCP e deixam um log "Main thread operation timed out" — é inofensivo, basta aguardar o reload.
 
 ### Definition of Done
@@ -294,7 +309,7 @@ Uma feature só está pronta quando: compila · a cena abre · Play Mode funcion
 | 1 | Player + movimento + colisão + câmera | ✅ `PlayerMovement`, `CameraFollow2D`, greybox `Buteco.unity` |
 | 2 | Combate + HP + hitbox/hurtbox + knockback | ✅ `Scripts/Combat/*`, `PlayerAttack`, `PlayerKO`, bonecos de treino |
 | 3 | Inimigo simples | ✅ `EnemyController` (Idle/Chase/Windup/Attack/Recover/Hurt/KO), `Enemy_HackerRival.prefab` |
-| 4 | NPCs + aliados | 🟡 4b ✅ NPCs/diálogo/objetivo (`Scripts/NPC`, `DialogueUI`, `ObjectiveUI`, prefabs `NPC_*`) · HUD+defesa ⏳ · 4c aliados ⏳ |
+| 4 | NPCs + aliados | 🟡 4b ✅ NPCs/diálogo/objetivo (`Scripts/NPC`, `DialogueUI`, `ObjectiveUI`, prefabs `NPC_*`) · HUD+defesa ✅ (`PlayerHUD`, `PlayerBlock`, `CourageMeter`, `DamageNumbers`, `DamageVignette`) · 4c aliados ⏳ |
 | 5 | Buteco + interação + soundboard | |
 | 6 | Pedro + TIMEOUT (60 s + retorno por waypoint) — **efeito: Pedro carimba "TIMEOUT" no alvo → Moe grita "RUA!!!" → alvo sai voando cartunizado pela porta/tela (girando) → silhueta pontilhada com contador 60s no lugar → volta andando pela porta/waypoint seguro**. Fora do Buteco o "RUA!!!" do Moe toca como eco da soundboard. | |
 | 7 | Preparação + escolha de arma + equipar aliados | |

@@ -40,6 +40,13 @@ namespace ButecoDosDevs.Combat
         public event Action<DamageInfo> Damaged;
         public event Action Died;
 
+        /// <summary>
+        /// Optional hook to modify a DamageInfo before it's applied (e.g. PlayerBlock
+        /// reducing frontal-guard damage to x0.2, or zeroing it entirely on a parry).
+        /// Applied once at the very start of TakeDamage, before i-frames/HP/events.
+        /// </summary>
+        public Func<DamageInfo, DamageInfo> DamageFilter;
+
         private void Awake()
         {
             currentHP = maxHP;
@@ -61,6 +68,11 @@ namespace ButecoDosDevs.Combat
             if (IsDead || iFrameTimer > 0f)
             {
                 return false;
+            }
+
+            if (DamageFilter != null)
+            {
+                info = DamageFilter(info);
             }
 
             currentHP -= info.amount;

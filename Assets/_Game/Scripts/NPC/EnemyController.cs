@@ -361,6 +361,33 @@ namespace ButecoDosDevs.NPC
             }
         }
 
+        /// <summary>
+        /// Cancels any windup/attack in progress and holds the enemy still (Hurt state)
+        /// for the given duration. Used by PlayerBlock's parry counter-stagger.
+        /// </summary>
+        public void Stagger(float seconds)
+        {
+            if (state == State.KO)
+            {
+                return;
+            }
+
+            if (hitbox != null)
+            {
+                hitbox.Close();
+            }
+            if (hitboxSprite != null)
+            {
+                hitboxSprite.enabled = false;
+            }
+            RestoreVisual();
+
+            isSliding = false;
+            moveDir = Vector2.zero;
+            state = State.Hurt;
+            stateTimer = Mathf.Max(seconds, hurtStunTime);
+        }
+
         private void RestoreVisual()
         {
             if (spriteRenderer != null)

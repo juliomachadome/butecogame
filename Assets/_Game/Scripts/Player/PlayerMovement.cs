@@ -12,6 +12,7 @@ namespace ButecoDosDevs.Player
     {
         [Header("Movement")]
         [SerializeField] private float moveSpeed = 5f;
+        [SerializeField] private float guardSpeedMultiplier = 0.5f;
 
         [Header("Dash")]
         [SerializeField] private float dashDistance = 3f;
@@ -40,6 +41,8 @@ namespace ButecoDosDevs.Player
         private float knockbackDuration;
         private Vector2 knockbackVelocity;
 
+        private bool isGuarding;
+
         private readonly RaycastHit2D[] dashCastResults = new RaycastHit2D[4];
         private ContactFilter2D dashCastFilter;
 
@@ -47,6 +50,10 @@ namespace ButecoDosDevs.Player
         public bool IsDashing => isDashing;
         public bool IsKnockedBack => isKnockedBack;
         public bool IsMoving => moveInput.sqrMagnitude > 0.0001f;
+        public bool IsGuarding => isGuarding;
+
+        /// <summary>Dash readiness for HUD: 0 = just used, 1 = ready.</summary>
+        public float DashReadiness01 => dashCooldown <= 0f ? 1f : 1f - Mathf.Clamp01(dashCooldownTimer / dashCooldown);
 
         private void Awake()
         {
@@ -81,6 +88,7 @@ namespace ButecoDosDevs.Player
             dashAction = new InputAction(name: "Dash", type: InputActionType.Button);
             dashAction.AddBinding("<Keyboard>/space");
             dashAction.AddBinding("<Keyboard>/leftShift");
+            dashAction.AddBinding("<Gamepad>/buttonEast");
             dashAction.performed += OnDashPerformed;
         }
 
@@ -145,7 +153,7 @@ namespace ButecoDosDevs.Player
         /// </summary>
         public bool TryDash(Vector2 direction)
         {
-            if (isDashing || isKnockedBack || dashCooldownTimer > 0f)
+            if (isDashing || isKnockedBack || dashCooldownTimer > 0f || isGuarding)
             {
                 return false;
             }
@@ -200,6 +208,15 @@ namespace ButecoDosDevs.Player
             knockbackVelocity = velocity;
         }
 
+        /// <summary>
+        /// Toggles guard movement (half speed, blocks dash). Called by PlayerBlock;
+        /// kept here (not in PlayerBlock) since PlayerMovement owns moveSpeed/velocity.
+        /// </summary>
+        public void SetGuarding(bool guarding)
+        {
+            isGuarding = guarding;
+        }
+
         private void FixedUpdate()
         {
             // Movement is fully position-driven; clear velocity picked up from contacts so the player never drifts.
@@ -230,7 +247,8 @@ namespace ButecoDosDevs.Player
                 return;
             }
 
-            Vector2 velocity = moveInput * moveSpeed;
+            float speedMultiplier = isGuarding ? guardSpeedMultiplier : 1f;
+            Vector2 velocity = moveInput * moveSpeed * speedMultiplier;
             rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
         }
 
