@@ -323,6 +323,7 @@ namespace ButecoDosDevs.Systems
         private IEnumerator RunArrival()
         {
             state = State.Arrival;
+            GameState.CurrentButecoStage = GameState.ButecoStage.Arrival;
             objectiveUI?.SetObjective("Explore o Buteco...");
 
             yield return new WaitForSeconds(2f);
@@ -499,7 +500,15 @@ namespace ButecoDosDevs.Systems
         private IEnumerator RunExplore()
         {
             state = State.Explore;
-            strangerRoutine = StartCoroutine(StrangerLoop());
+            GameState.CurrentButecoStage = GameState.ButecoStage.Explore;
+            // The stranger loop is started here but deliberately NOT stopped at the end
+            // of Explore anymore: it keeps running through PedroLeaves too (the "wait for
+            // Pedro" period is still free-roam), and only stops once RunPedroLeaves hands
+            // off to RunPedroReturns (see RunFlow).
+            if (strangerRoutine == null)
+            {
+                strangerRoutine = StartCoroutine(StrangerLoop());
+            }
 
             float elapsed = 0f;
             while (TalkedCount() < 3 && elapsed < exploreTimeout)
@@ -507,28 +516,60 @@ namespace ButecoDosDevs.Systems
                 elapsed += Time.deltaTime;
                 yield return null;
             }
-
-            if (strangerRoutine != null)
-            {
-                StopCoroutine(strangerRoutine);
-                strangerRoutine = null;
-            }
         }
 
+        /// <summary>
+        /// Drives the "desconhecido aleatório" sandbox vignette. The very first
+        /// encounter fires early (5-8s into free-roam, right after Pedro's "Bem-vindo ao
+        /// Buteco, novato.") and is always a TIMEOUT, to show the joke right away;
+        /// later ones repeat every 45-70s with a 50/50 outcome. Only fires while the
+        /// story is actually free-roaming (Explore/PedroLeaves) and no other cutscene is
+        /// playing — CutsceneMode.IsActive pauses the countdown rather than skipping it,
+        /// so a beat that runs long just delays the next stranger instead of losing it.
+        /// </summary>
         private IEnumerator StrangerLoop()
         {
-            while (true)
+            bool isFirst = true;
+            while (state == State.Explore || state == State.PedroLeaves)
             {
-                float wait = Random.Range(strangerIntervalMin, strangerIntervalMax);
-                yield return new WaitForSeconds(wait);
-                if (genericNpcPrefab != null && pedro != null)
+                float wait = isFirst ? Random.Range(5f, 8f) : Random.Range(strangerIntervalMin, strangerIntervalMax);
+                yield return WaitFreeRoam(wait);
+
+                if (state != State.Explore && state != State.PedroLeaves)
                 {
-                    yield return RunStrangerEvent();
+                    yield break;
                 }
+
+                if (genericNpcPrefab != null && pedro != null && !CutsceneMode.IsActive)
+                {
+                    yield return RunStrangerEvent(forceTimeout: isFirst);
+                }
+                isFirst = false;
             }
         }
 
-        private IEnumerator RunStrangerEvent()
+        /// <summary>Counts down 'seconds' of free-roam time, pausing (not skipping) while
+        /// CutsceneMode is active. Bails out immediately if the story has moved past
+        /// Explore/PedroLeaves (e.g. Pedro just walked back in) so the caller's loop
+        /// condition re-check ends things cleanly — never blocks anything else.</summary>
+        private IEnumerator WaitFreeRoam(float seconds)
+        {
+            float remaining = seconds;
+            while (remaining > 0f)
+            {
+                if (state != State.Explore && state != State.PedroLeaves)
+                {
+                    yield break;
+                }
+                if (!CutsceneMode.IsActive)
+                {
+                    remaining -= Time.deltaTime;
+                }
+                yield return null;
+            }
+        }
+
+        private IEnumerator RunStrangerEvent(bool forceTimeout = false)
         {
             Sfx.Play(SoundId.PortaAbre, doorPosition);
             GameObject stranger = Instantiate(genericNpcPrefab, doorPosition, Quaternion.identity);
@@ -555,7 +596,8 @@ namespace ButecoDosDevs.Systems
             Say(strangerT, answer, 1.8f);
             yield return new WaitForSeconds(1.8f);
 
-            if (Random.value < 0.5f)
+            bool timeoutOutcome = forceTimeout || Random.value < 0.5f;
+            if (!timeoutOutcome)
             {
                 Say(pedro, "Pode entrar.", 1.6f);
                 yield return new WaitForSeconds(1.6f);
@@ -612,6 +654,7 @@ namespace ButecoDosDevs.Systems
         private IEnumerator RunPedroLeaves()
         {
             state = State.PedroLeaves;
+            GameState.CurrentButecoStage = GameState.ButecoStage.PedroLeaves;
 
             BeginCutscene();
             FaceEachOther(pedro, pedroSprite);
@@ -657,6 +700,17 @@ namespace ButecoDosDevs.Systems
         private IEnumerator RunPedroReturns()
         {
             state = State.PedroReturns;
+            GameState.CurrentButecoStage = GameState.ButecoStage.PedroReturns;
+
+            // The sandbox "desconhecido" vignette only belongs to free-roam
+            // (Explore/PedroLeaves); StrangerLoop's own while-condition would stop it on
+            // its next check anyway, but stopping it here immediately prevents a
+            // straggler stranger from popping in mid-"VOCÊS NÃO VÃO ACREDITAR" cutscene.
+            if (strangerRoutine != null)
+            {
+                StopCoroutine(strangerRoutine);
+                strangerRoutine = null;
+            }
 
             if (pedro != null)
             {
@@ -756,13 +810,29 @@ namespace ButecoDosDevs.Systems
 
         // ---------------- Arsenal ----------------
 
+        [Header("Arsenal recruits (walk to the sinuca, equip a sword, then head to the door)")]
+        [SerializeField] private Transform[] genericRecruits; // NPC_GenericButeco_1/2/3
+        [SerializeField] private float recruitPickupPause = 0.5f;
+
+        private readonly System.Collections.Generic.List<Transform> weaponIndicators = new System.Collections.Generic.List<Transform>();
+
         private IEnumerator RunArsenal()
         {
             state = State.Arsenal;
-            Say(moe, "Tem umas coisas debaixo do balcão...", 2.4f);
-            yield return new WaitForSeconds(2.4f);
+            GameState.CurrentButecoStage = GameState.ButecoStage.Arsenal;
+
+            // Short cutscene: Moe reveals the hidden arsenal under the counter.
+            BeginCutscene();
+            Say(moe, "Tem umas coisas debaixo do balcão...", 2.2f);
+            yield return new WaitForSeconds(2.2f);
+            Sfx.Play(SoundId.PortaAbre, arsenalSpawnPoint != null ? arsenalSpawnPoint.position : doorPosition);
+            Say(moe, "Escolham com sabedoria.", 1.8f);
+            yield return new WaitForSeconds(1.8f);
+            CutsceneMode.End();
 
             SpawnWeaponPickups();
+            objectiveUI?.SetObjective("Escolha sua arma na sinuca [E]");
+            StartCoroutine(IndicatorBobLoop());
 
             float elapsed = 0f;
             while (GameState.ChosenWeapon == GameState.Weapon.None && elapsed < weaponChoiceFallbackSeconds)
@@ -776,16 +846,19 @@ namespace ButecoDosDevs.Systems
                 // Anti-soft-lock fallback: nobody chose in time, default to the balanced sword.
                 ApplyWeapon(GameState.Weapon.Balanced);
             }
+
+            yield return SendAlliesToArsenal();
         }
 
         private void SpawnWeaponPickups()
         {
             Vector3 origin = arsenalSpawnPoint != null ? arsenalSpawnPoint.position + Vector3.up * 0.4f : transform.position;
 
-            SpawnWeaponPickup("Espada Equilibrada", GameState.Weapon.Balanced, 30f, 1f, 1f, swordSprite, 1f, origin + new Vector3(-0.6f, 0.3f, 0f));
-            SpawnWeaponPickup("Espadona", GameState.Weapon.BigSlow, 45f, 1.5f, 1f, swordSprite, 1.4f, origin + new Vector3(-0.2f, 0.35f, 0f));
-            SpawnWeaponPickup("Espada Curta", GameState.Weapon.ShortFast, 22f, 0.65f, 1f, swordSprite, 0.7f, origin + new Vector3(0.2f, 0.3f, 0f));
-            SpawnWeaponPickup("Garrafa", GameState.Weapon.Bottle, 26f, 1f, 2f, bottleSprite != null ? bottleSprite : swordSprite, 0.8f, origin + new Vector3(0.6f, 0.3f, 0f));
+            // Spaced well apart along the pool table so each one reads as its own pickup.
+            SpawnWeaponPickup("Espada Equilibrada", GameState.Weapon.Balanced, 30f, 1f, 1f, swordSprite, 1f, origin + new Vector3(-1.5f, 0.3f, 0f));
+            SpawnWeaponPickup("Espadona", GameState.Weapon.BigSlow, 45f, 1.5f, 1f, swordSprite, 1.4f, origin + new Vector3(-0.5f, 0.35f, 0f));
+            SpawnWeaponPickup("Espada Curta", GameState.Weapon.ShortFast, 22f, 0.65f, 1f, swordSprite, 0.7f, origin + new Vector3(0.5f, 0.3f, 0f));
+            SpawnWeaponPickup("Garrafa", GameState.Weapon.Bottle, 26f, 1f, 2f, bottleSprite != null ? bottleSprite : swordSprite, 0.8f, origin + new Vector3(1.5f, 0.3f, 0f));
         }
 
         private void SpawnWeaponPickup(string label, GameState.Weapon weapon, float damage, float timeMult, float kbMult, Sprite sprite, float visualScale, Vector3 position)
@@ -805,6 +878,154 @@ namespace ButecoDosDevs.Systems
             Interactable interactable = go.AddComponent<Interactable>();
             interactable.SetDialogue(label, new[] { "Você pega: " + label + "." });
             interactable.OnConversationEndedEvent.AddListener(() => ApplyWeapon(weapon, damage, timeMult, kbMult, sprite, visualScale, label));
+
+            // Name label + "[E] Pegar <arma>" prompt, same look as NPC tags.
+            InteractPrompt prompt = go.AddComponent<InteractPrompt>();
+            prompt.SetLabel("[E] Pegar " + label);
+
+            // A small bobbing diamond above the weapon while the choice is still open
+            // (IndicatorBobLoop below hides/destroys these once a weapon is chosen).
+            GameObject indicatorGo = new GameObject("Indicator");
+            indicatorGo.transform.SetParent(go.transform, false);
+            indicatorGo.transform.localPosition = new Vector3(0f, 1.6f / Mathf.Max(visualScale, 0.01f), 0f);
+            indicatorGo.transform.localRotation = Quaternion.Euler(0f, 0f, 45f);
+            SpriteRenderer indicatorSr = indicatorGo.AddComponent<SpriteRenderer>();
+            indicatorSr.sprite = GetOrCreateSolidSprite();
+            indicatorSr.color = new Color(1f, 0.85f, 0.2f, 1f);
+            indicatorSr.sortingOrder = 20;
+            indicatorGo.transform.localScale = Vector3.one * 0.25f;
+            weaponIndicators.Add(indicatorGo.transform);
+        }
+
+        private static Sprite solidSpriteCache;
+
+        /// <summary>Cheap 1x1-pixel white sprite, tinted per-use via SpriteRenderer.color —
+        /// the project's established "quadrado colorido" placeholder style, used here for
+        /// the arsenal's bobbing pick-a-weapon indicator (no art asset needed).</summary>
+        private static Sprite GetOrCreateSolidSprite()
+        {
+            if (solidSpriteCache != null)
+            {
+                return solidSpriteCache;
+            }
+            Texture2D tex = new Texture2D(1, 1);
+            tex.SetPixel(0, 0, Color.white);
+            tex.Apply();
+            solidSpriteCache = Sprite.Create(tex, new Rect(0f, 0f, 1f, 1f), new Vector2(0.5f, 0.5f), 1f);
+            return solidSpriteCache;
+        }
+
+        /// <summary>Bobs every weapon-pickup indicator up/down while the player still has
+        /// no weapon; stops and destroys them the moment GameState.ChosenWeapon is set
+        /// (self-terminating, no external stop call needed — can't leak forever).</summary>
+        private IEnumerator IndicatorBobLoop()
+        {
+            Vector3[] basePositions = new Vector3[weaponIndicators.Count];
+            for (int i = 0; i < weaponIndicators.Count; i++)
+            {
+                if (weaponIndicators[i] != null)
+                {
+                    basePositions[i] = weaponIndicators[i].localPosition;
+                }
+            }
+
+            float t = 0f;
+            while (GameState.ChosenWeapon == GameState.Weapon.None)
+            {
+                t += Time.deltaTime;
+                float bob = Mathf.Sin(t * 3f) * 0.1f;
+                for (int i = 0; i < weaponIndicators.Count; i++)
+                {
+                    Transform ind = weaponIndicators[i];
+                    if (ind != null)
+                    {
+                        ind.localPosition = basePositions[i] + Vector3.up * bob;
+                    }
+                }
+                yield return null;
+            }
+
+            for (int i = 0; i < weaponIndicators.Count; i++)
+            {
+                if (weaponIndicators[i] != null)
+                {
+                    Destroy(weaponIndicators[i].gameObject);
+                }
+            }
+            weaponIndicators.Clear();
+        }
+
+        /// <summary>
+        /// Once a weapon is chosen, walks Pedro, Rei Luiz and the generic Buteco members
+        /// to the arsenal one at a time (staggered, not simultaneous), equips a sword
+        /// HeldItem on each, then sends them toward the door to wait for "Bora.". Every
+        /// leg uses WalkTo, which already has its own per-walk timeout, so a stuck
+        /// recruit just teleports to its target instead of stalling the send-off
+        /// (anti-soft-lock).
+        /// </summary>
+        private IEnumerator SendAlliesToArsenal()
+        {
+            System.Collections.Generic.List<Transform> recruits = new System.Collections.Generic.List<Transform>();
+            if (pedro != null) recruits.Add(pedro);
+            if (reiLuiz != null) recruits.Add(reiLuiz);
+            if (genericRecruits != null)
+            {
+                foreach (Transform t in genericRecruits)
+                {
+                    if (t != null) recruits.Add(t);
+                }
+            }
+
+            Vector3 arsenalPos = arsenalSpawnPoint != null ? arsenalSpawnPoint.position : transform.position;
+
+            for (int i = 0; i < recruits.Count; i++)
+            {
+                Transform recruit = recruits[i];
+                if (recruit == null || !recruit.gameObject.activeInHierarchy)
+                {
+                    continue;
+                }
+
+                // Generic Buteco members may still have their Nerf-war loop active
+                // (EndCrowdFocus turns it back on after Pedro's return speech); stop it
+                // so it can't fight this scripted walk for control of their position.
+                NerfChaos nerfChaos = recruit.GetComponent<NerfChaos>();
+                if (nerfChaos != null)
+                {
+                    nerfChaos.enabled = false;
+                }
+
+                NPCSprite sprite = recruit == pedro ? pedroSprite : recruit.GetComponent<NPCSprite>();
+                Vector3 pickupSpot = arsenalPos + new Vector3(Mathf.Sin(i * 1.3f) * 0.6f, 0.4f + (i % 2) * 0.2f, 0f);
+
+                yield return WalkTo(recruit, sprite, pickupSpot, pedroWalkSpeed, walkTimeout);
+                EquipSword(recruit, sprite);
+                yield return new WaitForSeconds(recruitPickupPause);
+
+                Vector3 doorSpot = doorPosition + new Vector3(-1f + i * 0.4f, 1.2f, 0f);
+                yield return WalkTo(recruit, sprite, doorSpot, pedroWalkSpeed, walkTimeout);
+            }
+        }
+
+        /// <summary>Attaches a runtime sword HeldItem child to an ally NPC so the arsenal
+        /// pickup reads visually (same idea as the player's Visual/HeldItem_Weapon).
+        /// No-op if the ally already has one (e.g. re-entering this step twice).</summary>
+        private void EquipSword(Transform recruit, NPCSprite sprite)
+        {
+            if (recruit == null || recruit.Find("HeldItem_Sword_Auto") != null)
+            {
+                return;
+            }
+
+            GameObject go = new GameObject("HeldItem_Sword_Auto");
+            go.transform.SetParent(recruit, false);
+            SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+            sr.sprite = swordSprite;
+            HeldItem held = go.AddComponent<HeldItem>();
+            // HeldItem reads its facing source and item renderer via reflection-free
+            // public setters isn't available (Inspector-only fields), so wire the two it
+            // needs through SetRefs instead of leaving it faceless.
+            held.SetRefs(sprite, sr);
         }
 
         private void ApplyWeapon(GameState.Weapon weapon)
@@ -854,6 +1075,7 @@ namespace ButecoDosDevs.Systems
         private IEnumerator RunBora()
         {
             state = State.Bora;
+            GameState.CurrentButecoStage = GameState.ButecoStage.Bora;
             NerfChaos.SetAllActive(false);
 
             BeginCutscene();

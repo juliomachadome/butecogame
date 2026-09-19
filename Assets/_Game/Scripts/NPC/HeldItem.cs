@@ -51,6 +51,16 @@ namespace ButecoDosDevs.NPC
         private Coroutine smokeRoutine;
         private int puffCount;
 
+        /// <summary>Runtime wiring hook for HeldItems built purely in code (e.g.
+        /// ButecoFlow's arsenal step, equipping a sword on an ally NPC that has no
+        /// hand-authored HeldItem child in the scene). Assigns the facing source and the
+        /// item's own SpriteRenderer directly, since the Inspector fields are private.</summary>
+        public void SetRefs(NPCSprite facingSource, SpriteRenderer renderer)
+        {
+            npcSprite = facingSource;
+            itemRenderer = renderer;
+        }
+
         private void Awake()
         {
             if (emitsSmoke && smokeSprite != null)

@@ -1363,7 +1363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6542493118953058377, guid: dd8ae2c47da9e41c3acdabdae29fe62f, type: 3}
       propertyPath: formationSideOffset
-      value: 2.2
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 8670062164932378828, guid: dd8ae2c47da9e41c3acdabdae29fe62f, type: 3}
       propertyPath: m_Name
@@ -1752,6 +1752,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9058686495657383786, guid: 992f5b762dc334bc5bfca47eb5bd032e, type: 3}
+      propertyPath: formationSideOffset
+      value: 1.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1768,6 +1772,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9fdea6540d34f0ba2ad5019b096fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.AllyController
+--- !u!4 &472444160 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2295918647033661149, guid: 992f5b762dc334bc5bfca47eb5bd032e, type: 3}
+  m_PrefabInstance: {fileID: 472444158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &484782883
 GameObject:
   m_ObjectHideFlags: 0
@@ -3115,17 +3124,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Systems.WaveSpawner
   enemyPrefab: {fileID: 8336997068597872600, guid: 9d196bd82b512435aa4f20c93e02e122, type: 3}
+  strongEnemyPrefab: {fileID: 3750980508106168279, guid: 3f431ce2ee910471eaa1e6dec40714ab, type: 3}
   spawnPoints:
   - {fileID: 493422274}
   - {fileID: 955057110}
-  waveSizes: 08000000i
+  waveSizes: 030000000400000005000000i
   delayBetweenSpawns: 0.35
   delayBeforeFirstWave: 1
+  delayBetweenWaves: 0.5
   perWaveTimeout: 90
   onAllWavesDone:
     m_PersistentCalls:
       m_Calls: []
   onWaveStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  onWaveCleared:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &881425405
@@ -3775,6 +3789,10 @@ PrefabInstance:
     - target: {fileID: 5918330487528703709, guid: dd8ae2c47da9e41c3acdabdae29fe62f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542493118953058377, guid: dd8ae2c47da9e41c3acdabdae29fe62f, type: 3}
+      propertyPath: formationSideOffset
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 8670062164932378828, guid: dd8ae2c47da9e41c3acdabdae29fe62f, type: 3}
       propertyPath: m_Name
@@ -4534,6 +4552,10 @@ PrefabInstance:
     - target: {fileID: 5918330487528703709, guid: dd8ae2c47da9e41c3acdabdae29fe62f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542493118953058377, guid: dd8ae2c47da9e41c3acdabdae29fe62f, type: 3}
+      propertyPath: formationSideOffset
+      value: -2.4
       objectReference: {fileID: 0}
     - target: {fileID: 8670062164932378828, guid: dd8ae2c47da9e41c3acdabdae29fe62f, type: 3}
       propertyPath: m_Name
@@ -5454,6 +5476,10 @@ MonoBehaviour:
   playerAttack: {fileID: 1022178548}
   objectiveUI: {fileID: 2145987800}
   waveSpawner: {fileID: 881425404}
+  crowdCheerAnchors:
+  - {fileID: 837229560}
+  - {fileID: 472444160}
+  respiteBalloonSeconds: 2.4
   bossPrefab: {fileID: 2539551651063923932, guid: 781af38b4f8fa4276bfcee708d070f61, type: 3}
   bossThronePoint: {fileID: 529537387}
   pedro: {fileID: 837229560}
@@ -6223,7 +6249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6542493118953058377, guid: dd8ae2c47da9e41c3acdabdae29fe62f, type: 3}
       propertyPath: formationSideOffset
-      value: -2.2
+      value: -3.2
       objectReference: {fileID: 0}
     - target: {fileID: 8670062164932378828, guid: dd8ae2c47da9e41c3acdabdae29fe62f, type: 3}
       propertyPath: m_Name

@@ -33,6 +33,30 @@ namespace ButecoDosDevs.Systems
         /// of replaying the whole intro.</summary>
         public static bool IntroDone { get; set; }
 
+        /// <summary>Coarse "how far into the Buteco story are we" marker, updated by
+        /// ButecoFlow at the start of each major step. CanVisitStreet already restricts
+        /// street trips to Explore/PedroLeaves, so a scene reload mid-story can't reach a
+        /// state this doesn't cover — this exists purely so a reload (e.g. a future debug
+        /// menu, or the street-visit door round-trip) can resume from the right stage
+        /// instead of always restarting at Explore.</summary>
+        public enum ButecoStage
+        {
+            Arrival,
+            Explore,
+            PedroLeaves,
+            PedroReturns,
+            Arsenal,
+            Bora
+        }
+
+        public static ButecoStage CurrentButecoStage { get; set; } = ButecoStage.Arrival;
+
+        /// <summary>0-based index of the last BarRival wave the player reached (set by
+        /// BarRivalFlow as each wave starts). Used as a checkpoint: if the player is
+        /// knocked out and the battle scene reloads, WaveSpawner.StartWaveIndex resumes
+        /// from here instead of forcing a full replay from wave 1.</summary>
+        public static int BarRivalWaveIndex { get; set; }
+
         /// <summary>The chosen weapon's held-item sprite (set once by ButecoFlow's arsenal
         /// pickup), so Rua/BarRival can re-show it in the player's hand on scene start
         /// without needing their own copy of the sword/bottle art references.</summary>
@@ -47,6 +71,8 @@ namespace ButecoDosDevs.Systems
             WarFinished = false;
             StreetVisit = false;
             IntroDone = false;
+            CurrentButecoStage = ButecoStage.Arrival;
+            BarRivalWaveIndex = 0;
         }
 
         /// <summary>Combat stats for a weapon: damage, windup/active/recovery time multiplier, knockback multiplier, held-item visual scale.</summary>

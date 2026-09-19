@@ -7,10 +7,15 @@ using ButecoDosDevs.UI;
 namespace ButecoDosDevs.Systems
 {
     /// <summary>
-    /// Fase 9 story script for the "BarRival" scene: 1 enemy wave, then the Admin Rival
-    /// boss rises from his "throne" with a taunt, fight, post-fight balloons, then
-    /// GameState.WarFinished = true and a fade back to the Buteco (epilogue). Same
-    /// timeout-guarded coroutine style as ButecoFlow/RuaFlow.
+    /// Fase 9 story script for the "BarRival" scene, where the whole fight now happens
+    /// (Passe 3a): 3 escalating enemy waves (poucos -> mais, de lados diferentes ->
+    /// mais fortes) with a short crowd-cheer respite between each, then the Admin
+    /// Rival boss rises from his "throne" with a taunt, fight, post-fight balloons,
+    /// then GameState.WarFinished = true and a fade back to the Buteco (epilogue).
+    /// GameState.BarRivalWaveIndex is updated as each wave starts, so a defeat + retry
+    /// (BattleLives reloading this scene) resumes from the current wave instead of
+    /// replaying already-cleared ones. Same timeout-guarded coroutine style as
+    /// ButecoFlow/RuaFlow.
     /// </summary>
     public class BarRivalFlow : MonoBehaviour
     {
@@ -20,8 +25,10 @@ namespace ButecoDosDevs.Systems
         [Header("UI")]
         [SerializeField] private ObjectiveUI objectiveUI;
 
-        [Header("Waves (1 wave before the boss)")]
+        [Header("Waves (3 escalating waves before the boss)")]
         [SerializeField] private WaveSpawner waveSpawner;
+        [SerializeField] private Transform[] crowdCheerAnchors; // e.g. the allies, for the between-waves balloons
+        [SerializeField] private float respiteBalloonSeconds = 2.4f;
 
         [Header("Boss")]
         [SerializeField] private GameObject bossPrefab;
@@ -32,12 +39,27 @@ namespace ButecoDosDevs.Systems
         [SerializeField] private string nextScenePath = "Buteco";
         [SerializeField] private float bossSpawnTimeout = 60f;
 
+        private static readonly string[] CheerLines =
+        {
+            "Boa! Próxima leva!",
+            "Segura a linha!",
+            "É nóis!",
+            "Vamo que vamo!"
+        };
+
         private GameObject bossInstance;
         private Health bossHealth;
 
         private void Awake()
         {
             GameState.ApplyWeapon(playerAttack, GameState.ChosenWeapon);
+
+            if (waveSpawner != null)
+            {
+                // Checkpoint resume: retrying after a KO reloads this scene, so pick up
+                // from the wave already reached instead of forcing a full replay.
+                waveSpawner.StartWaveIndex = Mathf.Max(GameState.BarRivalWaveIndex, 0);
+            }
         }
 
         private void Start()
@@ -53,6 +75,8 @@ namespace ButecoDosDevs.Systems
             {
                 bool waveDone = false;
                 waveSpawner.OnAllWavesDone.AddListener(() => waveDone = true);
+                waveSpawner.OnWaveStarted.AddListener(OnWaveStarted);
+                waveSpawner.OnWaveCleared.AddListener(OnWaveCleared);
                 waveSpawner.StartWaves();
 
                 float elapsed = 0f;
@@ -69,6 +93,36 @@ namespace ButecoDosDevs.Systems
 
             GameState.WarFinished = true;
             SceneTransition.Load(nextScenePath);
+        }
+
+        private void OnWaveStarted()
+        {
+            if (waveSpawner == null)
+            {
+                return;
+            }
+            // 0-based checkpoint: CurrentWaveNumber is 1-based.
+            GameState.BarRivalWaveIndex = Mathf.Max(waveSpawner.CurrentWaveNumber - 1, 0);
+            objectiveUI?.SetObjective($"Onda {waveSpawner.CurrentWaveNumber} de {waveSpawner.TotalWaves}");
+        }
+
+        private void OnWaveCleared()
+        {
+            // Short breather with the crowd celebrating in balloons; purely cosmetic
+            // (WaveSpawner's own delayBetweenWaves already pauses the next spawn), so a
+            // missing anchor just no-ops instead of stalling the fight.
+            if (crowdCheerAnchors == null || crowdCheerAnchors.Length == 0)
+            {
+                return;
+            }
+            foreach (Transform anchor in crowdCheerAnchors)
+            {
+                if (anchor != null && anchor.gameObject.activeInHierarchy)
+                {
+                    string line = CheerLines[Random.Range(0, CheerLines.Length)];
+                    SpeechBubble.Say(anchor, line, respiteBalloonSeconds);
+                }
+            }
         }
 
         private IEnumerator SpawnBoss()

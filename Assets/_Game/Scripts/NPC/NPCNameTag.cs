@@ -36,6 +36,24 @@ namespace ButecoDosDevs.NPC
             gameObject.SetActive(true);
         }
 
+        /// <summary>
+        /// Runtime construction hook for tags built purely in code (e.g. InteractPrompt
+        /// on props/doors, which have no hand-authored NameTag child in the scene).
+        /// Assigns the text refs directly and applies promptLabel immediately (Awake,
+        /// which would normally apply it, may already have run by the time this is
+        /// called since AddComponent triggers Awake synchronously on an active object).
+        /// </summary>
+        public void Configure(TextMeshPro nameTextRef, TextMeshPro promptTextRef, string promptLabelText)
+        {
+            nameText = nameTextRef;
+            promptText = promptTextRef;
+            promptLabel = promptLabelText;
+            if (promptText != null)
+            {
+                promptText.text = promptLabel;
+            }
+        }
+
         public void Hide()
         {
             gameObject.SetActive(false);

@@ -15,16 +15,32 @@ namespace ButecoDosDevs.Systems
     public class WaveSpawner : MonoBehaviour
     {
         [SerializeField] private GameObject enemyPrefab;
+        [Tooltip("Optional stronger prefab used for the LAST wave only (e.g. wave 3's tougher rivals). Falls back to enemyPrefab if left empty.")]
+        [SerializeField] private GameObject strongEnemyPrefab;
         [SerializeField] private Transform[] spawnPoints;
         [SerializeField] private int[] waveSizes = { 3, 4, 5 };
         [SerializeField] private float delayBetweenSpawns = 0.35f;
         [SerializeField] private float delayBeforeFirstWave = 1f;
+        [Tooltip("Pause between waves (after a wave clears) so the group can breathe/celebrate before the next one starts.")]
+        [SerializeField] private float delayBetweenWaves = 0.5f;
         [SerializeField] private float perWaveTimeout = 90f;
         [SerializeField] private UnityEvent onAllWavesDone = new UnityEvent();
         [SerializeField] private UnityEvent onWaveStarted = new UnityEvent();
+        [SerializeField] private UnityEvent onWaveCleared = new UnityEvent();
 
         public UnityEvent OnAllWavesDone => onAllWavesDone;
         public UnityEvent OnWaveStarted => onWaveStarted;
+        public UnityEvent OnWaveCleared => onWaveCleared;
+
+        /// <summary>1-based index of the wave currently running/just started (0 before StartWaves).
+        /// Read by BarRivalFlow for the "onda X de N" respite balloon and by GameState checkpoint bookkeeping.</summary>
+        public int CurrentWaveNumber { get; private set; }
+        public int TotalWaves => waveSizes != null ? waveSizes.Length : 0;
+
+        /// <summary>Wave index (0-based) to start from; set before StartWaves() to resume
+        /// past already-cleared waves (anti-soft-lock: a mid-battle checkpoint retry
+        /// shouldn't force the player through waves they already cleared).</summary>
+        public int StartWaveIndex { get; set; }
 
         private bool started;
 
@@ -42,27 +58,38 @@ namespace ButecoDosDevs.Systems
         {
             yield return new WaitForSeconds(delayBeforeFirstWave);
 
-            for (int w = 0; w < waveSizes.Length; w++)
+            int startIndex = Mathf.Clamp(StartWaveIndex, 0, waveSizes.Length);
+            for (int w = startIndex; w < waveSizes.Length; w++)
             {
+                CurrentWaveNumber = w + 1;
                 onWaveStarted?.Invoke();
-                yield return SpawnWave(waveSizes[w]);
+                bool isLastWave = w == waveSizes.Length - 1;
+                yield return SpawnWave(waveSizes[w], isLastWave);
                 yield return WaitForWaveClear();
+                onWaveCleared?.Invoke();
+                if (!isLastWave)
+                {
+                    yield return new WaitForSeconds(delayBetweenWaves);
+                }
             }
 
             onAllWavesDone?.Invoke();
         }
 
-        private IEnumerator SpawnWave(int count)
+        private IEnumerator SpawnWave(int count, bool useStrongPrefab)
         {
-            if (enemyPrefab == null || spawnPoints == null || spawnPoints.Length == 0)
+            GameObject prefabToUse = useStrongPrefab && strongEnemyPrefab != null ? strongEnemyPrefab : enemyPrefab;
+            if (prefabToUse == null || spawnPoints == null || spawnPoints.Length == 0)
             {
                 yield break;
             }
 
             for (int i = 0; i < count; i++)
             {
+                // Round-robin across all spawn points so a multi-point setup spreads
+                // enemies across different sides instead of clumping at one door.
                 Transform point = spawnPoints[i % spawnPoints.Length];
-                Instantiate(enemyPrefab, point.position, Quaternion.identity);
+                Instantiate(prefabToUse, point.position, Quaternion.identity);
                 yield return new WaitForSeconds(delayBetweenSpawns);
             }
         }

@@ -34,6 +34,7 @@ namespace ButecoDosDevs.Systems
         private bool focusActive;
         private bool focusReturning;
         private Transform focusTarget;
+        private Vector3? focusPoint;
         private float focusTargetSize;
         private Vector3 focusBlendStartPos;
         private float focusBlendStartSize;
@@ -143,6 +144,34 @@ namespace ButecoDosDevs.Systems
             focusActive = true;
             focusReturning = false;
             focusTarget = target;
+            focusPoint = null;
+            focusTargetSize = orthographicSize;
+            focusBlendStartPos = transform.position;
+            focusBlendStartSize = cam.orthographicSize;
+            focusT = 0f;
+            focusBlendDuration = Mathf.Max(blendSeconds, 0.01f);
+        }
+
+        /// <summary>Point-based overload of BeginFocus (no Transform to track, e.g.
+        /// "show both bars" during the Rua's street crossing): zooms/pans to a fixed
+        /// world point instead of following a moving target.</summary>
+        public void BeginFocus(Vector3 point, float orthographicSize, float blendSeconds = 0.5f)
+        {
+            if (cam == null)
+            {
+                return;
+            }
+
+            if (!focusActive)
+            {
+                preFocusPosition = basePosition;
+                preFocusSize = cam.orthographicSize;
+            }
+
+            focusActive = true;
+            focusReturning = false;
+            focusTarget = null;
+            focusPoint = point;
             focusTargetSize = orthographicSize;
             focusBlendStartPos = transform.position;
             focusBlendStartSize = cam.orthographicSize;
@@ -193,9 +222,19 @@ namespace ButecoDosDevs.Systems
 
             // Anti-soft-lock: if the focus target got destroyed mid-cutscene, just hold
             // the current camera position/size instead of throwing on a null Transform.
-            Vector3 desired = focusTarget != null
-                ? new Vector3(focusTarget.position.x, focusTarget.position.y, transform.position.z)
-                : transform.position;
+            Vector3 desired;
+            if (focusTarget != null)
+            {
+                desired = new Vector3(focusTarget.position.x, focusTarget.position.y, transform.position.z);
+            }
+            else if (focusPoint.HasValue)
+            {
+                desired = new Vector3(focusPoint.Value.x, focusPoint.Value.y, transform.position.z);
+            }
+            else
+            {
+                desired = transform.position;
+            }
             transform.position = Vector3.Lerp(focusBlendStartPos, desired, t01);
             cam.orthographicSize = Mathf.Lerp(focusBlendStartSize, focusTargetSize, t01);
         }

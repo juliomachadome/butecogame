@@ -31,6 +31,13 @@ namespace ButecoDosDevs.Systems
 
         private Interactable interactable;
 
+        /// <summary>Runtime lock toggle (e.g. RuaFlow unlocking the rival door only after
+        /// the group crosses the street / the title card plays).</summary>
+        public void SetLocked(bool value)
+        {
+            locked = value;
+        }
+
         private void Awake()
         {
             if (onlyDuringStreetVisit && !GameState.StreetVisit)
@@ -45,7 +52,12 @@ namespace ButecoDosDevs.Systems
 
         private void OnTalked()
         {
-            if (locked || string.IsNullOrEmpty(targetScene))
+            if (locked)
+            {
+                SpeechBubble.Say(transform, "Trancado.", 1.4f);
+                return;
+            }
+            if (string.IsNullOrEmpty(targetScene))
             {
                 return;
             }

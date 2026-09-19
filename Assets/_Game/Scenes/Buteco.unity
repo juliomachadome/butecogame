@@ -2147,6 +2147,11 @@ MonoBehaviour:
   pedroBanterRadius: 4
   funnieBanterInterval: 15
   funnieBanterRadius: 4
+  genericRecruits:
+  - {fileID: 2018599202}
+  - {fileID: 649802165}
+  - {fileID: 946765429}
+  recruitPickupPause: 0.5
 --- !u!1 &339526028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3340,6 +3345,7 @@ GameObject:
   - component: {fileID: 462618657}
   - component: {fileID: 462618658}
   - component: {fileID: 462618659}
+  - component: {fileID: 462618660}
   m_Layer: 0
   m_Name: Door_Street
   m_TagString: Untagged
@@ -3437,6 +3443,22 @@ MonoBehaviour:
   setStreetVisitOnLoad: 1
   clearStreetVisitOnLoad: 0
   gateFlow: {fileID: 321232569}
+--- !u!114 &462618660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462618655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 009b5e6df225e454a9c36ba74be5be28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.InteractPrompt
+  promptLabel: '"[E] Sair para a rua"'
+  offset: {x: 0, y: 1.1, z: 0}
+  fontSize: 2.4
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &472132306
 GameObject:
   m_ObjectHideFlags: 0
@@ -4291,6 +4313,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+--- !u!4 &649802165 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+  m_PrefabInstance: {fileID: 649802164}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &655269372
 GameObject:
   m_ObjectHideFlags: 0
@@ -4538,6 +4565,7 @@ GameObject:
   - component: {fileID: 758523922}
   - component: {fileID: 758523923}
   - component: {fileID: 758523924}
+  - component: {fileID: 758523925}
   m_Layer: 0
   m_Name: Prop_NerfBox
   m_TagString: Untagged
@@ -4689,6 +4717,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ffa27877076484ab263208a97fcf86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.NerfPickupProp
+--- !u!114 &758523925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758523919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 009b5e6df225e454a9c36ba74be5be28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.InteractPrompt
+  promptLabel: '"[E] Pegar dardo Nerf"'
+  offset: {x: 0, y: 1.1, z: 0}
+  fontSize: 2.4
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &805160287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5744,6 +5788,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+--- !u!4 &946765429 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+  m_PrefabInstance: {fileID: 946765428}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &958188297
 GameObject:
   m_ObjectHideFlags: 0
@@ -12095,6 +12144,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+--- !u!4 &2018599202 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+  m_PrefabInstance: {fileID: 2018599201}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2051206255
 GameObject:
   m_ObjectHideFlags: 0

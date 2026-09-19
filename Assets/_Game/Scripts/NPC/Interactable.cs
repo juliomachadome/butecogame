@@ -61,5 +61,15 @@ namespace ButecoDosDevs.NPC
                 nameTag.Hide();
             }
         }
+
+        /// <summary>
+        /// Wires a runtime-built NameTag (e.g. from InteractPrompt on a prop/door that
+        /// has no hand-authored tag child in the scene) so ShowTag/HideTag work the same
+        /// as for hand-wired NPCs.
+        /// </summary>
+        public void SetNameTag(NPCNameTag tag)
+        {
+            nameTag = tag;
+        }
     }
 }
