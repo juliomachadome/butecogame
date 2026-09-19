@@ -58,7 +58,13 @@ namespace ButecoDosDevs.NPC
         [SerializeField] private GameObject reinforcementPrefab;
         [SerializeField] private Transform[] reinforcementPoints;
 
+        [Header("Walk animation (South-facing strip; idle = first frame)")]
+        [SerializeField] private Sprite[] walkFrames;
+        [SerializeField] private float walkFps = 8f;
+
         private State state = State.Idle;
+        private float walkFrameTimer;
+        private int walkFrameIndex;
         private float stateTimer;
         private bool calledReinforcements;
         private Vector2 chargeDir;
@@ -136,6 +142,41 @@ namespace ButecoDosDevs.NPC
                 case State.Hurt: TickTimer(State.Chase); break;
                 case State.KO: break;
             }
+
+            TickWalkAnimation();
+        }
+
+        private void TickWalkAnimation()
+        {
+            if (spriteRenderer == null || walkFrames == null || walkFrames.Length == 0 || rb == null)
+            {
+                return;
+            }
+
+            bool isMoving = state != State.KO && rb.linearVelocity.sqrMagnitude > 0.01f;
+            if (!isMoving)
+            {
+                walkFrameTimer = 0f;
+                walkFrameIndex = 0;
+                return;
+            }
+
+            walkFrameTimer += Time.deltaTime;
+            float secondsPerFrame = walkFps > 0f ? 1f / walkFps : 0f;
+            if (secondsPerFrame <= 0f)
+            {
+                return;
+            }
+            while (walkFrameTimer >= secondsPerFrame)
+            {
+                walkFrameTimer -= secondsPerFrame;
+                walkFrameIndex = (walkFrameIndex + 1) % walkFrames.Length;
+            }
+            if (state == State.Hurt || state == State.SlamTelegraph || state == State.ChargeTelegraph)
+            {
+                return; // don't override the hurt/telegraph tint frame swap concerns; still fine to animate, but keep simple
+            }
+            spriteRenderer.sprite = walkFrames[walkFrameIndex];
         }
 
         private void FixedUpdate()

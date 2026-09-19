@@ -237,6 +237,12 @@ MonoBehaviour:
   koColor: {r: 0.25, g: 0.25, b: 0.3, a: 1}
   reinforcementPrefab: {fileID: 8336997068597872600, guid: 9d196bd82b512435aa4f20c93e02e122, type: 3}
   reinforcementPoints: []
+  walkFrames:
+  - {fileID: -132481930616199951, guid: 92a7d150cfab841f5b321b2102e756e1, type: 3}
+  - {fileID: 5293895122825871934, guid: 92a7d150cfab841f5b321b2102e756e1, type: 3}
+  - {fileID: -4457214945759148987, guid: 92a7d150cfab841f5b321b2102e756e1, type: 3}
+  - {fileID: 2742404189733557518, guid: 92a7d150cfab841f5b321b2102e756e1, type: 3}
+  walkFps: 8
 --- !u!1 &6274010095597541991
 GameObject:
   m_ObjectHideFlags: 0

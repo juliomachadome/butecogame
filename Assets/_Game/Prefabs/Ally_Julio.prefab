@@ -270,23 +270,20 @@ MonoBehaviour:
   idleE: {fileID: 21300000, guid: b1119ae2dcf1d4628972bb6017f62780, type: 3}
   idleN: {fileID: 21300000, guid: 29dc99a8d3919478fa603895a7f2fa11, type: 3}
   walkS:
-  - {fileID: 1732872935, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -359703042, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -87212976, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: 1213250519, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: 1976168065, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  - {fileID: 77705148048232167, guid: 4ac3ee2ab3e90466d978a99f088bc1bb, type: 3}
+  - {fileID: 968374445611902999, guid: 4ac3ee2ab3e90466d978a99f088bc1bb, type: 3}
+  - {fileID: -6985859328560696890, guid: 4ac3ee2ab3e90466d978a99f088bc1bb, type: 3}
+  - {fileID: -105400728174301422, guid: 4ac3ee2ab3e90466d978a99f088bc1bb, type: 3}
   walkE:
-  - {fileID: 768351122, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -1041335661, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: 1037081177, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -165555736, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: 1720175099, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  - {fileID: 7019890998685178290, guid: c69ddaf9951f94a29b92ca91fdaa32ba, type: 3}
+  - {fileID: 5132315972510931763, guid: c69ddaf9951f94a29b92ca91fdaa32ba, type: 3}
+  - {fileID: -8987743874256214213, guid: c69ddaf9951f94a29b92ca91fdaa32ba, type: 3}
+  - {fileID: -5644017186746347031, guid: c69ddaf9951f94a29b92ca91fdaa32ba, type: 3}
   walkN:
-  - {fileID: 1334237565, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -860875160, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -1156498199, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -848229259, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -755945088, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  - {fileID: 8703598041905113658, guid: df136e5a3da0248dbb7d3c5e85be5281, type: 3}
+  - {fileID: 2077950796650148945, guid: df136e5a3da0248dbb7d3c5e85be5281, type: 3}
+  - {fileID: -5045598301231099671, guid: df136e5a3da0248dbb7d3c5e85be5281, type: 3}
+  - {fileID: -3776008569778027440, guid: df136e5a3da0248dbb7d3c5e85be5281, type: 3}
   fps: 8
   moveThreshold: 0.05
 --- !u!114 &3568607232938486086
@@ -346,6 +343,9 @@ MonoBehaviour:
   windupColor: {r: 1, g: 0.8, b: 0.2, a: 1}
   combatStuckCheckInterval: 1
   slideTime: 0.4
+  separationRadius: 0.8
+  separationStrength: 1
+  surroundRadiusFactor: 0.85
   knockedCheckRadius: 8
   knockedReviveClearTime: 4
   reviveHpFraction: 0.5
