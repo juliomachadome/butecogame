@@ -43,8 +43,25 @@ namespace ButecoDosDevs.Player
 
         public bool IsAttacking => isAttacking;
 
+        private float baseDamage;
+        private float baseWindupTime;
+        private float baseActiveTime;
+        private float baseRecoveryTime;
+        private float baseKnockbackForce;
+        private bool baseValuesCaptured;
+
         private void Awake()
         {
+            if (!baseValuesCaptured)
+            {
+                baseDamage = damage;
+                baseWindupTime = windupTime;
+                baseActiveTime = activeTime;
+                baseRecoveryTime = recoveryTime;
+                baseKnockbackForce = knockbackForce;
+                baseValuesCaptured = true;
+            }
+
             movement = GetComponent<PlayerMovement>();
             if (block == null)
             {
@@ -128,6 +145,32 @@ namespace ButecoDosDevs.Player
             {
                 cameraShake.Shake(hitShakeIntensity, hitShakeDuration);
             }
+        }
+
+        /// <summary>
+        /// Applies a weapon choice (Fase 7 arsenal) on top of the Inspector base values:
+        /// damage is an absolute override, the time/knockback multipliers scale the
+        /// captured base windup/active/recovery time and knockback force. Safe to call
+        /// before or after Awake (falls back to the current serialized values if Awake
+        /// hasn't captured the baseline yet).
+        /// </summary>
+        public void SetWeapon(float weaponDamage, float timeMultiplier, float knockbackMultiplier)
+        {
+            if (!baseValuesCaptured)
+            {
+                baseDamage = damage;
+                baseWindupTime = windupTime;
+                baseActiveTime = activeTime;
+                baseRecoveryTime = recoveryTime;
+                baseKnockbackForce = knockbackForce;
+                baseValuesCaptured = true;
+            }
+
+            damage = weaponDamage;
+            windupTime = baseWindupTime * timeMultiplier;
+            activeTime = baseActiveTime * timeMultiplier;
+            recoveryTime = baseRecoveryTime * timeMultiplier;
+            knockbackForce = baseKnockbackForce * knockbackMultiplier;
         }
 
         /// <summary>

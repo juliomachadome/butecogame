@@ -19,7 +19,7 @@ namespace ButecoDosDevs.NPC
         [SerializeField] private NPCNameTag nameTag;
 
         [Tooltip("Fired every time a conversation with this NPC ends (naturally, Escape, or anti-soft-lock close). Wire simple one-off reactions here (e.g. Pedro updates ObjectiveUI) instead of a generic quest system.")]
-        [SerializeField] private UnityEvent onConversationEnded;
+        [SerializeField] private UnityEvent onConversationEnded = new UnityEvent();
 
         public string DisplayName => displayName;
         public string[] DialogueLines => dialogueLines;
@@ -29,6 +29,19 @@ namespace ButecoDosDevs.NPC
         public void RaiseConversationEnded()
         {
             onConversationEnded?.Invoke();
+        }
+
+        /// <summary>
+        /// Public accessor so runtime-built Interactables (e.g. ButecoFlow's arsenal
+        /// weapon pickups) can AddListener in code, additively — never overwrites
+        /// whatever is already wired in the Inspector.
+        /// </summary>
+        public UnityEvent OnConversationEndedEvent => onConversationEnded;
+
+        public void SetDialogue(string newDisplayName, string[] newLines)
+        {
+            displayName = newDisplayName;
+            dialogueLines = newLines;
         }
 
         public void ShowTag()

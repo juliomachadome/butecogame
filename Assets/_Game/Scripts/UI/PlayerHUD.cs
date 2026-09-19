@@ -31,6 +31,7 @@ namespace ButecoDosDevs.UI
         [Header("Action bar")]
         [SerializeField] private GameObject actionBarRoot;
         [SerializeField] private Image dashCooldownOverlay; // dark radial mask; 1 = fully on cooldown, 0 = ready
+        [SerializeField] private TMP_Text weaponNameText; // HUD_ActionBar/WeaponSlot/Label
 
         private float lastDisplayedHP = -1f;
 
@@ -135,6 +136,15 @@ namespace ButecoDosDevs.UI
             if (courageFill != null)
             {
                 courageFill.fillAmount = Mathf.Clamp01(value / CourageMeter.MaxValue);
+            }
+        }
+
+        /// <summary>Called by ButecoFlow's Arsenal step once the player picks a weapon.</summary>
+        public void SetWeaponName(string weaponName)
+        {
+            if (weaponNameText != null)
+            {
+                weaponNameText.text = weaponName;
             }
         }
     }

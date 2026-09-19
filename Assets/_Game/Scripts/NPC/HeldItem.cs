@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using ButecoDosDevs.Player;
+using ButecoDosDevs.Systems;
+using ButecoDosDevs.UI;
 
 namespace ButecoDosDevs.NPC
 {
@@ -37,11 +39,16 @@ namespace ButecoDosDevs.NPC
         [SerializeField] private float smokeDuration = 1.2f;
         [SerializeField] private Vector2 smokeTipOffset = new Vector2(0.08f, 0.02f);
 
+        [Header("Lighter flavor (Pedro's cigarette; harmless on any other item)")]
+        [SerializeField] private bool isqueiroFlavor = true;
+        [SerializeField, Range(1, 5)] private int isqueiroFailEvery = 3;
+
         private enum Direction { South, East, North, West }
 
         private Transform smokeTransform;
         private SpriteRenderer smokeRenderer;
         private Coroutine smokeRoutine;
+        private int puffCount;
 
         private void Awake()
         {
@@ -166,6 +173,18 @@ namespace ButecoDosDevs.NPC
             if (smokeTransform == null || itemRenderer == null)
             {
                 yield break;
+            }
+
+            puffCount++;
+            if (isqueiroFlavor && isqueiroFailEvery > 0 && puffCount % isqueiroFailEvery == 0)
+            {
+                Sfx.Play(SoundId.IsqueiroFalha, transform.position);
+                SpeechBubble.Say(transform, "*tsc tsc*", 1.2f);
+                yield return new WaitForSeconds(0.5f);
+            }
+            else if (isqueiroFlavor)
+            {
+                Sfx.Play(SoundId.IsqueiroAcende, transform.position);
             }
 
             Vector3 tipWorld = itemRenderer.transform.TransformPoint(new Vector3(smokeTipOffset.x * (itemRenderer.flipX ? -1f : 1f), smokeTipOffset.y, 0f));

@@ -2,7 +2,7 @@
 
 Documento central do projeto. Game Jam de **48 horas**. Leia antes de qualquer tarefa.
 
-> **Bar com arte real montado** (entrada na parede do fundo, Moe atrás do balcão, Julio e Funnie "sentados" atrás das mesas). **Animação de combate + itens na mão prontos** (AttackFX, HeldItem, shake). **Fase atual: 4c-1 concluída** (aliados Pedro/Rei Luiz/Funnie seguem em formação e lutam; inimigos atacam player ou aliados; cena `Test_Combat`). Próximo: 4c-2 (poder azul/verde do suporte + painel do grupo). ⚠️ Playtest manual pendente: parry completo e regressão ao vivo (diálogo/KO/dash) após crash do Unity. Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
+> **Bar com arte real montado** (entrada na parede do fundo, Moe atrás do balcão, Julio e Funnie "sentados" atrás das mesas). **Animação de combate + itens na mão prontos** (AttackFX, HeldItem, shake). **Fases 5–7 (lean) prontas no Buteco** — sem playtest ao vivo ainda. **4c-1 concluída** (aliados Pedro/Rei Luiz/Funnie seguem em formação e lutam; inimigos atacam player ou aliados; cena `Test_Combat`). Próximo: 4c-2 (poder azul/verde do suporte + painel do grupo). ⚠️ Playtest manual pendente: parry completo e regressão ao vivo (diálogo/KO/dash) após crash do Unity. Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
 > Não avance de fase sem instrução explícita do usuário.
 
 ---
@@ -70,7 +70,7 @@ Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity` (greybox do bar). `Assets/S
 - **Todos os sons são gravados pela equipe/Buteco dos Devs. NÃO gerar sons por IA.**
 - O áudio é parte do gameplay: o Buteco tem uma **soundboard** (RUA!!!, aplausos, vaias, risadas, burp, copos, garrafas, cadeiras, passos, ataques, espadas, gritos).
 - A soundboard pode influenciar **levemente** moral/caos.
-- Até os sons reais chegarem, usar silêncio ou placeholders claramente marcados (`PH_` no nome).
+- **Decisão: jogo vai SEM áudio agora**; o usuário grava e coloca depois. Todo som passa por `Sfx.Play(SoundId)` + `Assets/_Game/Audio/SoundLibrary.asset` (slot vazio = silêncio, sem erro). Lista do que gravar e onde arrastar: `Assets/_Game/Audio/SONS_PARA_GRAVAR.md`.
 - **Lista de sons a gravar (prioridade):** 1) "RUA!!!" (Moe) 2) aplausos/vaias 3) risadas 4) copo/garrafa 5) golpe + "ai" 6) **isqueiro do Pedro ("tsc tsc" falhando + acendendo)** — toca no loop de atividade dele, perto do player (som posicional) 7) dardo de Nerf "pew" 8) caneca batendo na mesa (Julio bebendo).
 
 ---
@@ -355,9 +355,9 @@ Uma feature só está pronta quando: compila · a cena abre · Play Mode funcion
 | 2 | Combate + HP + hitbox/hurtbox + knockback | ✅ `Scripts/Combat/*`, `PlayerAttack`, `PlayerKO`, bonecos de treino |
 | 3 | Inimigo simples | ✅ `EnemyController` (Idle/Chase/Windup/Attack/Recover/Hurt/KO), `Enemy_HackerRival.prefab` |
 | 4 | NPCs + aliados | 🟡 4b ✅ NPCs/diálogo/objetivo (`Scripts/NPC`, `DialogueUI`, `ObjectiveUI`, prefabs `NPC_*`) · HUD+defesa ✅ (`PlayerHUD`, `PlayerBlock`, `CourageMeter`, `DamageNumbers`, `DamageVignette`) · 4c-1 ✅ aliados (`AllyController`, `CharacterSpriteAnimator`, `CombatantRegistry`+`Combatant`, prefabs `Ally_*`, cena `Test_Combat`) · 4c-2 ⏳ suporte + painel |
-| 5 | Buteco + interação + soundboard | |
+| 5 | Buteco + interação + soundboard | ✅ lean: `ButecoFlow` (chegada/"Tem 18?"/explorar/desconhecidos), `NerfChaos`, `SpeechBubble`, `SoundboardProp`, `Sfx`+`SoundLibrary` (sem áudio) |
 | 6 | Pedro + TIMEOUT (60 s + retorno por waypoint) — **efeito: Pedro carimba "TIMEOUT" no alvo → Moe grita "RUA!!!" → alvo sai voando cartunizado pela porta/tela (girando) → silhueta pontilhada com contador 60s no lugar → volta andando pela porta/waypoint seguro**. Fora do Buteco o "RUA!!!" do Moe toca como eco da soundboard. | |
-| 7 | Preparação + escolha de arma + equipar aliados | |
+| 7 | Preparação + escolha de arma + equipar aliados | ✅ lean: Pedro sai/volta, arsenal na sinuca (4 armas, `PlayerAttack.SetWeapon`, `GameState.ChosenWeapon`), "Bora." → cena `Rua` |
 | 8 | Transição + Guerra Púnica + batalha de rua | |
 | 9 | Bar rival + inimigos finais + boss + epílogo | |
 | 10 | Arte final + áudio + polimento + builds | |

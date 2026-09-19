@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ef9abfd072e418c862a63f8e97bccd, type: 3}
+  m_Name: SoundLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Systems.SoundLibrary
+  rua: {fileID: 0}
+  aplausos: {fileID: 0}
+  vaias: {fileID: 0}
+  risadas: {fileID: 0}
+  burp: {fileID: 0}
+  isqueiroFalha: {fileID: 0}
+  isqueiroAcende: {fileID: 0}
+  dardoNerf: {fileID: 0}
+  dardoAcerta: {fileID: 0}
+  canecaMesa: {fileID: 0}
+  golpeSwing: {fileID: 0}
+  golpeAcerto: {fileID: 0}
+  playerDano: {fileID: 0}
+  parry: {fileID: 0}
+  dash: {fileID: 0}
+  portaAbre: {fileID: 0}
+  timeout: {fileID: 0}
+  boraGrito: {fileID: 0}
+  musicaBar: {fileID: 0}

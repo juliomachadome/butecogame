@@ -180,6 +180,8 @@ MonoBehaviour:
   smokeRiseDistance: 0.35
   smokeDuration: 1.2
   smokeTipOffset: {x: 0.08, y: 0.02}
+  isqueiroFlavor: 1
+  isqueiroFailEvery: 3
 --- !u!212 &2153612
 SpriteRenderer:
   serializedVersion: 3
@@ -747,6 +749,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &66030485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 66030486}
+  m_Layer: 0
+  m_Name: NerfWaypoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &66030486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66030485}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &69462134
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,6 +964,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 1
   m_BlendShapeWeights: []
+--- !u!114 &125069478 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5052729219407631911, guid: cd30824f9426249c5914045c7c7bce3f, type: 3}
+  m_PrefabInstance: {fileID: 2612734298430730602}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6bcd567410c45479e368020f51d4c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.Interactable
+--- !u!4 &125069484 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6631577162528839809, guid: cd30824f9426249c5914045c7c7bce3f, type: 3}
+  m_PrefabInstance: {fileID: 2612734298430730602}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &136639686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,6 +1441,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242082036}
   m_CullTransparentMesh: 1
+--- !u!114 &256400222 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3552403183467063206, guid: 09ac23415358249f5809b190b6a4c72d, type: 3}
+  m_PrefabInstance: {fileID: 647905566}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6bcd567410c45479e368020f51d4c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.Interactable
+--- !u!4 &256400228 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5822231916288114393, guid: 09ac23415358249f5809b190b6a4c72d, type: 3}
+  m_PrefabInstance: {fileID: 647905566}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &258291493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,6 +1716,82 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &321232567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 321232568}
+  - component: {fileID: 321232569}
+  m_Layer: 0
+  m_Name: ButecoFlow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &321232568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321232567}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &321232569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321232567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2cbbbce47c3b4a08bb6b64ff0cb6c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Systems.ButecoFlow
+  pedro: {fileID: 2080900353}
+  pedroSprite: {fileID: 2080900354}
+  moe: {fileID: 1143876017}
+  julio: {fileID: 125069484}
+  funnie: {fileID: 256400228}
+  reiLuiz: {fileID: 1062547949}
+  pedroInteractable: {fileID: 2080900355}
+  moeInteractable: {fileID: 1143876011}
+  julioInteractable: {fileID: 125069478}
+  funnieInteractable: {fileID: 256400222}
+  reiLuizInteractable: {fileID: 1062547943}
+  playerAttack: {fileID: 8346357860650374288}
+  playerHUD: {fileID: 843292917}
+  heldWeaponRenderer: {fileID: 506569419}
+  heldWeaponGO: {fileID: 506569416}
+  objectiveUI: {fileID: 69462136}
+  doorPosition: {x: 1.1, y: 6, z: 0}
+  arsenalSpawnPoint: {fileID: 1323319186}
+  swordSprite: {fileID: 21300000, guid: 765cf6460148a40a1bc54ff55ec4d307, type: 3}
+  bottleSprite: {fileID: 0}
+  genericNpcPrefab: {fileID: 1686801712951177510, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+  strangerIntervalMin: 60
+  strangerIntervalMax: 90
+  pedroWalkSpeed: 3.5
+  walkTimeout: 8
+  exploreTimeout: 90
+  pedroAwayDuration: 25
+  weaponChoiceFallbackSeconds: 300
+  ruaScenePath: Assets/_Game/Scenes/Rua.unity
+  soundLibrary: {fileID: 11400000, guid: 6c38003991af94097a7e43d6d3e45c74, type: 2}
+  pedroBanterInterval: 20
+  pedroBanterRadius: 4
 --- !u!1 &339526028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2867,6 +3008,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 1
   m_BlendShapeWeights: []
+--- !u!1 &506569416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6999736131401816171, guid: 17edf628dca784dc684ac3a2379bb5e1, type: 3}
+  m_PrefabInstance: {fileID: 8346357860650374278}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &506569419 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1812151594289476169, guid: 17edf628dca784dc684ac3a2379bb5e1, type: 3}
+  m_PrefabInstance: {fileID: 8346357860650374278}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &520479645
 GameObject:
   m_ObjectHideFlags: 0
@@ -3004,6 +3155,8 @@ GameObject:
   - component: {fileID: 585360017}
   - component: {fileID: 585360019}
   - component: {fileID: 585360018}
+  - component: {fileID: 585360021}
+  - component: {fileID: 585360020}
   m_Layer: 0
   m_Name: Prop_LoveTester
   m_TagString: Untagged
@@ -3132,6 +3285,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 1
   m_BlendShapeWeights: []
+--- !u!114 &585360020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585360016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d2741bef7e84f9e84f10c125415260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Systems.SoundboardProp
+  interactable: {fileID: 0}
+  playerCourage: {fileID: 8346357860650374280}
+  reactions:
+  - label: 'Moe: RUA!!!'
+    balloonText: RUA!!!
+    balloonTargets: []
+    courageDelta: 0
+    sound: 0
+  - label: Aplausos
+    balloonText: AEEE!
+    balloonTargets: []
+    courageDelta: 4
+    sound: 1
+  - label: Vaias
+    balloonText: UUUUH
+    balloonTargets: []
+    courageDelta: -3
+    sound: 2
+  - label: Risadas
+    balloonText: KKKKK
+    balloonTargets: []
+    courageDelta: 2
+    sound: 3
+  - label: Burp
+    balloonText: '*burp*'
+    balloonTargets: []
+    courageDelta: 0
+    sound: 4
+--- !u!114 &585360021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585360016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6bcd567410c45479e368020f51d4c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.Interactable
+  displayName: NPC
+  dialogueLines: []
+  portrait: {fileID: 0}
+  npcController: {fileID: 0}
+  nameTag: {fileID: 0}
+  onConversationEnded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &629654205
 GameObject:
   m_ObjectHideFlags: 0
@@ -3374,6 +3587,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09ac23415358249f5809b190b6a4c72d, type: 3}
+--- !u!1001 &649802164
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1686801712951177510, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_Name
+      value: NPC_GenericButeco_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542532296471397171, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: waypoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542532296471397171, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: 'waypoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 66030486}
+    - target: {fileID: 4542532296471397171, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: 'waypoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1363524491}
+    - target: {fileID: 4542532296471397171, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: 'waypoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1190491235}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
 --- !u!1 &655269372
 GameObject:
   m_ObjectHideFlags: 0
@@ -3742,6 +4028,7 @@ MonoBehaviour:
   courageFill: {fileID: 1912599460}
   actionBarRoot: {fileID: 1240851549}
   dashCooldownOverlay: {fileID: 925516488}
+  weaponNameText: {fileID: 45405773}
 --- !u!1 &845415407
 GameObject:
   m_ObjectHideFlags: 0
@@ -4556,6 +4843,79 @@ Transform:
   - {fileID: 1954560555}
   m_Father: {fileID: 1952599347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &946765428
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1686801712951177510, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_Name
+      value: NPC_GenericButeco_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542532296471397171, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: waypoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542532296471397171, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: 'waypoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1363524491}
+    - target: {fileID: 4542532296471397171, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: 'waypoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1936209068}
+    - target: {fileID: 4542532296471397171, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: 'waypoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1190491235}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
 --- !u!1 &958188297
 GameObject:
   m_ObjectHideFlags: 0
@@ -4998,6 +5358,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1062547943 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6555642099887923432, guid: 424d18d087ed24d0ea5d207ecd553122, type: 3}
+  m_PrefabInstance: {fileID: 1271086931}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6bcd567410c45479e368020f51d4c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.Interactable
+--- !u!4 &1062547949 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3766376043043065867, guid: 424d18d087ed24d0ea5d207ecd553122, type: 3}
+  m_PrefabInstance: {fileID: 1271086931}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1099241110
 GameObject:
   m_ObjectHideFlags: 0
@@ -5507,6 +5883,53 @@ Transform:
   - {fileID: 1264198033}
   - {fileID: 442162145}
   m_Father: {fileID: 1952599347}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1143876011 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7334781211323836058, guid: 91f81f466ea5947668b41c693e792627, type: 3}
+  m_PrefabInstance: {fileID: 1013544686}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6bcd567410c45479e368020f51d4c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.Interactable
+--- !u!4 &1143876017 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5497228265373763218, guid: 91f81f466ea5947668b41c693e792627, type: 3}
+  m_PrefabInstance: {fileID: 1013544686}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1190491234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1190491235}
+  m_Layer: 0
+  m_Name: NerfWaypoint5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1190491235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190491234}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: -1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1190650146
 GameObject:
@@ -6107,6 +6530,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 1
   m_BlendShapeWeights: []
+--- !u!1 &1363524490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1363524491}
+  m_Layer: 0
+  m_Name: NerfWaypoint3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1363524491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363524490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1392523502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9068,6 +9522,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579843356}
   m_CullTransparentMesh: 1
+--- !u!1 &1721394770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1721394771}
+  m_Layer: 0
+  m_Name: NerfWaypoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1721394771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721394770}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1735383102
 GameObject:
   m_ObjectHideFlags: 0
@@ -9711,6 +10196,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1933119622}
   m_CullTransparentMesh: 1
+--- !u!1 &1936209067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1936209068}
+  m_Layer: 0
+  m_Name: NerfWaypoint4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1936209068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936209067}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1952599346
 GameObject:
   m_ObjectHideFlags: 0
@@ -10329,6 +10845,79 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 9.28125, y: 1}
   m_EdgeRadius: 0
+--- !u!1001 &2018599201
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499539943680357729, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1686801712951177510, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: m_Name
+      value: NPC_GenericButeco_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542532296471397171, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: waypoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542532296471397171, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: 'waypoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1721394771}
+    - target: {fileID: 4542532296471397171, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: 'waypoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 66030486}
+    - target: {fileID: 4542532296471397171, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
+      propertyPath: 'waypoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1936209068}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7276794cdee7d4f868412a6aa8badfae, type: 3}
 --- !u!1 &2051206255
 GameObject:
   m_ObjectHideFlags: 0
@@ -10575,6 +11164,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e88ffbd61acb49b58a00cf363995690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.NPCSprite
+--- !u!114 &2080900355 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6484374280203779286, guid: 613b62e3b6d6447588f7e894751738e7, type: 3}
+  m_PrefabInstance: {fileID: 2080900352}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6bcd567410c45479e368020f51d4c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.Interactable
 --- !u!1 &2087421183
 GameObject:
   m_ObjectHideFlags: 0
@@ -10891,6 +11491,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26539382d7f3a4f1aa065fa390483191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.Health
+--- !u!114 &8346357860650374288 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3575240796559498523, guid: 17edf628dca784dc684ac3a2379bb5e1, type: 3}
+  m_PrefabInstance: {fileID: 8346357860650374278}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90c4e8702fa54682a2e64c9debd8cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Player.PlayerAttack
 --- !u!1001 &8851085447091074165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10992,3 +11603,12 @@ SceneRoots:
   - {fileID: 845415410}
   - {fileID: 851867580}
   - {fileID: 2612734298430730602}
+  - {fileID: 1721394771}
+  - {fileID: 66030486}
+  - {fileID: 1363524491}
+  - {fileID: 1936209068}
+  - {fileID: 1190491235}
+  - {fileID: 2018599201}
+  - {fileID: 649802164}
+  - {fileID: 946765428}
+  - {fileID: 321232568}
