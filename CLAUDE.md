@@ -178,6 +178,12 @@ Comunista, Cristão, Satanista, Artista/Dev, Dev Cansado. São **cosméticos/hum
 
 ---
 
+### Perspectiva — DECISÃO: top-down 3/4 (estilo Stardew/Pokémon, NÃO isométrico/Habbo)
+- Câmera ortográfica reta (a que já existe). A profundidade vem da arte + ordenação.
+- **Y-sort ligado**: `Assets/Settings/Renderer2D.asset` → Transparency Sort Mode = Custom Axis (0,1,0). Quem está mais embaixo na tela é desenhado na frente.
+- Sprites de personagem/prop: **pivot nos pés** (Bottom Center) e `SpriteRenderer.spriteSortPoint = Pivot`; mesma sorting layer para personagens e props que se sobrepõem.
+- Colliders de props (mesa, balcão, parede) **só na base/pés**, para o personagem poder passar "atrás" da parte de cima.
+
 ## 7. Arquitetura Unity
 
 **Priorizar:** componentes pequenos · referências explícitas via `[SerializeField]` · ScriptableObjects só quando úteis (ex.: dados de arma) · state machines pequenas (enum + switch) · prefabs reutilizáveis · cenas pequenas · código fácil de debugar.
