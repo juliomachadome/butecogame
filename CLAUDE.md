@@ -2,7 +2,7 @@
 
 Documento central do projeto. Game Jam de **48 horas**. Leia antes de qualquer tarefa.
 
-> **Bar com arte real montado** (entrada na parede do fundo, Moe atrás do balcão, Julio e Funnie "sentados" atrás das mesas). **Animação de combate + itens na mão prontos** (AttackFX, HeldItem, shake). **Fases 5–7 (lean) prontas no Buteco** — sem playtest ao vivo ainda. **4c-1 concluída** (aliados Pedro/Rei Luiz/Funnie seguem em formação e lutam; inimigos atacam player ou aliados; cena `Test_Combat`). Próximo: 4c-2 (poder azul/verde do suporte + painel do grupo). ⚠️ Playtest manual pendente: parry completo e regressão ao vivo (diálogo/KO/dash) após crash do Unity. Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
+> **JOGO COMPLETO (enxuto) do início ao fim:** Buteco → Rua → BarRival → epílogo. Build: Buteco(0), Rua(1), BarRival(2). **Pendente:** playtest ao vivo (nada foi jogado em tempo real), arte real de Rua/BarRival (PNGs `Street_Props`/`RivalBar_Props` já importados; cenário hoje é placeholder), sons (equipe grava), builds Win/Mac/Linux.
 > Não avance de fase sem instrução explícita do usuário.
 
 ---
