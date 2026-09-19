@@ -1114,6 +1114,8 @@ MonoBehaviour:
   mapBounds: {fileID: 1907768238}
   smoothTime: 0.12
   maxShakeIntensity: 0.12
+  fitWholeMap: 1
+  fitMargin: 0.5
 --- !u!114 &316708996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1294,6 +1296,7 @@ MonoBehaviour:
   actionBarRoot: {fileID: 0}
   dashCooldownOverlay: {fileID: 0}
   weaponNameText: {fileID: 0}
+  statsPanelRoot: {fileID: 0}
 --- !u!114 &319707876
 MonoBehaviour:
   m_ObjectHideFlags: 0

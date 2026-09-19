@@ -3,6 +3,7 @@
 Documento central do projeto. Game Jam de **48 horas**. Leia antes de qualquer tarefa.
 
 > **JOGO COMPLETO (enxuto) do início ao fim:** Buteco → Rua → BarRival → epílogo. Build: Buteco(0), Rua(1), BarRival(2). **Pendente:** playtest ao vivo (nada foi jogado em tempo real), arte real de Rua/BarRival (PNGs `Street_Props`/`RivalBar_Props` já importados; cenário hoje é placeholder), sons (equipe grava), builds Win/Mac/Linux.
+> **PENDENTE (pedidos do usuário, fazer numa sessão nova, com playtest):** (1) chegada com 2 perguntas ("Tem 18?" → "Tenho sim."; "Como foi o alistamento?" → "Fui dispensado. Excesso de contingente."), erro = TIMEOUT + Moe "RUA!!!" + arremesso até a porta, player travado e virado pro Pedro; (2) `CutsceneMode` (letterbox, HUD some, input travado, Enter pula) nas cenas de história; (3) sair pela porta do Buteco para a Rua em modo passeio e voltar (porta do rival trancada antes da guerra, aberta depois); (4) ≥8 genéricos amarelos com comportamento natural e falas de dev com apelidos; (5) HUD compacto (≤20% largura); (6) aliados andando até a sinuca para pegar as armas no arsenal; (7) arsenal: armas espaçadas com nome/[E], sem atacar antes de ter arma; (8) travessia da Rua com o grupo andando animado (não embolado); (9) jukebox para o canto (usuário decide). Depois: rebuild Mac/Win/Linux + zips.
 > Não avance de fase sem instrução explícita do usuário.
 
 ---
