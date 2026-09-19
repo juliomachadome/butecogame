@@ -52,6 +52,9 @@ namespace ButecoDosDevs.NPC
         private bool hasOverride;
         private Vector2 overrideFacing = Vector2.down;
 
+        /// <summary>Current quantized facing as a unit-ish vector (for HeldItem, etc.).</summary>
+        public Vector2 CurrentFacing => FacingToVector(lastDirection);
+
         /// <summary>Forces the facing direction (e.g. toward an attack target) regardless of velocity.</summary>
         public void SetFacingOverride(Vector2 direction)
         {

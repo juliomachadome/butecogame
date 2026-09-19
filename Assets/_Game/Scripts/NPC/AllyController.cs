@@ -28,6 +28,7 @@ namespace ButecoDosDevs.NPC
         [SerializeField] private Collider2D hurtboxCollider;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private CharacterSpriteAnimator spriteAnimator;
+        [SerializeField] private AttackFX attackFX;
 
         [Header("Role (cosmetic this phase; support logic arrives in 4c-2)")]
         [SerializeField] private Role role = Role.Frontline;
@@ -59,7 +60,6 @@ namespace ButecoDosDevs.NPC
         [SerializeField] private float knockbackForce = 4f;
         [SerializeField] private float hitboxDistance = 0.6f;
         [SerializeField] private Color windupColor = new Color(1f, 0.8f, 0.2f, 1f);
-        [SerializeField] private float windupScale = 1.1f;
         [SerializeField] private float combatStuckCheckInterval = 1f;
         [SerializeField] private float slideTime = 0.4f;
 
@@ -142,11 +142,17 @@ namespace ButecoDosDevs.NPC
                 originalColor = spriteRenderer.color;
             }
 
+            if (attackFX == null)
+            {
+                attackFX = GetComponent<AttackFX>();
+            }
+
             if (hitbox != null)
             {
                 hitbox.SetOwner(gameObject);
                 hitbox.SetOwnerTeam(Team.Ally);
                 hitbox.Close();
+                hitbox.OnHit += OnHitboxHit;
             }
             if (hitboxSprite != null)
             {
@@ -188,6 +194,22 @@ namespace ButecoDosDevs.NPC
             {
                 health.Damaged -= OnDamaged;
                 health.Died -= OnDied;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (hitbox != null)
+            {
+                hitbox.OnHit -= OnHitboxHit;
+            }
+        }
+
+        private void OnHitboxHit(Health targetHealth, DamageInfo info)
+        {
+            if (attackFX != null && targetHealth != null)
+            {
+                attackFX.PlayImpact(targetHealth.transform.position);
             }
         }
 
@@ -488,7 +510,10 @@ namespace ButecoDosDevs.NPC
             {
                 spriteRenderer.color = windupColor;
             }
-            transform.localScale = new Vector3(originalScale.x * windupScale, originalScale.y * windupScale, originalScale.z);
+            if (attackFX != null)
+            {
+                attackFX.PlayWindupSquash(windupTime);
+            }
         }
 
         private void TickCombatWindup()
@@ -513,6 +538,10 @@ namespace ButecoDosDevs.NPC
             if (hitboxSprite != null)
             {
                 hitboxSprite.enabled = true;
+            }
+            if (attackFX != null)
+            {
+                attackFX.PlaySwing(attackDir, attackActiveTime);
             }
         }
 

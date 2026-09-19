@@ -1269,6 +1269,7 @@ MonoBehaviour:
   target: {fileID: 503986995}
   mapBounds: {fileID: 220856378}
   smoothTime: 0.12
+  maxShakeIntensity: 0.12
 --- !u!81 &2008289435
 AudioListener:
   m_ObjectHideFlags: 0

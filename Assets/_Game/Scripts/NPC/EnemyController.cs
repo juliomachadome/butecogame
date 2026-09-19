@@ -23,6 +23,7 @@ namespace ButecoDosDevs.NPC
         [SerializeField] private Collider2D solidCollider;
         [SerializeField] private Collider2D hurtboxCollider;
         [SerializeField] private SpriteRenderer hitboxSprite;
+        [SerializeField] private AttackFX attackFX;
 
         [Header("Detection / Movement")]
         [SerializeField] private float detectRadius = 7f;
@@ -41,7 +42,6 @@ namespace ButecoDosDevs.NPC
         [SerializeField] private float knockbackForce = 5f;
         [SerializeField] private float hitboxDistance = 0.7f;
         [SerializeField] private Color windupColor = new Color(1f, 0.05f, 0.05f, 1f);
-        [SerializeField] private float windupScale = 1.15f;
 
         [Header("Hurt / KO")]
         [SerializeField] private float hurtStunTime = 0.25f;
@@ -100,11 +100,17 @@ namespace ButecoDosDevs.NPC
                 originalColor = spriteRenderer.color;
             }
 
+            if (attackFX == null)
+            {
+                attackFX = GetComponent<AttackFX>();
+            }
+
             if (hitbox != null)
             {
                 hitbox.SetOwner(gameObject);
                 hitbox.SetOwnerTeam(Team.Enemy);
                 hitbox.Close();
+                hitbox.OnHit += OnHitboxHit;
             }
             if (hitboxSprite != null)
             {
@@ -131,6 +137,22 @@ namespace ButecoDosDevs.NPC
             {
                 health.Damaged -= OnDamaged;
                 health.Died -= OnDied;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (hitbox != null)
+            {
+                hitbox.OnHit -= OnHitboxHit;
+            }
+        }
+
+        private void OnHitboxHit(Health hitHealth, DamageInfo info)
+        {
+            if (attackFX != null && hitHealth != null)
+            {
+                attackFX.PlayImpact(hitHealth.transform.position);
             }
         }
 
@@ -321,7 +343,10 @@ namespace ButecoDosDevs.NPC
             {
                 spriteRenderer.color = windupColor;
             }
-            transform.localScale = new Vector3(originalScale.x * windupScale, originalScale.y * windupScale, originalScale.z);
+            if (attackFX != null)
+            {
+                attackFX.PlayWindupSquash(windupTime);
+            }
         }
 
         private void TickWindup()
@@ -346,6 +371,10 @@ namespace ButecoDosDevs.NPC
             if (hitboxSprite != null)
             {
                 hitboxSprite.enabled = true;
+            }
+            if (attackFX != null)
+            {
+                attackFX.PlaySwing(attackDir, attackActiveTime);
             }
         }
 

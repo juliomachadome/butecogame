@@ -28,6 +28,12 @@ namespace ButecoDosDevs.Player
         [SerializeField] private SpriteRenderer hitboxSprite;
         [SerializeField] private PlayerBlock block;
         [SerializeField] private CourageMeter courage;
+        [SerializeField] private AttackFX attackFX;
+        [SerializeField] private CameraFollow2D cameraShake;
+
+        [Header("Feedback")]
+        [SerializeField] private float hitShakeIntensity = 0.08f;
+        [SerializeField] private float hitShakeDuration = 0.1f;
 
         private PlayerMovement movement;
         private InputAction attackAction;
@@ -47,6 +53,15 @@ namespace ButecoDosDevs.Player
             if (courage == null)
             {
                 courage = GetComponent<CourageMeter>();
+            }
+            if (attackFX == null)
+            {
+                attackFX = GetComponent<AttackFX>();
+            }
+            if (cameraShake == null)
+            {
+                Camera main = Camera.main;
+                cameraShake = main != null ? main.GetComponent<CameraFollow2D>() : FindAnyObjectByType<CameraFollow2D>();
             }
 
             if (hitbox != null)
@@ -105,6 +120,14 @@ namespace ButecoDosDevs.Player
             {
                 courage.OnHitLanded();
             }
+            if (attackFX != null && target != null)
+            {
+                attackFX.PlayImpact(target.transform.position);
+            }
+            if (cameraShake != null)
+            {
+                cameraShake.Shake(hitShakeIntensity, hitShakeDuration);
+            }
         }
 
         /// <summary>
@@ -155,6 +178,11 @@ namespace ButecoDosDevs.Player
                 hitbox.transform.localPosition = dir * hitboxDistance;
             }
 
+            if (attackFX != null)
+            {
+                attackFX.PlayWindupSquash(windupTime);
+            }
+
             yield return WaitFrames(windupTime);
 
             if (hitbox != null)
@@ -164,6 +192,10 @@ namespace ButecoDosDevs.Player
             if (hitboxSprite != null)
             {
                 hitboxSprite.enabled = true;
+            }
+            if (attackFX != null)
+            {
+                attackFX.PlaySwing(dir, activeTime);
             }
 
             float t = 0f;

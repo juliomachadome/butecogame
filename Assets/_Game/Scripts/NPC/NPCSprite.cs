@@ -43,6 +43,21 @@ namespace ButecoDosDevs.NPC
         private float activityPulseTimer;
         private Vector3 baseScale;
 
+        /// <summary>Current facing as a unit-ish vector (for HeldItem, etc.).</summary>
+        public Vector2 CurrentFacing
+        {
+            get
+            {
+                switch (facing)
+                {
+                    case FacingDirection.West: return Vector2.left;
+                    case FacingDirection.East: return Vector2.right;
+                    case FacingDirection.North: return Vector2.up;
+                    default: return Vector2.down;
+                }
+            }
+        }
+
         private void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();

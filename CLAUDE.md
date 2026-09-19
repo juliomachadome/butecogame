@@ -2,7 +2,7 @@
 
 Documento central do projeto. Game Jam de **48 horas**. Leia antes de qualquer tarefa.
 
-> **Bar com arte real montado** (entrada na parede do fundo, Moe atrás do balcão, Julio e Funnie "sentados" atrás das mesas). **Fase atual: 4c-1 concluída** (aliados Pedro/Rei Luiz/Funnie seguem em formação e lutam; inimigos atacam player ou aliados; cena `Test_Combat`). Próximo: 4c-2 (poder azul/verde do suporte + painel do grupo). ⚠️ Playtest manual pendente: parry completo e regressão ao vivo (diálogo/KO/dash) após crash do Unity. Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
+> **Bar com arte real montado** (entrada na parede do fundo, Moe atrás do balcão, Julio e Funnie "sentados" atrás das mesas). **Animação de combate + itens na mão prontos** (AttackFX, HeldItem, shake). **Fase atual: 4c-1 concluída** (aliados Pedro/Rei Luiz/Funnie seguem em formação e lutam; inimigos atacam player ou aliados; cena `Test_Combat`). Próximo: 4c-2 (poder azul/verde do suporte + painel do grupo). ⚠️ Playtest manual pendente: parry completo e regressão ao vivo (diálogo/KO/dash) após crash do Unity. Cena de trabalho: `Assets/_Game/Scenes/Buteco.unity`.
 > Não avance de fase sem instrução explícita do usuário.
 
 ---
@@ -127,6 +127,8 @@ Dificuldade cresce por **variedade, posicionamento, quantidade controlada e ataq
 - **Itens na mão = sprites sobrepostos** (filho do personagem, posição/ordem por direção; W espelha E): arma na mão principal (Fase 7), **cigarro sempre na mão do Pedro** (branco + ponta laranja brilhando, fumacinha periódica) — **inclusive na batalha: espada numa mão, cigarro na outra**.
 - **Golpe:** arco/rastro curvo da arma (sprite de "slash" por arma) + avanço curto (lunge) + squash & stretch no personagem + faíscas no impacto + screen shake leve em golpes fortes. Vale para player, aliados e rivais.
 - **Defesa:** escudinho azul na frente (substitui o quadrado placeholder).
+- **Implementado:** `AttackFX` (squash no windup, slash + lunge no golpe, faísca no impacto; tudo no filho **`Visual`** — o SpriteRenderer dos combatentes fica no filho `Visual`, nunca mover a raiz/Rigidbody), `CameraFollow2D.Shake`, `HeldItem` (offsets por direção relativos aos PÉS: mão ≈ y 0.55–0.65). FX desenhados à mão por código em `Assets/_Game/Art/FX/` (0 gerações).
+- ⚠️ Não verificado ao vivo: fumaça do cigarro (puff) e espelhamento para oeste.
 - Isqueiro do Pedro com som gravado pela equipe (ver Desafio de áudio).
 
 ### Convenções de combate (Fase 2)
@@ -229,7 +231,8 @@ O jogador pode **mexer em tudo** no bar, sempre pelo mesmo `[E]`/`Interactable`:
 - **Genéricos (feitos por RECOLORAÇÃO da folha do Dev, 0 gerações, já com idle + walk 4 direções — mesmo layout 76x76 5x4 do `DevNovato_Sheet`):**
   - **Membro do Buteco** = camiseta **AMARELA**, calça marrom, cabelo preto → `Characters/Generic/Generic_Buteco_Sheet.png`.
   - **Rival** = **todos iguais**, camiseta **VERDE** + cabelo verde ("hacker punk"), pele mais escura, calça preta → `Characters/Generic/Generic_Rival_Sheet.png`.
-  - Leitura em combate: **amarelo = Buteco, verde = rival**. Variação extra por tint em código se precisar.
+  - Leitura em combate: **amarelo = Buteco, verde = rival**.
+  - **Variação (aprovada pelo usuário):** membros do Buteco variam por código — tom de pele (troca de paleta), alguns com boné/sem óculos (sprite sobreposto via HeldItem/overlay) — para não parecerem clones do Dev. **Rivais ficam todos iguais** (de propósito).
 - **Rivais:** UM "maluco do outro lado" repetido (variação só de cor) + **Admin Rival** (boss) único.
 - Ataque/impacto: efeito em código (arco de golpe, avanço, shake) — não gerar frames de ataque.
 - NPCs que não lutam: só rotações (1 geração); "respirar"/balanço em código.

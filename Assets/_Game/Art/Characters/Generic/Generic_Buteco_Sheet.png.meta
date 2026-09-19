@@ -1,0 +1,626 @@
+fileFormatVersion: 2
+guid: 29c0cc83fe6f64155b4101212824ed1f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3828992549350722794
+    second: Generic_Buteco_Sheet_0
+  - first:
+      213: 8166798573895648751
+    second: Generic_Buteco_Sheet_1
+  - first:
+      213: 4980540871252639726
+    second: Generic_Buteco_Sheet_2
+  - first:
+      213: -9019763916126431080
+    second: Generic_Buteco_Sheet_3
+  - first:
+      213: 1106950246349435341
+    second: Generic_Buteco_Sheet_4
+  - first:
+      213: -5129152363940951778
+    second: Generic_Buteco_Sheet_5
+  - first:
+      213: -5864538684990066985
+    second: Generic_Buteco_Sheet_6
+  - first:
+      213: 6999764771350850808
+    second: Generic_Buteco_Sheet_7
+  - first:
+      213: -3524563191896453652
+    second: Generic_Buteco_Sheet_8
+  - first:
+      213: 8573904068305849433
+    second: Generic_Buteco_Sheet_9
+  - first:
+      213: -270521250981639804
+    second: Generic_Buteco_Sheet_10
+  - first:
+      213: -2025245921598733181
+    second: Generic_Buteco_Sheet_11
+  - first:
+      213: -8414298921941482695
+    second: Generic_Buteco_Sheet_12
+  - first:
+      213: 7588918365527744999
+    second: Generic_Buteco_Sheet_13
+  - first:
+      213: -6235306890208619724
+    second: Generic_Buteco_Sheet_14
+  - first:
+      213: -4035040374069208145
+    second: Generic_Buteco_Sheet_15
+  - first:
+      213: 784019283968004291
+    second: Generic_Buteco_Sheet_16
+  - first:
+      213: -1565629233942310013
+    second: Generic_Buteco_Sheet_17
+  - first:
+      213: 6823454329669836795
+    second: Generic_Buteco_Sheet_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 240
+        width: 22
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aeccaafcf60532530800000000000000
+      internalID: 3828992549350722794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 238
+        width: 19
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe5873d880c465170800000000000000
+      internalID: 8166798573895648751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 238
+        width: 19
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eeff35cc88f6e1540800000000000000
+      internalID: 4980540871252639726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 240
+        width: 22
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 898d56dc18c53d280800000000000000
+      internalID: -9019763916126431080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 164
+        width: 22
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc170b9526dac5f00800000000000000
+      internalID: 1106950246349435341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 164
+        width: 26
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e19c174b91791d8b0800000000000000
+      internalID: -5129152363940951778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 165
+        width: 24
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7de61ad3329fc9ea0800000000000000
+      internalID: -5864538684990066985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 165
+        width: 21
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fc29a329f8242160800000000000000
+      internalID: 6999764771350850808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 164
+        width: 19
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ced489e637c361fc0800000000000000
+      internalID: -3524563191896453652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 86
+        width: 19
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95c85a9d250acf670800000000000000
+      internalID: 8573904068305849433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 86
+        width: 22
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4898b030b5aee3cf0800000000000000
+      internalID: -270521250981639804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 86
+        width: 26
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3848c448091e4e3e0800000000000000
+      internalID: -2025245921598733181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 86
+        width: 20
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 933c9bb16b76a3b80800000000000000
+      internalID: -8414298921941482695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 86
+        width: 21
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e128beab01415960800000000000000
+      internalID: 7588918365527744999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 12
+        width: 22
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 433d19f5b6db779a0800000000000000
+      internalID: -6235306890208619724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 12
+        width: 20
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fabde398828a008c0800000000000000
+      internalID: -4035040374069208145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 12
+        width: 22
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c018f5826561ea00800000000000000
+      internalID: 784019283968004291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 13
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 383d6ecb184c54ae0800000000000000
+      internalID: -1565629233942310013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Buteco_Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 13
+        width: 19
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bff52158f87c1be50800000000000000
+      internalID: 6823454329669836795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Generic_Buteco_Sheet_0: 3828992549350722794
+      Generic_Buteco_Sheet_1: 8166798573895648751
+      Generic_Buteco_Sheet_10: -270521250981639804
+      Generic_Buteco_Sheet_11: -2025245921598733181
+      Generic_Buteco_Sheet_12: -8414298921941482695
+      Generic_Buteco_Sheet_13: 7588918365527744999
+      Generic_Buteco_Sheet_14: -6235306890208619724
+      Generic_Buteco_Sheet_15: -4035040374069208145
+      Generic_Buteco_Sheet_16: 784019283968004291
+      Generic_Buteco_Sheet_17: -1565629233942310013
+      Generic_Buteco_Sheet_18: 6823454329669836795
+      Generic_Buteco_Sheet_2: 4980540871252639726
+      Generic_Buteco_Sheet_3: -9019763916126431080
+      Generic_Buteco_Sheet_4: 1106950246349435341
+      Generic_Buteco_Sheet_5: -5129152363940951778
+      Generic_Buteco_Sheet_6: -5864538684990066985
+      Generic_Buteco_Sheet_7: 6999764771350850808
+      Generic_Buteco_Sheet_8: -3524563191896453652
+      Generic_Buteco_Sheet_9: 8573904068305849433
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

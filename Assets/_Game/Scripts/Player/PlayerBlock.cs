@@ -37,6 +37,13 @@ namespace ButecoDosDevs.Player
         [Header("Refs")]
         [SerializeField] private CourageMeter courage;
         [SerializeField] private SpriteRenderer guardIndicator;
+        [SerializeField] private AttackFX attackFX;
+        [SerializeField] private CameraFollow2D cameraShake;
+
+        [Header("Feedback")]
+        [SerializeField] private float parryShakeIntensity = 0.1f;
+        [SerializeField] private float parryShakeDuration = 0.12f;
+        [SerializeField] private float parrySparkScale = 1.8f;
 
         private Health health;
         private PlayerMovement movement;
@@ -55,6 +62,15 @@ namespace ButecoDosDevs.Player
             if (courage == null)
             {
                 courage = GetComponent<CourageMeter>();
+            }
+            if (attackFX == null)
+            {
+                attackFX = GetComponent<AttackFX>();
+            }
+            if (cameraShake == null)
+            {
+                Camera main = Camera.main;
+                cameraShake = main != null ? main.GetComponent<CameraFollow2D>() : FindAnyObjectByType<CameraFollow2D>();
             }
 
             blockAction = new InputAction(name: "Block", type: InputActionType.Button);
@@ -131,6 +147,15 @@ namespace ButecoDosDevs.Player
             {
                 Vector2 dir = movement.LastMoveDirection;
                 guardIndicator.transform.localPosition = dir * 0.6f;
+
+                // FX_Shield art points toward +X (east); mirror instead of rotating a
+                // full half-turn for west so the arc keeps facing the same way, matching
+                // AttackFX's slash orientation convention.
+                bool isWest = dir.x < -0.0001f && Mathf.Abs(dir.x) >= Mathf.Abs(dir.y);
+                Vector2 rotDir = isWest ? new Vector2(-dir.x, dir.y) : dir;
+                float angle = Mathf.Atan2(rotDir.y, rotDir.x) * Mathf.Rad2Deg;
+                guardIndicator.transform.localRotation = Quaternion.Euler(0f, 0f, angle);
+                guardIndicator.flipX = isWest;
             }
         }
 
@@ -202,6 +227,15 @@ namespace ButecoDosDevs.Player
 
             HitStop.Trigger(parryHitStop);
             DamageNumbers.SpawnParry(transform.position + Vector3.up * 0.6f);
+
+            if (attackFX != null)
+            {
+                attackFX.PlayImpact(transform.position + Vector3.up * 0.5f, parrySparkScale);
+            }
+            if (cameraShake != null)
+            {
+                cameraShake.Shake(parryShakeIntensity, parryShakeDuration);
+            }
         }
     }
 }

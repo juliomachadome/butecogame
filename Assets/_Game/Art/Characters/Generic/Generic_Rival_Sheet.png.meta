@@ -1,0 +1,626 @@
+fileFormatVersion: 2
+guid: 2f4b88bb2e31a418dae12ec4486f0f3e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1812780611012258825
+    second: Generic_Rival_Sheet_0
+  - first:
+      213: 2092225021195491551
+    second: Generic_Rival_Sheet_1
+  - first:
+      213: -2469677593242822356
+    second: Generic_Rival_Sheet_2
+  - first:
+      213: -9155981739933128555
+    second: Generic_Rival_Sheet_3
+  - first:
+      213: -6700418636808424386
+    second: Generic_Rival_Sheet_4
+  - first:
+      213: -1548234786719507839
+    second: Generic_Rival_Sheet_5
+  - first:
+      213: 7846678664329672720
+    second: Generic_Rival_Sheet_6
+  - first:
+      213: -8538219314378273838
+    second: Generic_Rival_Sheet_7
+  - first:
+      213: -134287875506742443
+    second: Generic_Rival_Sheet_8
+  - first:
+      213: 8603684420070925015
+    second: Generic_Rival_Sheet_9
+  - first:
+      213: 5513079477584355527
+    second: Generic_Rival_Sheet_10
+  - first:
+      213: -8894278781750717800
+    second: Generic_Rival_Sheet_11
+  - first:
+      213: 6118044654281993474
+    second: Generic_Rival_Sheet_12
+  - first:
+      213: -267122126830048964
+    second: Generic_Rival_Sheet_13
+  - first:
+      213: 960995968425623784
+    second: Generic_Rival_Sheet_14
+  - first:
+      213: 2054078821716693882
+    second: Generic_Rival_Sheet_15
+  - first:
+      213: 3813918880779947869
+    second: Generic_Rival_Sheet_16
+  - first:
+      213: -3158409649205866113
+    second: Generic_Rival_Sheet_17
+  - first:
+      213: 5296796372738450799
+    second: Generic_Rival_Sheet_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 240
+        width: 22
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90ce9177c5a482910800000000000000
+      internalID: 1812780611012258825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 238
+        width: 19
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd89a8a5293190d10800000000000000
+      internalID: 2092225021195491551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 238
+        width: 19
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2915095051f9bdd0800000000000000
+      internalID: -2469677593242822356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 240
+        width: 22
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 598a2553e1b6fe080800000000000000
+      internalID: -9155981739933128555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 164
+        width: 22
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3470aa00c45303a0800000000000000
+      internalID: -6700418636808424386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 164
+        width: 26
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18a5ea41aa0938ae0800000000000000
+      internalID: -1548234786719507839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 165
+        width: 24
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 018b106fba005ec60800000000000000
+      internalID: 7846678664329672720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 165
+        width: 21
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2db8a1065c6228980800000000000000
+      internalID: -8538219314378273838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 164
+        width: 19
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55b57c283e9e22ef0800000000000000
+      internalID: -134287875506742443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 86
+        width: 19
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d2e3e1556d666770800000000000000
+      internalID: 8603684420070925015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 86
+        width: 22
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c069e74394628c40800000000000000
+      internalID: 5513079477584355527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 86
+        width: 26
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8925478629c219480800000000000000
+      internalID: -8894278781750717800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 86
+        width: 20
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20da472c239a7e450800000000000000
+      internalID: 6118044654281993474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 86
+        width: 21
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c39e5a647ddfa4cf0800000000000000
+      internalID: -267122126830048964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 12
+        width: 22
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e08790edb4265d00800000000000000
+      internalID: 960995968425623784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 12
+        width: 20
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a73931d2ecd818c10800000000000000
+      internalID: 2054078821716693882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 12
+        width: 22
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5f4b0bd303cde430800000000000000
+      internalID: 3813918880779947869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 13
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f711be378231b24d0800000000000000
+      internalID: -3158409649205866113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Generic_Rival_Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 13
+        width: 19
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6527a4cc30028940800000000000000
+      internalID: 5296796372738450799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Generic_Rival_Sheet_0: 1812780611012258825
+      Generic_Rival_Sheet_1: 2092225021195491551
+      Generic_Rival_Sheet_10: 5513079477584355527
+      Generic_Rival_Sheet_11: -8894278781750717800
+      Generic_Rival_Sheet_12: 6118044654281993474
+      Generic_Rival_Sheet_13: -267122126830048964
+      Generic_Rival_Sheet_14: 960995968425623784
+      Generic_Rival_Sheet_15: 2054078821716693882
+      Generic_Rival_Sheet_16: 3813918880779947869
+      Generic_Rival_Sheet_17: -3158409649205866113
+      Generic_Rival_Sheet_18: 5296796372738450799
+      Generic_Rival_Sheet_2: -2469677593242822356
+      Generic_Rival_Sheet_3: -9155981739933128555
+      Generic_Rival_Sheet_4: -6700418636808424386
+      Generic_Rival_Sheet_5: -1548234786719507839
+      Generic_Rival_Sheet_6: 7846678664329672720
+      Generic_Rival_Sheet_7: -8538219314378273838
+      Generic_Rival_Sheet_8: -134287875506742443
+      Generic_Rival_Sheet_9: 8603684420070925015
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

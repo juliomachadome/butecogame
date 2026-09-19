@@ -119,6 +119,127 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &2153609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2153610}
+  - component: {fileID: 2153612}
+  - component: {fileID: 2153611}
+  m_Layer: 0
+  m_Name: HeldItem_Cigarette
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2153610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2153609}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.22, y: 0.62, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2080900353}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2153611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2153609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a22872df187408abd1e6b61e3a31a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.HeldItem
+  characterAnimator: {fileID: 0}
+  npcSprite: {fileID: 2080900354}
+  playerAnimator: {fileID: 0}
+  itemRenderer: {fileID: 2153612}
+  offsetSouth: {x: 0.22, y: 0.62}
+  offsetEast: {x: 0.1, y: 0.64}
+  offsetNorth: {x: -0.22, y: 0.62}
+  sortingOrderFront: 10
+  sortingOrderBack: -10
+  emitsSmoke: 1
+  smokeSprite: {fileID: 21300000, guid: 76854da8eafd6450fb2d6ff64266725d, type: 3}
+  smokeIntervalMin: 2
+  smokeIntervalMax: 4
+  smokeRiseDistance: 0.35
+  smokeDuration: 1.2
+  smokeTipOffset: {x: 0.08, y: 0.02}
+--- !u!212 &2153612
+SpriteRenderer:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2153609}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 21300000, guid: 5a84bd053f0214ee3a93231c0dce5c12, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.3125, y: 0.125}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!1 &5354740
 GameObject:
   m_ObjectHideFlags: 0
@@ -6068,7 +6189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1392550670
 Transform:
   m_ObjectHideFlags: 0
@@ -8594,6 +8715,7 @@ MonoBehaviour:
   target: {fileID: 718595723}
   mapBounds: {fileID: 876944930}
   smoothTime: 0.12
+  maxShakeIntensity: 0.12
 --- !u!1 &1507949425
 GameObject:
   m_ObjectHideFlags: 0
@@ -10432,6 +10554,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1462923235876213511, guid: 613b62e3b6d6447588f7e894751738e7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1392550670}
+    - targetCorrespondingSourceObject: {fileID: 1462923235876213511, guid: 613b62e3b6d6447588f7e894751738e7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2153610}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 613b62e3b6d6447588f7e894751738e7, type: 3}
 --- !u!4 &2080900353 stripped
@@ -10439,6 +10564,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1462923235876213511, guid: 613b62e3b6d6447588f7e894751738e7, type: 3}
   m_PrefabInstance: {fileID: 2080900352}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2080900354 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2473713376665460772, guid: 613b62e3b6d6447588f7e894751738e7, type: 3}
+  m_PrefabInstance: {fileID: 2080900352}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e88ffbd61acb49b58a00cf363995690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.NPCSprite
 --- !u!1 &2087421183
 GameObject:
   m_ObjectHideFlags: 0

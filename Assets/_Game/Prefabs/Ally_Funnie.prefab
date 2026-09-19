@@ -119,13 +119,13 @@ GameObject:
   - component: {fileID: 4439377732859828921}
   - component: {fileID: 1496598891592317397}
   - component: {fileID: 6617678629030254647}
-  - component: {fileID: 187752819923914086}
   - component: {fileID: 549857397926909888}
   - component: {fileID: 4219188271563891946}
   - component: {fileID: 8881481148740183923}
   - component: {fileID: 2570497921972184726}
   - component: {fileID: 6798375260938788288}
   - component: {fileID: -5729649187636414007}
+  - component: {fileID: 9111667107108655109}
   m_Layer: 0
   m_Name: Ally_Funnie
   m_TagString: Untagged
@@ -148,6 +148,7 @@ Transform:
   m_Children:
   - {fileID: 5135122286521860919}
   - {fileID: 3864281182794338629}
+  - {fileID: 5073828955990081277}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1496598891592317397
@@ -223,14 +224,214 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!212 &187752819923914086
+--- !u!114 &549857397926909888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272399059303611883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26539382d7f3a4f1aa065fa390483191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.Health
+  maxHP: 80
+  iFrameDuration: 0.3
+--- !u!114 &4219188271563891946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272399059303611883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d266d8edabea14fd191b7448f558ef75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.DamageFlash
+  spriteRenderer: {fileID: 8978432045050263508}
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDuration: 0.08
+--- !u!114 &8881481148740183923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272399059303611883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265d78dad809846558c990b7697555b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.Knockback
+  duration: 0.15
+--- !u!114 &2570497921972184726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272399059303611883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2610f6b10525d4e9bbd5ff2a034a1b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.CharacterSpriteAnimator
+  spriteRenderer: {fileID: 8978432045050263508}
+  rb: {fileID: 6617678629030254647}
+  idleS: {fileID: -704971437, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  idleW: {fileID: -246136915, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  idleE: {fileID: 994246770, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  idleN: {fileID: 282311344, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  walkS:
+  - {fileID: 1732872935, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  - {fileID: -359703042, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  - {fileID: -87212976, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  - {fileID: 1213250519, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  - {fileID: 1976168065, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  walkE:
+  - {fileID: 768351122, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  - {fileID: -1041335661, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  - {fileID: 1037081177, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  - {fileID: -165555736, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  - {fileID: 1720175099, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  walkN:
+  - {fileID: 1334237565, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  - {fileID: -860875160, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  - {fileID: -1156498199, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  - {fileID: -848229259, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  - {fileID: -755945088, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
+  fps: 8
+  moveThreshold: 0.05
+--- !u!114 &6798375260938788288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272399059303611883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9fdea6540d34f0ba2ad5019b096fc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.AllyController
+  target: {fileID: 0}
+  health: {fileID: 549857397926909888}
+  hitbox: {fileID: 5971325639700037359}
+  hitboxSprite: {fileID: 900730675285727402}
+  rb: {fileID: 6617678629030254647}
+  solidCollider: {fileID: 1496598891592317397}
+  hurtboxCollider: {fileID: 5863789863559674969}
+  spriteRenderer: {fileID: 0}
+  spriteAnimator: {fileID: 2570497921972184726}
+  attackFX: {fileID: 0}
+  role: 1
+  formationBackDistance: 1.4
+  formationSideOffset: 1
+  followStopDistance: 0.8
+  followSpeed: 4.5
+  rescueDistance: 8
+  stuckTimeout: 2
+  stuckMinDistance: 0.15
+  rescueTestRadius: 0.35
+  rescueRingDistance: 1.5
+  combatDetectRadius: 6
+  approachDistance: 1
+  moveSpeed: 4
+  windupTime: 0.3
+  attackActiveTime: 0.1
+  recoverTime: 0.5
+  damage: 10
+  knockbackForce: 4
+  hitboxDistance: 0.6
+  windupColor: {r: 1, g: 0.8, b: 0.2, a: 1}
+  combatStuckCheckInterval: 1
+  slideTime: 0.4
+  knockedCheckRadius: 8
+  knockedReviveClearTime: 4
+  reviveHpFraction: 0.5
+  koColor: {r: 0.25, g: 0.25, b: 0.3, a: 1}
+  hurtVelocityFreezeTime: 0.15
+--- !u!114 &-5729649187636414007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272399059303611883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256d4ce4b1f574c6c8fd5461b673d2fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.Combatant
+  team: 1
+--- !u!114 &9111667107108655109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272399059303611883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157d3eb545898484baff02387397d54c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.AttackFX
+  visual: {fileID: 5073828955990081277}
+  slashSprite: {fileID: 21300000, guid: fa53162c00fdc402a86509a5121ff740, type: 3}
+  slashColor: {r: 1, g: 1, b: 1, a: 1}
+  slashDistance: 0.55
+  slashTrunkHeight: 0.3
+  slashScaleRange: {x: 0.8, y: 1.1}
+  slashSortingOrder: 50
+  sparkSprite: {fileID: 21300000, guid: 3e1f7d4d67b0748fb9b900b8e2f33e55, type: 3}
+  sparkDuration: 0.15
+  sparkScaleRange: {x: 0.5, y: 1.2}
+  sparkSortingOrder: 60
+  lungeDistance: 0.15
+  windupSquash: {x: 1.15, y: 0.88}
+  hitStretch: {x: 0.9, y: 1.1}
+--- !u!1 &6473706727242596575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5073828955990081277}
+  - component: {fileID: 8978432045050263508}
+  m_Layer: 0
+  m_Name: Visual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5073828955990081277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6473706727242596575}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4439377732859828921}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &8978432045050263508
 SpriteRenderer:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3272399059303611883}
+  m_GameObject: {fileID: 6473706727242596575}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -283,148 +484,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 1
   m_BlendShapeWeights: []
---- !u!114 &549857397926909888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3272399059303611883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26539382d7f3a4f1aa065fa390483191, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.Health
-  maxHP: 80
-  iFrameDuration: 0.3
---- !u!114 &4219188271563891946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3272399059303611883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d266d8edabea14fd191b7448f558ef75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.DamageFlash
-  spriteRenderer: {fileID: 187752819923914086}
-  flashColor: {r: 1, g: 1, b: 1, a: 1}
-  flashDuration: 0.08
---- !u!114 &8881481148740183923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3272399059303611883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 265d78dad809846558c990b7697555b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.Knockback
-  duration: 0.15
---- !u!114 &2570497921972184726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3272399059303611883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2610f6b10525d4e9bbd5ff2a034a1b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.CharacterSpriteAnimator
-  spriteRenderer: {fileID: 187752819923914086}
-  rb: {fileID: 6617678629030254647}
-  idleS: {fileID: -704971437, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  idleW: {fileID: -246136915, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  idleE: {fileID: 994246770, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  idleN: {fileID: 282311344, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  walkS:
-  - {fileID: 1732872935, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -359703042, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -87212976, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: 1213250519, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: 1976168065, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  walkE:
-  - {fileID: 768351122, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -1041335661, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: 1037081177, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -165555736, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: 1720175099, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  walkN:
-  - {fileID: 1334237565, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -860875160, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -1156498199, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -848229259, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  - {fileID: -755945088, guid: f74da9ec7da16400bb29e0c534d52e1e, type: 3}
-  fps: 8
-  moveThreshold: 0.05
---- !u!114 &6798375260938788288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3272399059303611883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f9fdea6540d34f0ba2ad5019b096fc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.NPC.AllyController
-  target: {fileID: 0}
-  health: {fileID: 549857397926909888}
-  hitbox: {fileID: 5971325639700037359}
-  hitboxSprite: {fileID: 900730675285727402}
-  rb: {fileID: 6617678629030254647}
-  solidCollider: {fileID: 1496598891592317397}
-  hurtboxCollider: {fileID: 5863789863559674969}
-  spriteRenderer: {fileID: 187752819923914086}
-  spriteAnimator: {fileID: 2570497921972184726}
-  role: 1
-  formationBackDistance: 1.4
-  formationSideOffset: 1
-  followStopDistance: 0.8
-  followSpeed: 4.5
-  rescueDistance: 8
-  stuckTimeout: 2
-  stuckMinDistance: 0.15
-  rescueTestRadius: 0.35
-  rescueRingDistance: 1.5
-  combatDetectRadius: 6
-  approachDistance: 1
-  moveSpeed: 4
-  windupTime: 0.3
-  attackActiveTime: 0.1
-  recoverTime: 0.5
-  damage: 10
-  knockbackForce: 4
-  hitboxDistance: 0.6
-  windupColor: {r: 1, g: 0.8, b: 0.2, a: 1}
-  windupScale: 1.1
-  combatStuckCheckInterval: 1
-  slideTime: 0.4
-  knockedCheckRadius: 8
-  knockedReviveClearTime: 4
-  reviveHpFraction: 0.5
-  koColor: {r: 0.25, g: 0.25, b: 0.3, a: 1}
-  hurtVelocityFreezeTime: 0.15
---- !u!114 &-5729649187636414007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3272399059303611883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 256d4ce4b1f574c6c8fd5461b673d2fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButecoDosDevs.Combat.Combatant
-  team: 1
 --- !u!1 &8751554972852053842
 GameObject:
   m_ObjectHideFlags: 0

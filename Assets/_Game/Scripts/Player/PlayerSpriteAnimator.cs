@@ -40,6 +40,20 @@ namespace ButecoDosDevs.Player
         private FacingDirection lastDirection = FacingDirection.South;
         private bool wasMoving;
 
+        /// <summary>Current quantized facing as a unit-ish vector (for HeldItem, etc.).</summary>
+        public Vector2 CurrentFacing => FacingToVector(lastDirection);
+
+        private static Vector2 FacingToVector(FacingDirection direction)
+        {
+            switch (direction)
+            {
+                case FacingDirection.North: return Vector2.up;
+                case FacingDirection.East: return Vector2.right;
+                case FacingDirection.West: return Vector2.left;
+                default: return Vector2.down;
+            }
+        }
+
         private void Update()
         {
             if (movement == null || spriteRenderer == null)
